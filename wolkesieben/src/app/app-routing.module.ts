@@ -11,6 +11,22 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'profile',
+    loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
+  },
+  {
+    path: 'search-request',
+    loadChildren: () => import('./search-request/search-request.module').then( m => m.SearchRequestPageModule)
+  },
+  {
+    path: 'search-preview',
+    loadChildren: () => import('./search-preview/search-preview.module').then( m => m.SearchPreviewPageModule)
+  },
+  {
+    path: 'offer',
+    loadChildren: () => import('./offer/offer.module').then( m => m.OfferPageModule)
+  },
 ];
 
 @NgModule({
