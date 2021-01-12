@@ -1,0 +1,110 @@
+[
+  {
+    "id": 1,
+    "name": "Nox",
+    "age": 3,
+    "sex": "M",
+    "place": "Wiesbaden",
+    "previewImageUrl": "/assets/testdata/images/nox.jpg",
+    "media": []
+  },
+  {
+    "id": 2,
+    "name": "Manuel",
+    "age": 21,
+    "sex": "M",
+    "place": "Great Barrier Reef, QL, Australia",
+    "previewImageUrl": "/assets/testdata/images/manuel.jpg",
+    "media": []
+  },
+  {
+    "id": 3,
+    "name": "Lucky",
+    "age": 5,
+    "sex": "M",
+    "place": "Frankfurt a.M.",
+    "previewImageUrl": "/assets/testdata/images/lucky.jpg",
+    "media": []
+  },
+  {
+    "id": 4,
+    "name": "Lucy",
+    "age": 9,
+    "sex": "F",
+    "place": "Wiesbaden",
+    "previewImageUrl": "/assets/testdata/images/lucy.jpg",
+    "media": []
+  },
+  {
+    "id": 5,
+    "name": "Perdie",
+    "age": 3,
+    "sex": "F",
+    "place": "Bad Camberg",
+    "previewImageUrl": "/assets/testdata/images/perdie.jpg",
+    "media": []
+  },
+  {
+    "id": 6,
+    "name": "Bronko",
+    "age": 11,
+    "sex": "M",
+    "place": "Mainz",
+    "previewImageUrl": "/assets/testdata/images/bronko.jpg",
+    "media": []
+  },
+  {
+    "id": 7,
+    "name": "Garfield",
+    "age": 5,
+    "sex": "F",
+    "place": "Rüsselsheim",
+    "previewImageUrl": "/assets/testdata/images/garfield.jpg",
+    "media": []
+  },
+  {
+    "id": 8,
+    "name": "Willi",
+    "age": 4,
+    "sex": "M",
+    "place": "Wiesbaden",
+    "previewImageUrl": "/assets/testdata/images/willi.jpg",
+    "media": []
+  },
+  {
+    "id": 9,
+    "name": "Lukas",
+    "age": 0.5,
+    "sex": "M",
+    "place": "Sao Paulo, Brasilien",
+    "previewImageUrl": "/assets/testdata/images/lukas.jpg",
+    "media": []
+  },
+  {
+    "id": 10,
+    "name": "Rolf",
+    "age": 16,
+    "sex": "M",
+    "place": "Mainz",
+    "previewImageUrl": "/assets/testdata/images/rolf.jpg",
+    "media": []
+  },
+  {
+    "id": 11,
+    "name": "Ada",
+    "age": 0,
+    "sex": "F",
+    "place": "Rüsselsheim",
+    "previewImageUrl": "/assets/testdata/images/ada.jpg",
+    "media": []
+  },
+  {
+    "id": 12,
+    "name": "Rita",
+    "age": 67000000,
+    "sex": "F",
+    "place": "Pangea, Earth",
+    "previewImageUrl": "/assets/testdata/images/rita.jpg",
+    "media": []
+  }
+]

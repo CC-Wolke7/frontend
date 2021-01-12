@@ -1,0 +1,27 @@
+<div class="wrapper">
+
+  <div class="image-wrapper">
+    <img [src]="offer.previewImageUrl" alt="">
+  </div>
+
+  <div>
+
+    <div class="">
+      <div class="ion-align-items-center text-wrapper">
+        <ion-text class="name-age">
+          {{offer.name}}, {{offer.age}}
+        </ion-text>
+        <ion-icon class="sex-icon" [name]="offer.sex == 'M' ? 'male' : 'female'"></ion-icon>
+      </div>
+
+      <div>
+        <ion-text class="place" color="secondary">
+          {{offer.place}}
+        </ion-text>
+      </div>
+    </div>
+
+  </div>
+
+
+</div>
