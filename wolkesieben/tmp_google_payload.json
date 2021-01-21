@@ -1,0 +1,27 @@
+{
+  "Ea": "103092634986249799190",
+  "Bc": {
+    "token_type": "Bearer",
+    "access_token": "ya29.a0AfH6SMB4HjK6g2D6UAbkAklM1UTIpD8Jfxxfr7yQoyFSXg4kyS5QyzbxzDsmH9guLBHbwV8zIziBa1BhrdQjO5HoE7H0EXpdpNKYnseUKOs8GO20jzArgc3p-LqgPNwxMJJIdghEbV-d0WGc-Pz12mrnExno7oNd3MdMAbeWgJ0",
+    "scope": "email profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid",
+    "login_hint": "AJDLj6JUa8yxXrhHdWRHIV0S13cAx8-xzOIlc4sj08IUvONaKlX5_zH8Fi_QfN8jDfAGfMAvUWP-0e_JOTCNot78mHHVTiCSew",
+    "expires_in": 3599,
+    "id_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6Ijc4M2VjMDMxYzU5ZTExZjI1N2QwZWMxNTcxNGVmNjA3Y2U2YTJhNmYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiODgyNTE3NzIyNTk3LTNwNmoxa29qODRvYTI3a3Y0YmM5dDU4ZWdpYW5xZjNlLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiODgyNTE3NzIyNTk3LTNwNmoxa29qODRvYTI3a3Y0YmM5dDU4ZWdpYW5xZjNlLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTAzMDkyNjM0OTg2MjQ5Nzk5MTkwIiwiZW1haWwiOiJrbGF1c2Z1aHJtZWlzdGVyOTFAZ29vZ2xlbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6Imw1dnE4VWVRMXAwSk5YV2Nibi1LNkEiLCJuYW1lIjoiS2xhdXMgRiIsInBpY3R1cmUiOiJodHRwczovL2xoNS5nb29nbGV1c2VyY29udGVudC5jb20vLS1faTJURGxWMWUwL0FBQUFBQUFBQUFJL0FBQUFBQUFBQUFBL0FNWnV1Y21ZTDB6RFRVUFBPVUlmeWZZUUVibGdZUXNGVFEvczk2LWMvcGhvdG8uanBnIiwiZ2l2ZW5fbmFtZSI6IktsYXVzIiwiZmFtaWx5X25hbWUiOiJGIiwibG9jYWxlIjoiZGUiLCJpYXQiOjE2MTExNDM0NjksImV4cCI6MTYxMTE0NzA2OSwianRpIjoiNmRlMjQzNWVhMjIyMTlhMTIwMjVjNmVhYzRiMzYxN2JkNmNhNDI5NCJ9.NZQx5I_KgBxxVr-IkDUDXrhZivyjQUzk3ZpdNmIFgusgQCMXx7U7P4xYoYTm4IX-cQ3hvpR2vJ4uHK1pEzlllwsiaPUV1gvDtgp-jWmygdmvCJ8JHcTLOWZB8L-Xy0qS3gXxUJONsG0rmdojbpAghzUcPFNdxYIVBNgGWWh6g2s9qs-8X20EISeU8xHEcvIKtgYD6Lt2LG-xZnIOQdtGtmhaIA50RGt0NHuMr_kUMdok3N8CNnGpN9OulFRaiwhSu5Ta3DZJ235Ii0yBqwlKk0Gvmj4HBWL1HDvJ_Uv_5Fadg9LO8ZuF-XM9gTfEV0JTqWBW-3b57eDPeu5f4_vW1Q",
+    "session_state": {
+      "extraQueryParams": {
+        "authuser": "0"
+      }
+    },
+    "first_issued_at": 1611143469655,
+    "expires_at": 1611147068655,
+    "idpId": "google"
+  },
+  "Mt": {
+    "$U": "103092634986249799190",
+    "Ed": "Klaus F",
+    "DW": "Klaus",
+    "HU": "F",
+    "eL": "https://lh5.googleusercontent.com/--_i2TDlV1e0/AAAAAAAAAAI/AAAAAAAAAAA/AMZuucmYL0zDTUPPOUIfyfYQEblgYQsFTQ/s96-c/photo.jpg",
+    "tu": "klausfuhrmeister91@googlemail.com"
+  }
+}

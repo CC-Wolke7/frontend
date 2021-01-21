@@ -1,12 +1,12 @@
 import {Injectable, isDevMode} from '@angular/core';
-import {ApiService} from './api.service';
+import {AppService} from './app.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class OfferService {
 
-    constructor(private apiService: ApiService) {
+    constructor(private appService: AppService) {
     }
 
     getRandomOffers(count: number = 24, detail: boolean = false) {
@@ -14,6 +14,6 @@ export class OfferService {
         if (isDevMode()) { // TODO remove for prod
             path = '/assets/testdata/offers.json';
         }
-        return this.apiService.httpGet(path, {count, detail});
+        return this.appService.httpGet(path, {count, detail});
     }
 }

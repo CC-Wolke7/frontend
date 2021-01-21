@@ -1,8 +1,7 @@
 <ion-content [fullscreen]="true">
 
     <div class="actions ion-text-end">
-        <ion-button color="primary">Registrieren</ion-button>
-        <ion-button color="primary" fill="outline">Einloggen</ion-button>
+        <app-auth-button (userLoaded)="initUser($event)"></app-auth-button>
     </div>
 
     <div class="title ion-text-center">
@@ -14,7 +13,7 @@
     <ion-grid>
         <ion-row>
             <ion-col size-xl="3" size-lg="4" size-md="6" size-sm="6" size-xs="12" *ngFor="let offer of offers">
-                <app-offer-card [offer]="offer"></app-offer-card>
+                <app-offer-card [user]="user" [offer]="offer"></app-offer-card>
             </ion-col>
         </ion-row>
     </ion-grid>

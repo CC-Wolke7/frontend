@@ -24,7 +24,7 @@ const routes: Routes = [
     loadChildren: () => import('./search-preview/search-preview.module').then( m => m.SearchPreviewPageModule)
   },
   {
-    path: 'offer',
+    path: 'offer/:id',
     loadChildren: () => import('./offer/offer.module').then( m => m.OfferPageModule)
   },
 ];

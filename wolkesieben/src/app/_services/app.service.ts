@@ -4,9 +4,9 @@ import {HttpClient} from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class ApiService {
+export class AppService {
 
-  readonly URL = '';
+  readonly URL = ''; // FIXME
   readonly HTTP_HEADERS = {}; // FIXME
   readonly HTTP_HEADERS_WITH_AUTH = {}; // FIXME
 

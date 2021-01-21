@@ -2,6 +2,31 @@
   padding: 30px;
 }
 
+.image-wrapper {
+  padding-top: 75%;
+  width: 100%;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+
+  .like-area {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    ion-icon {
+      position: absolute;
+      font-size: 32px;
+    }
+  }
+}
+
 .text-wrapper {
   margin-top: 10px;
   font-size: 22px;

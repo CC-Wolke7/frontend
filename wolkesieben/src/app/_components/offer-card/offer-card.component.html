@@ -1,7 +1,13 @@
-<div class="wrapper">
+<div class="wrapper" (click)="goToOffer()">
 
-  <div class="image-wrapper">
-    <img [src]="offer.previewImageUrl" alt="">
+  <div class="image-wrapper" [ngStyle]="{'background-image': 'url(' + offer.previewImageUrl + ')'}">
+    <!--img [src]="offer.previewImageUrl" alt=""-->
+
+    <div class="like-area" (click)="toggleLike(); $event.stopPropagation()">
+      <ion-icon color="danger" name="heart" *ngIf="liked()"></ion-icon>
+      <ion-icon color="white" name="heart" *ngIf="!liked()"></ion-icon>
+      <ion-icon color="danger" name="heart-outline" *ngIf="!liked()"></ion-icon>
+    </div>
   </div>
 
   <div>

@@ -14,10 +14,11 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "types": ["gapi.auth2", "gapi"]
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
     "strictInjectionParameters": true
-  }
+  },
 }
