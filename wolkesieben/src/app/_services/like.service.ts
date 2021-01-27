@@ -1,9 +1,9 @@
 import {Injectable, isDevMode} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Like} from '../_objects/like';
-import {Observable} from 'rxjs';
 import {Offer} from '../_objects/offer';
 import {User} from '../_objects/user';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -57,28 +57,29 @@ export class LikeService {
     const headers: HttpHeaders = LikeService.getHeader(user);
     const options = {headers};
 
-    const route = this.ROUTES.likes.replace(':offerId', `${offer.id}`);
+    const route = this.ROUTES.likes.replace(':offerId', `${offer.uuid}`);
     const url = this.getUrl(route);
 
-    try {
-      return await this.httpClient.get<Like>(url, options).toPromise();
-    } catch (error) {
-      return new Like();
+    const like: Like = await this.httpClient.get<Like>(url, options).toPromise();
+    if (like.total === 0) {
+      // like.user = 0;
     }
+    return like;
   }
 
   /**
    * @description sends likes from one user to like microservice
    * @param user: User
    * @param offer: Offer
-   * @return Observable<>: Observable http status
+   * @return Observable<void>: no return
    */
-  toggleLike(user: User, offer: Offer) {
+  toggleLike(user: User, offer: Offer): Observable<void> {
     const headers: HttpHeaders = LikeService.getHeader(user);
     const options = {headers};
 
-    const route = this.ROUTES.likes.replace(':offerId', `${offer.id}`);
+    const route = this.ROUTES.likes.replace(':offerId', `${offer.uuid}`);
     const url = this.getUrl(route);
-    return this.httpClient.put(url, options);
+
+    return this.httpClient.put<void>(url, {}, options);
   }
 }

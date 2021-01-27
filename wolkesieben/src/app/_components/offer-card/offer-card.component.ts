@@ -4,6 +4,8 @@ import {NavController} from '@ionic/angular';
 import {Like} from '../../_objects/like';
 import {LikeService} from '../../_services/like.service';
 import {User} from '../../_objects/user';
+import {NavigationOptions} from '@ionic/angular/providers/nav-controller';
+import {NavigationExtras} from '@angular/router';
 
 @Component({
   selector: 'app-offer-card',
@@ -24,14 +26,13 @@ export class OfferCardComponent implements OnInit {
 
   goToOffer(): void {
     if (this.user) {
-      this.navController.navigateForward(`/offer/${this.offer.id}`).then();
+      const navigationExtras: NavigationExtras = {state: this.offer};
+      this.navController.navigateForward(`/offer/${this.offer.uuid}`, navigationExtras).then();
     }
   }
 
   async toggleLike(): Promise<void> {
-    console.log(this.user);
     await this.likeService.toggleLike(this.user, this.offer).toPromise();
     this.offer.like = await this.likeService.getLike(this.user, this.offer);
-    console.log('offer after toggle like', this.offer);
   }
 }

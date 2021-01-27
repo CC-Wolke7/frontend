@@ -26,19 +26,24 @@ export class UserService {
     if (await this.checkIfUserAuthenticated()) {
       this.isLoading = false;
       this.googleUser = this.authInstance.currentUser.get();
-
+      console.log('google user', this.googleUser.getId());
       const users: User[] = await this.checkUser(this.authInstance.currentUser.get()).toPromise();
       if (users.length === 0) {
+        // fallback
         const user = new User(this.googleUser);
         user.jwtToken = 'NTZiYWU4YjE1ZmQyYzdlMGViZDI1Y2EzODMzZTUxZjQK';
         return user;
       } else {
         return users[0];
       }
+    } else {
+      return null;
     }
   }
 
-
+  getGoogleUser() {
+    return this.googleUser;
+  }
 
   async initGoogleAuth(): Promise<void> {
     //  Create a new Promise where the resolve

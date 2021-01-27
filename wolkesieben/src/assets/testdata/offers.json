@@ -1,6 +1,7 @@
 [
   {
     "id": 1,
+    "uuid": "cdeeec63-7df8-449d-a23d-095c03d13157",
     "name": "Nox",
     "age": 3,
     "sex": "M",
@@ -10,6 +11,7 @@
   },
   {
     "id": 2,
+    "uuid": "7cbd4b76-3bc1-4b30-b828-f8816e83769a",
     "name": "Manuel",
     "age": 21,
     "sex": "M",
@@ -19,6 +21,7 @@
   },
   {
     "id": 3,
+    "uuid": "0ebeaef6-1b08-4ba5-8093-ea001ff44964",
     "name": "Lucky",
     "age": 5,
     "sex": "M",
@@ -28,6 +31,7 @@
   },
   {
     "id": 4,
+    "uuid": "5f5ce949-aabf-4b3c-8caa-f3086817ca4c",
     "name": "Lucy",
     "age": 9,
     "sex": "F",
@@ -37,6 +41,7 @@
   },
   {
     "id": 5,
+    "uuid": "1fad7224-d80e-4b33-b471-1b819fc26056",
     "name": "Perdie",
     "age": 3,
     "sex": "F",
@@ -46,6 +51,7 @@
   },
   {
     "id": 6,
+    "uuid": "a3620045-25c4-48df-be71-40e8c9c73659",
     "name": "Bronko",
     "age": 11,
     "sex": "M",
@@ -55,6 +61,7 @@
   },
   {
     "id": 7,
+    "uuid": "da6e9739-c9a2-4d63-8b33-0a831c89eab1",
     "name": "Garfield",
     "age": 5,
     "sex": "F",
@@ -64,6 +71,7 @@
   },
   {
     "id": 8,
+    "uuid": "6aaac080-efc3-4a02-8255-a516f11338a4",
     "name": "Willi",
     "age": 4,
     "sex": "M",
@@ -73,6 +81,7 @@
   },
   {
     "id": 9,
+    "uuid": "a8270202-f364-4cfc-8a16-9fe05334b5d5",
     "name": "Lukas",
     "age": 0.5,
     "sex": "M",
@@ -82,6 +91,7 @@
   },
   {
     "id": 10,
+    "uuid": "088469c0-e0f6-4cb7-afed-c07d2259138a",
     "name": "Rolf",
     "age": 16,
     "sex": "M",
@@ -91,6 +101,7 @@
   },
   {
     "id": 11,
+    "uuid": "094c48fb-3fa8-4926-b951-d0d213d2a995",
     "name": "Ada",
     "age": 0,
     "sex": "F",
@@ -100,6 +111,7 @@
   },
   {
     "id": 12,
+    "uuid": "50b283a8-3691-4d87-92f4-d245dd9a3524",
     "name": "Rita",
     "age": 67000000,
     "sex": "F",

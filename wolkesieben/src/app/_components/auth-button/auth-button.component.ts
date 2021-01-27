@@ -1,7 +1,6 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {Component, OnInit} from '@angular/core';
 import {UserService} from '../../_services/user.service';
-import {User} from '../../_objects/user';
+import GoogleUser = gapi.auth2.GoogleUser;
 
 @Component({
     selector: 'app-auth-button',
@@ -10,21 +9,24 @@ import {User} from '../../_objects/user';
 })
 export class AuthButtonComponent implements OnInit {
 
-    public gapiSetup = false; // marks if the gapi library has been loaded
-    public authInstance: gapi.auth2.GoogleAuth;
-    public error: string;
-    public googleUser: gapi.auth2.GoogleUser;
-    public user: User;
-    public uuid: string;
+    public googleUser: GoogleUser;
 
-    isLoading = true;
+    constructor(private userService: UserService) {}
 
-    @Output() userLoaded: EventEmitter<User> = new EventEmitter();
+    async authenticate() {
+        this.googleUser = await this.userService.authenticate();
+        // todo reload user
+    }
 
-    constructor(private userService: UserService, private httpClient: HttpClient) {
+    disconnect() {
+        this.googleUser.disconnect();
+        this.googleUser = null;
+        // window.location.reload();
     }
 
     async ngOnInit() {
-
+        if (await this.userService.checkIfUserAuthenticated()) {
+            this.googleUser = this.userService.getGoogleUser();
+        }
     }
 }

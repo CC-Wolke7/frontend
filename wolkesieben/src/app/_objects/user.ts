@@ -7,6 +7,7 @@ export class User {
     type: string;
     jwtToken: string;
     firstname: string;
+    lastname: string;
 
     constructor(user: GoogleUser, type = 'google') {
         this.userId = user.getId();

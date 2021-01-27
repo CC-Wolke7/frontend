@@ -6,6 +6,7 @@ import {LikeService} from '../_services/like.service';
 import {User} from '../_objects/user';
 import {HttpClient} from '@angular/common/http';
 import {UserService} from '../_services/user.service';
+import GoogleUser = gapi.auth2.GoogleUser;
 
 @Component({
     selector: 'app-home',
@@ -38,18 +39,19 @@ export class HomePage implements OnInit {
             this.offers = await this.httpClient.get<Offer[]>('http://localhost:8100/assets/testdata/offers.json').toPromise();
         }
         for (const offer of this.offers) {
-            try {
-                offer.like = await this.likeService.getLike(this.user, offer);
-                console.log(offer);
-            } catch (error) {
-                console.log(error);
-            }
-
+            offer.like = await this.likeService.getLike(this.user, offer);
         }
     }
 
-    initUser(user: User): void {
-        this.user = user;
+    initUser(event): void {
+        console.log({event});
+        this.userService.authenticate().then(googleUser => {
+            console.log({googleUser});
+        });
     }
 
+    logout(googleUser: GoogleUser) {
+        googleUser.disconnect();
+        this.user = null;
+    }
 }

@@ -1,2 +1,3 @@
-<ion-button *ngIf="!user && !isLoading" (click)="authenticate()">Authenticate</ion-button>
-<ion-label *ngIf="user && !isLoading">Willkommen, {{user.firstname}}</ion-label>
+<ion-label *ngIf="googleUser && googleUser.isSignedIn()">Willkommen, {{googleUser.getBasicProfile().getName()}}</ion-label>
+<ion-button *ngIf="!googleUser || !googleUser.isSignedIn()" (click)="authenticate()">Authenticate</ion-button>
+<ion-button *ngIf="googleUser && googleUser.isSignedIn()" (click)="disconnect()">Logout</ion-button>

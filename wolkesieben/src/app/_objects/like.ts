@@ -1,9 +1,9 @@
 export class Like {
     total: number;
-    user: string;
+    user: number;
 
     constructor() {
         this.total = 0;
-        this.user = 'Neutral';
+        this.user = 0;
     }
 }
