@@ -1,4 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {UserService} from '../../_services/user.service';
 import {User} from '../../_objects/user';
 
 @Component({
@@ -11,65 +13,18 @@ export class AuthButtonComponent implements OnInit {
     public gapiSetup = false; // marks if the gapi library has been loaded
     public authInstance: gapi.auth2.GoogleAuth;
     public error: string;
-    public user: gapi.auth2.GoogleUser;
+    public googleUser: gapi.auth2.GoogleUser;
+    public user: User;
+    public uuid: string;
 
     isLoading = true;
 
-    @Output() userLoaded: EventEmitter<gapi.auth2.GoogleUser> = new EventEmitter();
+    @Output() userLoaded: EventEmitter<User> = new EventEmitter();
 
-    constructor() {
+    constructor(private userService: UserService, private httpClient: HttpClient) {
     }
 
     async ngOnInit() {
-        if (await this.checkIfUserAuthenticated()) {
-            this.isLoading = false;
-            this.user = this.authInstance.currentUser.get();
-            if (this.user) {
-                console.log('emit event');
-                this.userLoaded.next(this.user);
-            }
-        }
-        // console.log(JSON.stringify(this.user));
-    }
 
-    async initGoogleAuth(): Promise<void> {
-        //  Create a new Promise where the resolve
-        // function is the callback passed to gapi.load
-        const pload = new Promise((resolve) => {
-            gapi.load('auth2', resolve);
-        });
-
-        // When the first promise resolves, it means we have gapi
-        // loaded and that we can call gapi.init
-        return pload.then(async () => {
-            await gapi.auth2
-                .init({ client_id: '882517722597-3p6j1koj84oa27kv4bc9t58egianqf3e.apps.googleusercontent.com' })
-                .then(auth => {
-                    this.gapiSetup = true;
-                    this.authInstance = auth;
-                });
-        });
-    }
-
-    async authenticate(): Promise<gapi.auth2.GoogleUser>  {
-        if (!this.gapiSetup) {
-            await this.initGoogleAuth();
-        }
-
-        // Resolve or reject signin Promise
-        return new Promise(async () => {
-            await this.authInstance.signIn().then(
-                user => this.user = user,
-                error => this.error = error);
-        });
-    }
-
-    async checkIfUserAuthenticated(): Promise<boolean> {
-        // Initialize gapi if not done yet
-        if (!this.gapiSetup) {
-            await this.initGoogleAuth();
-        }
-
-        return this.authInstance.isSignedIn.get();
     }
 }

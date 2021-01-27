@@ -3,6 +3,9 @@ import {Offer} from '../_objects/offer';
 import {OfferService} from '../_services/offer.service';
 import {Like} from '../_objects/like';
 import {LikeService} from '../_services/like.service';
+import {User} from '../_objects/user';
+import {HttpClient} from '@angular/common/http';
+import {UserService} from '../_services/user.service';
 
 @Component({
     selector: 'app-home',
@@ -12,32 +15,41 @@ import {LikeService} from '../_services/like.service';
 export class HomePage implements OnInit {
 
     offers: Offer[] = [];
-    user: gapi.auth2.GoogleUser;
+    user: User;
     likes: Like[];
 
     constructor(private offerService: OfferService,
-                private likeService: LikeService) {
+                private likeService: LikeService,
+                private httpClient: HttpClient,
+                private userService: UserService) {
     }
 
-    ngOnInit(): void {
-        this.loadOffers();
-    }
-
-    loadOffers(): void {
-        this.offerService.getRandomOffers().subscribe((offers: Offer[]) => {
-            this.offers = offers.map(o => new Offer(o));
+    ngOnInit() {
+        this.userService.getUser().then((user: User) => {
+            this.user = user;
+            console.log(this.user);
+            this.loadOffers().then();
         });
     }
 
-    loadLikes(): void {
-        this.likeService.getLikes(this.user).subscribe((likes: Like[]) => {
-            this.likes = likes;
-        });
+    async loadOffers() {
+        this.offers = await this.offerService.getOffers().toPromise();
+        if (this.offers.length === 0) {
+            this.offers = await this.httpClient.get<Offer[]>('http://localhost:8100/assets/testdata/offers.json').toPromise();
+        }
+        for (const offer of this.offers) {
+            try {
+                offer.like = await this.likeService.getLike(this.user, offer);
+                console.log(offer);
+            } catch (error) {
+                console.log(error);
+            }
+
+        }
     }
 
-    initUser(user: gapi.auth2.GoogleUser): void {
+    initUser(user: User): void {
         this.user = user;
-        this.loadLikes();
     }
 
 }

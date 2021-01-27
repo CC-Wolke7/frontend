@@ -1,56 +1,84 @@
 import {Injectable, isDevMode} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Like} from '../_objects/like';
 import {Observable} from 'rxjs';
+import {Offer} from '../_objects/offer';
+import {User} from '../_objects/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LikeService {
 
-  private HTTP_HEADERS = {}; // FIXME;
-  private ROUTES: {
-    likes: 'likes/user',
-    sendLike: 'likes/user/'
+  readonly URL_LOCAL = 'http://localhost:3002';
+  readonly URL_PROD = 'https://like-ms.wolkesieben.appspot.com';
+  readonly ROUTES = {
+    likes: '/offer/:offerId/likes'
   };
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
   /**
-   * @description gets url in dependence of environment
+   * @description get http header with authorization bearer for like microservice
+   * @param user: User
+   * @return HttpHeaders: http header
+   * @private
+   * @static
+   */
+  private static getHeader(user: User): HttpHeaders {
+    return new HttpHeaders({
+      Authorization: `Bearer ${user.jwtToken}`
+    });
+  }
+
+  /**
+   * @description gets full url in dependence of environment for given route
    * @param route: string
    * @return string: url of like service
    * @private
+   * @static
    */
-  private static getUrl(route: string): string {
+  private getUrl(route: string): string {
     if (isDevMode()) {
-      return `http://localhost:3000/${route}`;
+      return `${this.URL_LOCAL}${route}`;
     } else {
-      return `https://likeservice.wolkesieben.de/${route}`;
+      return `${this.URL_PROD}${route}`;
     }
   }
 
   /**
-   * @description calls like microservice to get all likes from one user
-   * @param user: gapi.auth2.GoogleUser
-   * @return Observable<Like[]>: Observable all likes from given user
+   * @description calls like microservice to get the likes for given offer
+   * @param user: User
+   * @param offer: Offer
+   * @return Promise<Like>: Promise of like object
+   * @async
    */
-  getLikes(user: gapi.auth2.GoogleUser): Observable<Like[]> {
-    const headers = this.HTTP_HEADERS;
-    const params = {user: user.getId()};
-    const options = {headers, params};
-    return this.httpClient.get<Like[]>(LikeService.getUrl(this.ROUTES.likes), options);
+  async getLike(user: User, offer: Offer): Promise<Like> {
+    const headers: HttpHeaders = LikeService.getHeader(user);
+    const options = {headers};
+
+    const route = this.ROUTES.likes.replace(':offerId', `${offer.id}`);
+    const url = this.getUrl(route);
+
+    try {
+      return await this.httpClient.get<Like>(url, options).toPromise();
+    } catch (error) {
+      return new Like();
+    }
   }
 
   /**
    * @description sends likes from one user to like microservice
-   * @param likes: Like[]
-   * @return Observable<boolean>: Observable if send was successful
+   * @param user: User
+   * @param offer: Offer
+   * @return Observable<>: Observable http status
    */
-  sendLikes(likes: Like[]): Observable<boolean> {
-    const headers = this.HTTP_HEADERS;
-    const params = {likes};
-    const options = {headers, params};
-    return this.httpClient.post<boolean>(LikeService.getUrl(this.ROUTES.sendLike), options);
+  toggleLike(user: User, offer: Offer) {
+    const headers: HttpHeaders = LikeService.getHeader(user);
+    const options = {headers};
+
+    const route = this.ROUTES.likes.replace(':offerId', `${offer.id}`);
+    const url = this.getUrl(route);
+    return this.httpClient.put(url, options);
   }
 }

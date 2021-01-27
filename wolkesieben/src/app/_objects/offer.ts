@@ -1,3 +1,5 @@
+import {Like} from './like';
+
 export class Offer {
     id: number;
     name: string;
@@ -5,10 +7,5 @@ export class Offer {
     sex: string;
     place: string;
     previewImageUrl: string;
-
-    constructor(json) {
-        Object.keys(json).forEach(key => {
-            this[key] = json[key];
-        });
-    }
+    like: Like;
 }

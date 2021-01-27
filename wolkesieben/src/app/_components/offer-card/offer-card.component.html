@@ -4,9 +4,9 @@
     <!--img [src]="offer.previewImageUrl" alt=""-->
 
     <div class="like-area" (click)="toggleLike(); $event.stopPropagation()">
-      <ion-icon color="danger" name="heart" *ngIf="liked()"></ion-icon>
-      <ion-icon color="white" name="heart" *ngIf="!liked()"></ion-icon>
-      <ion-icon color="danger" name="heart-outline" *ngIf="!liked()"></ion-icon>
+      <ion-icon color="danger" name="heart" *ngIf="offer.like && offer.like.user == 'Liked'"></ion-icon>
+      <ion-icon color="white" name="heart" *ngIf="offer.like && offer.like.user == 'Neutral'"></ion-icon>
+      <ion-icon color="danger" name="heart-outline" *ngIf="offer.like && offer.like.user == 'Neutral'"></ion-icon>
     </div>
   </div>
 
