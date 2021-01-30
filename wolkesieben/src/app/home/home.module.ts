@@ -5,8 +5,9 @@ import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
-import {OfferCardComponent} from '../_components/offer-card/offer-card.component';
-import {AuthButtonComponent} from '../_components/auth-button/auth-button.component';
+import { OfferCardComponent } from '../_components/offer-card/offer-card.component';
+import { AuthButtonComponent } from '../_components/auth-button/auth-button.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -14,8 +15,11 @@ import {AuthButtonComponent} from '../_components/auth-button/auth-button.compon
         CommonModule,
         FormsModule,
         IonicModule,
-        HomePageRoutingModule
+        HomePageRoutingModule,
+        SharedModule
     ],
-  declarations: [HomePage, OfferCardComponent, AuthButtonComponent]
+    exports: [
+    ],
+    declarations: [HomePage, OfferCardComponent, AuthButtonComponent]
 })
 export class HomePageModule {}
