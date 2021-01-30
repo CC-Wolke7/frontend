@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./search-request.page.scss'],
 })
 export class SearchRequestPage implements OnInit {
+  breed;
+  type;
+  age;
 
   constructor() { }
 

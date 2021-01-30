@@ -1,4 +1,31 @@
 <ion-content>
   <app-header [title]="'Tiersuche'"></app-header>
 
+  <form (ngSubmit)="search()">
+    <ion-item>
+      <ion-label>Tierart</ion-label>
+      <ion-select [(ngModel)]="type"> <!-- TODO load options from file -->
+        <ion-select-option>Hund</ion-select-option>
+        <ion-select-option>Katze</ion-select-option>
+        <ion-select-option>Maus</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Rasse</ion-label>
+      <ion-select [(ngModel)]="breed"> <!-- TODO load options from file -->
+        <ion-select-option>Schäferhund</ion-select-option>
+        <ion-select-option>Golden Retriever</ion-select-option>
+        <ion-select-option>Jack Russell Terrier</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Alter</ion-label>
+      <ion-input type="number" [(ngModel)]="age"></ion-input> <!-- TODO min and max -->
+    </ion-item>
+
+    <ion-button type="submit">Suchen</ion-button>
+  </form>
+
 </ion-content>
