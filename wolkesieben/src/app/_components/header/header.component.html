@@ -1,8 +1,48 @@
 <ion-header>
-  <ion-title>{{title}}</ion-title>
-  <ion-button>Home</ion-button>
-  <ion-button>Tiersuche</ion-button>
-  <ion-button>Merkliste</ion-button>
-  <ion-button>Profil</ion-button>
+
+  <ion-grid>
+        <ion-row>
+            <ion-col>
+                <div>
+                  <ion-button [routerLink]="['/home']">
+                  Startseite
+                  </ion-button>
+
+                  <ion-button [routerLink]="['/search-request']">
+                    Tiersuche
+                  </ion-button>
+
+                  <ion-button>
+                    Merkliste
+                  </ion-button>
+
+                  <ion-button [routerLink]="['/profile']">
+                    Mein Profil
+                  </ion-button>
+                </div>
+            </ion-col>
+
+            <ion-col>
+                <div class="title ion-text-center">
+                  <h1>Wolke 7</h1>
+                  <h2>Wo Tiere ein Zuhause finden</h2>
+                  <h3>{{ title }}</h3>
+                </div>
+
+            </ion-col>
+
+            <ion-col>
+              <!-- <p>Hey, {{ userName }}!</p> -->
+              <p>Hey, default!</p>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+
+
+
+
+
+
 
 </ion-header>
