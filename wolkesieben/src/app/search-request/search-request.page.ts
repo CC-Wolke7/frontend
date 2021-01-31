@@ -9,7 +9,11 @@ export class SearchRequestPage implements OnInit {
   breed;
   type;
   age;
-
+  search(){
+    console.log(this.breed);
+    console.log(this.type);
+    console.log(this.age);
+  }
   constructor() { }
 
   ngOnInit() {

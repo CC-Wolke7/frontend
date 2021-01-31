@@ -9,4 +9,7 @@ export class Offer {
     place: string;
     previewImageUrl: string;
     like: Like;
+    media: string[];
+    sellerName: string;
+    description: string;
 }

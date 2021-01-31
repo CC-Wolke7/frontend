@@ -1,7 +1,7 @@
 <ion-content>
   <app-header [title]="'Tiersuche'"></app-header>
 
-  <form (ngSubmit)="search()">
+ <ion-list>
     <ion-item>
       <ion-label>Tierart</ion-label>
       <ion-select [(ngModel)]="type"> <!-- TODO load options from file -->
@@ -24,8 +24,9 @@
       <ion-label>Alter</ion-label>
       <ion-input type="number" [(ngModel)]="age"></ion-input> <!-- TODO min and max -->
     </ion-item>
+ </ion-list>
 
-    <ion-button type="submit">Suchen</ion-button>
-  </form>
+    <ion-button type="submit" (click)="search()">Suchen</ion-button>
+
 
 </ion-content>
