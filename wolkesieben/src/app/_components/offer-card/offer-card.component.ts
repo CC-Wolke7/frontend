@@ -25,7 +25,7 @@ export class OfferCardComponent implements OnInit {
   ngOnInit() {}
 
   goToOffer(): void {
-    if (this.user) {
+    if (this.user || !this.user) {
       const navigationExtras: NavigationExtras = {state: this.offer};
       this.navController.navigateForward(`/offer/${this.offer.uuid}`, navigationExtras).then();
     }
