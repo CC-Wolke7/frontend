@@ -13,7 +13,7 @@
               <ion-title class="ion-text-center">Anbieter*in: {{ offer.sellerName }}</ion-title>
                 <ion-text>{{ offer.description }}</ion-text>
                 <br/>
-                <ion-button>Anbieter kontaktieren</ion-button>
+                <ion-button (click)="sendMessage()">Anbieter kontaktieren</ion-button>
             </ion-col>
             <ion-col>
               <ion-title style="font-size:2em" class="ion-text-center">Bilder</ion-title>

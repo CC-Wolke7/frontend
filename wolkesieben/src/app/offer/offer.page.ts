@@ -31,5 +31,9 @@ export class OfferPage implements OnInit {
     console.log(this.offer);
   }
 
+  sendMessage() {
+    console.log('Implement me ..');
+  }
+
 
 }
