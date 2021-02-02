@@ -10,7 +10,7 @@ import {Offer} from '../_objects/offer';
 })
 export class AppService {
 
-  readonly LOCAL_URL = 'http://localhost:8000';
+  readonly LOCAL_URL = 'http://localhost:8100';
   readonly PROD_URL = 'https://app-ms.wolkesieben.appspot.com';
   readonly ROUTES = {
     user: '/user',

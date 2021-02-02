@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {NavigationExtras} from "@angular/router";
+import {NavController} from "@ionic/angular";
 
 @Component({
   selector: 'app-search-request',
@@ -10,9 +12,17 @@ export class SearchRequestPage implements OnInit {
   type;
   age;
 
-  constructor() { }
+  constructor(private navController: NavController) {}
 
   ngOnInit() {
+  }
+
+  search(){
+    console.log(this.breed);
+    console.log(this.type);
+    console.log(this.age);
+    const navigationExtras: NavigationExtras = {state: [this.breed, this.type, this.age]};
+    this.navController.navigateForward(`/search-preview`, navigationExtras).then();
   }
 
 }
