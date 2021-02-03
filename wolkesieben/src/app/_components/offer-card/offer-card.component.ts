@@ -22,12 +22,14 @@ export class OfferCardComponent implements OnInit {
 
   constructor(private navController: NavController, private likeService: LikeService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.offer);
+  }
 
   goToOffer(): void {
+    const navigationExtras: NavigationExtras = {state: this.offer};
+    this.navController.navigateForward(`/offer/${this.offer.uuid}`, navigationExtras).then();
     if (this.user) {
-      const navigationExtras: NavigationExtras = {state: this.offer};
-      this.navController.navigateForward(`/offer/${this.offer.uuid}`, navigationExtras).then();
     }
   }
 

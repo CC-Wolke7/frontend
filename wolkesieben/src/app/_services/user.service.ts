@@ -22,19 +22,20 @@ export class UserService {
 
   }
 
-  async getUser() {
+  async getUser(): Promise<User> {
     if (await this.checkIfUserAuthenticated()) {
       this.isLoading = false;
       this.googleUser = this.authInstance.currentUser.get();
-      console.log('google user', this.googleUser.getId());
-      const users: User[] = await this.checkUser(this.authInstance.currentUser.get()).toPromise();
-      if (users.length === 0) {
-        // fallback
-        const user = new User(this.googleUser);
-        user.jwtToken = 'NTZiYWU4YjE1ZmQyYzdlMGViZDI1Y2EzODMzZTUxZjQK';
-        return user;
-      } else {
+
+      // console.log('google user', this.googleUser.getId());
+
+      try {
+        const users: User[] = await this.checkUser(this.googleUser).toPromise();
         return users[0];
+      } catch (e) {
+        const user: User = new User(this.googleUser);
+        user.jwtToken = this.googleUser.getAuthResponse().id_token;
+        return user;
       }
     } else {
       return null;

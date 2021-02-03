@@ -7,14 +7,20 @@ import { IonicModule } from '@ionic/angular';
 import { OfferPageRoutingModule } from './offer-routing.module';
 
 import { OfferPage } from './offer.page';
+import {SexPipe} from '../_pipes/sex/sex.pipe';
+import {OfferImagesCollectionComponent} from '../_components/offer-images-collection/offer-images-collection.component';
+import {OfferChatComponent} from '../_components/offer-chat/offer-chat.component';
+import {OfferDetailInfoComponent} from '../_components/offer-detail-info/offer-detail-info.component';
+import {ChatMessageComponent} from '../_components/chat-message/chat-message.component';
+import {GermanDatePipe} from '../_pipes/german-date/german-date.pipe';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    OfferPageRoutingModule
-  ],
-  declarations: [OfferPage]
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        OfferPageRoutingModule,
+    ],
+    declarations: [OfferPage, SexPipe, GermanDatePipe, OfferImagesCollectionComponent, OfferChatComponent, OfferDetailInfoComponent, ChatMessageComponent]
 })
 export class OfferPageModule {}

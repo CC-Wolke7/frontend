@@ -35,12 +35,16 @@ export class HomePage implements OnInit {
 
     async loadOffers() {
         this.offers = await this.offerService.getOffers().toPromise();
+        // this.user = new User(this.userService.getGoogleUser(), 'google');
+        // this.user.jwtToken = 'NTZiYWU4YjE1ZmQyYzdlMGViZDI1Y2EzODMzZTUxZjQK';
         if (this.offers.length === 0) {
-            this.offers = await this.httpClient.get<Offer[]>('http://localhost:8100/assets/testdata/offers.json').toPromise();
+            this.offers = await this.httpClient.get<Offer[]>('http://localhost:8000/assets/testdata/offers.json').toPromise();
         }
+        console.warn(this.offers);
         for (const offer of this.offers) {
             offer.like = await this.likeService.getLike(this.user, offer);
         }
+        console.warn(this.offers);
     }
 
     initUser(event): void {

@@ -10,11 +10,13 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import {HttpClientModule} from '@angular/common/http';
 import {AuthButtonComponent} from './_components/auth-button/auth-button.component';
+import { SexPipe } from './_pipes/sex/sex.pipe';
+import { GermanDatePipe } from './_pipes/german-date/german-date.pipe';
 
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, SexPipe, GermanDatePipe],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
   providers: [

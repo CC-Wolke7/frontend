@@ -1,0 +1,8 @@
+<ion-row>
+  <ion-col>
+    <div class="message" [class.sent]="message.sender" [class.received]="!message.sender" >
+      {{message.body}}
+      <div class="timestamp">{{message.timestamp | germanDate}}</div>
+    </div>
+  </ion-col>
+</ion-row>

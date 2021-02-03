@@ -10,10 +10,10 @@ import {Offer} from '../_objects/offer';
 })
 export class AppService {
 
-  readonly LOCAL_URL = 'http://localhost:8000';
+  readonly LOCAL_URL = 'http://localhost:8100';
   readonly PROD_URL = 'https://app-ms.wolkesieben.appspot.com';
   readonly ROUTES = {
-    user: '/user',
+    user: '/users/1/create_token/',
     offers: '/offers'
   };
 
@@ -33,8 +33,10 @@ export class AppService {
   }
 
   login(googleUser: GoogleUser): Observable<User[]> { // TODO add : Promise<User>
+    console.log('auth response id_token', googleUser.getAuthResponse().id_token);
     const headers: HttpHeaders = new HttpHeaders({
-      Authorization: `Bearer ${googleUser.getAuthResponse().id_token}`
+      Authorization: `Bearer ${googleUser.getAuthResponse().id_token}`,
+      'Content-Type': `application/json`
     });
     const options = {headers};
     const url = this.getUrl(this.ROUTES.user);

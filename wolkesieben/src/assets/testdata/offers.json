@@ -7,7 +7,15 @@
     "sex": "M",
     "place": "Wiesbaden",
     "previewImageUrl": "/assets/testdata/images/nox.jpg",
-    "media": []
+    "breed": "Mischling",
+    "description": "Das ist ein toller Hund, der bisher nur ein böses Kind gefressen hat. Zu braven Kindern ist er auch brav. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+    "owner": "Tierhilfe Frankfurt am Main",
+    "media": [
+      "/assets/testdata/images/nox.jpg",
+      "/assets/testdata/images/nox.jpg",
+      "/assets/testdata/images/nox.jpg",
+      "/assets/testdata/images/nox.jpg"
+    ]
   },
   {
     "id": 2,

@@ -16,6 +16,7 @@ export class OfferPage implements OnInit {
               private navController: NavController) { }
 
   offer: Offer;
+  chatActive: boolean;
 
   private getParam() {
     this.route.queryParams.subscribe(() => {
@@ -23,13 +24,24 @@ export class OfferPage implements OnInit {
     });
   }
 
-  ngOnInit() {
-    this.getParam();
+  private checkAccess() {
     if (!this.offer) {
       this.navController.navigateRoot('/').then();
     }
+  }
+
+  ngOnInit() {
+    this.getParam();
+    this.checkAccess();
+
     console.log(this.offer);
   }
 
+  openChat() {
+    this.chatActive = !this.chatActive;
+  }
 
+  closeChat() {
+    this.chatActive = !this.chatActive;
+  }
 }

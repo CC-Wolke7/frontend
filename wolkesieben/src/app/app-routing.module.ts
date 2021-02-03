@@ -27,6 +27,10 @@ const routes: Routes = [
     path: 'offer/:id',
     loadChildren: () => import('./offer/offer.module').then( m => m.OfferPageModule)
   },
+  {
+    path: 'create-offer',
+    loadChildren: () => import('./create-offer/create-offer.module').then( m => m.CreateOfferPageModule)
+  },
 ];
 
 @NgModule({

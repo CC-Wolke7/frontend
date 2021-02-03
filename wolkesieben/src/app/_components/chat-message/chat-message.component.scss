@@ -1,0 +1,25 @@
+.wrapper {
+
+}
+.message {
+
+  border-radius: 10px;
+  padding: 15px;
+  max-width: 60%;
+
+  &.sent {
+    float: right;
+    background-color: var(--ion-color-primary);
+    color: #FFF;
+  }
+
+  &.received {
+    float: left;
+    background-color: var(--ion-color-light);
+    color: var(--ion-color-dark);
+  }
+
+  .timestamp {
+    opacity: 0.6;
+  }
+}
