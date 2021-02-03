@@ -26,21 +26,24 @@ export class HomePage implements OnInit {
     }
 
     ngOnInit() {
+        this.loadOffers().then();
         this.userService.getUser().then((user: User) => {
             this.user = user;
             console.log(this.user);
-            this.loadOffers().then();
+            //this.loadOffers().then();
         });
     }
 
     async loadOffers() {
-        this.offers = await this.offerService.getOffers().toPromise();
-        // this.user = new User(this.userService.getGoogleUser(), 'google');
-        // this.user.jwtToken = 'NTZiYWU4YjE1ZmQyYzdlMGViZDI1Y2EzODMzZTUxZjQK';
-        if (this.offers.length === 0) {
+        try {
+            this.offers = await this.offerService.getOffers().toPromise();
+            if (this.offers.length === 0) {
+                this.offers = await this.httpClient.get<Offer[]>('http://localhost:8000/assets/testdata/offers.json').toPromise();
+            }
+        } catch (e) {
             this.offers = await this.httpClient.get<Offer[]>('http://localhost:8000/assets/testdata/offers.json').toPromise();
         }
-        console.warn(this.offers);
+
         for (const offer of this.offers) {
             offer.like = await this.likeService.getLike(this.user, offer);
         }

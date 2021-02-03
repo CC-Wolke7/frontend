@@ -7,15 +7,9 @@
     "sex": "M",
     "place": "Wiesbaden",
     "previewImageUrl": "/assets/testdata/images/nox.jpg",
-    "breed": "Mischling",
-    "description": "Das ist ein toller Hund, der bisher nur ein böses Kind gefressen hat. Zu braven Kindern ist er auch brav. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
-    "owner": "Tierhilfe Frankfurt am Main",
-    "media": [
-      "/assets/testdata/images/nox.jpg",
-      "/assets/testdata/images/nox.jpg",
-      "/assets/testdata/images/nox.jpg",
-      "/assets/testdata/images/nox.jpg"
-    ]
+    "media": [],
+    "sellerName": "Hanna Hundeverkäufer",
+    "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
   },
   {
     "id": 2,
@@ -25,7 +19,11 @@
     "sex": "M",
     "place": "Great Barrier Reef, QL, Australia",
     "previewImageUrl": "/assets/testdata/images/manuel.jpg",
-    "media": []
+    "media": ["/assets/testdata/images/manuel-1.jpg",
+      "/assets/testdata/images/manuel-2.jpg",
+      "/assets/testdata/images/manuel-3.jpg"],
+    "sellerName": "Hans Haimann",
+    "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
   },
   {
     "id": 3,
@@ -35,7 +33,9 @@
     "sex": "M",
     "place": "Frankfurt a.M.",
     "previewImageUrl": "/assets/testdata/images/lucky.jpg",
-    "media": []
+    "media": [],
+    "sellerName": "Hans Hundi",
+    "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
   },
   {
     "id": 4,
@@ -45,7 +45,9 @@
     "sex": "F",
     "place": "Wiesbaden",
     "previewImageUrl": "/assets/testdata/images/lucy.jpg",
-    "media": []
+    "media": [],
+    "sellerName": "Someone Someone",
+    "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
   },
   {
     "id": 5,
@@ -55,7 +57,9 @@
     "sex": "F",
     "place": "Bad Camberg",
     "previewImageUrl": "/assets/testdata/images/perdie.jpg",
-    "media": []
+    "media": [],
+    "sellerName": "Someone Someone",
+    "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
   },
   {
     "id": 6,
@@ -65,7 +69,9 @@
     "sex": "M",
     "place": "Mainz",
     "previewImageUrl": "/assets/testdata/images/bronko.jpg",
-    "media": []
+    "media": [],
+    "sellerName": "Someone Someone",
+    "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
   },
   {
     "id": 7,
@@ -75,7 +81,9 @@
     "sex": "F",
     "place": "Rüsselsheim",
     "previewImageUrl": "/assets/testdata/images/garfield.jpg",
-    "media": []
+    "media": [],
+    "sellerName": "Someone Someone",
+    "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
   },
   {
     "id": 8,
@@ -85,7 +93,9 @@
     "sex": "M",
     "place": "Wiesbaden",
     "previewImageUrl": "/assets/testdata/images/willi.jpg",
-    "media": []
+    "media": [],
+    "sellerName": "Someone Someone",
+    "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
   },
   {
     "id": 9,
@@ -95,7 +105,9 @@
     "sex": "M",
     "place": "Sao Paulo, Brasilien",
     "previewImageUrl": "/assets/testdata/images/lukas.jpg",
-    "media": []
+    "media": [],
+    "sellerName": "Someone Someone",
+    "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
   },
   {
     "id": 10,
@@ -105,7 +117,9 @@
     "sex": "M",
     "place": "Dubai, UAE",
     "previewImageUrl": "/assets/testdata/images/rolf.jpg",
-    "media": []
+    "media": [],
+    "sellerName": "Someone Someone",
+    "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
   },
   {
     "id": 11,
@@ -115,7 +129,9 @@
     "sex": "F",
     "place": "Rüsselsheim",
     "previewImageUrl": "/assets/testdata/images/ada.jpg",
-    "media": []
+    "media": [],
+    "sellerName": "Someone Someone",
+    "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
   },
   {
     "id": 12,
@@ -125,6 +141,8 @@
     "sex": "F",
     "place": "Pangea, Earth",
     "previewImageUrl": "/assets/testdata/images/rita.jpg",
-    "media": []
+    "media": [],
+    "sellerName": "Someone Someone",
+    "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
   }
 ]

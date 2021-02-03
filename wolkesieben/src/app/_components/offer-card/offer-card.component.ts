@@ -27,9 +27,9 @@ export class OfferCardComponent implements OnInit {
   }
 
   goToOffer(): void {
-    const navigationExtras: NavigationExtras = {state: this.offer};
-    this.navController.navigateForward(`/offer/${this.offer.uuid}`, navigationExtras).then();
-    if (this.user) {
+    if (this.user || !this.user) {
+      const navigationExtras: NavigationExtras = {state: this.offer};
+      this.navController.navigateForward(`/offer/${this.offer.uuid}`, navigationExtras).then();
     }
   }
 

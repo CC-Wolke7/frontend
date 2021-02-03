@@ -40,6 +40,10 @@ export class OfferPage implements OnInit {
   openChat() {
     this.chatActive = !this.chatActive;
   }
+  sendMessage() {
+    console.log('Implement me ..');
+  }
+
 
   closeChat() {
     this.chatActive = !this.chatActive;

@@ -1,11 +1,32 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title></ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+  <app-header [title]="'Details zum Angebot'"></app-header>
 
+  <!-- <app-offertitle></app-offertitle> TODO -->
+  <ion-title class="ion-text-center" style="font-size:3em" >{{ offer.name }}</ion-title>
+    <ion-title class="ion-text-center" style="font-size:2em">{{ offer.age }}, aus {{ offer.place }}</ion-title>
+  <ion-grid>
+        <ion-row>
+
+            <ion-col>
+
+            <ion-title style="font-size:2em" class="ion-text-center">Informationen</ion-title>
+              <ion-title class="ion-text-center">Anbieter*in: {{ offer.sellerName }}</ion-title>
+                <ion-text>{{ offer.description }}</ion-text>
+                <br/>
+                <ion-button (click)="sendMessage()">Anbieter kontaktieren</ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-title style="font-size:2em" class="ion-text-center">Bilder</ion-title>
+              <ion-grid>
+                <ion-row>
+                  <ion-col size-xl="3" size-lg="4" size-md="6" size-sm="8" size-xs="12" *ngFor="let imgSrc of offer.media.concat([offer.previewImageUrl])">
+                      <ion-img src="{{ imgSrc }}"></ion-img>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
   <!--app-navigation></app-navigation-->
 
   <h1 class="ion-text-center">{{offer.name}}</h1>
