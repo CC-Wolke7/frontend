@@ -2,6 +2,7 @@ import {Like} from './like';
 
 export class Offer {
     id: number;
+    type: string;
     breed: string;
     description: string;
     uuid: string;

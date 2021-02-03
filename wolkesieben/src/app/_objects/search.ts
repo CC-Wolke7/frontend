@@ -1,5 +1,5 @@
 export class Search {
     type: string;
     breed?: string;
-    age?: string;
+    age?: number;
 }

@@ -25,11 +25,14 @@ export class SearchRequestPage implements OnInit {
     this.offers = await this.appService.getOffers().toPromise();
     this.offers.filter((o: Offer) => {
       return (
-
-      )
+        o.type === this.search.type &&
+        (!this.search.breed ||
+            o.breed === this.search.breed) &&
+            o.age === this.search.age
+      );
     });
 
-    //const navigationExtras: NavigationExtras = {state: this.search};
+    const navigationExtras: NavigationExtras = {state: this.offers};
     this.navController.navigateForward(`/search-preview`, navigationExtras).then();
   }
 

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {NavController} from '@ionic/angular';
-import {Search} from '../_objects/search';
+import {Offer} from '../_objects/offer';
 
 @Component({
   selector: 'app-search-preview',
@@ -10,7 +10,7 @@ import {Search} from '../_objects/search';
 })
 export class SearchPreviewPage implements OnInit {
 
-  search: Search;
+  offers: Offer[];
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -19,16 +19,16 @@ export class SearchPreviewPage implements OnInit {
 
   private getParam() {
     this.route.queryParams.subscribe(() => {
-      this.search = (this.router.getCurrentNavigation().extras.state as Search);
+      this.offers = (this.router.getCurrentNavigation().extras.state as Offer[]);
     });
   }
 
   ngOnInit() {
     this.getParam();
-    if (!this.search) {
+    if (!this.offers) {
       this.navController.navigateRoot('/').then();
     }
-    console.log(this.search);
+    console.log(this.offers);
   }
 
 }
