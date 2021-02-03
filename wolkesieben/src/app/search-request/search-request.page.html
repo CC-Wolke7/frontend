@@ -5,7 +5,7 @@
  <ion-list style="width:30em; align-items:center;">
     <ion-item>
       <ion-label>Tierart</ion-label>
-      <ion-select [(ngModel)]="type"> <!-- TODO load options from file -->
+      <ion-select [(ngModel)]="search.type"> <!-- TODO load options from file -->
         <ion-select-option>Hund</ion-select-option>
         <ion-select-option>Katze</ion-select-option>
         <ion-select-option>Maus</ion-select-option>
@@ -14,7 +14,7 @@
 
     <ion-item>
       <ion-label>Rasse</ion-label>
-      <ion-select [(ngModel)]="breed"> <!-- TODO load options from file -->
+      <ion-select [(ngModel)]="search.breed"> <!-- TODO load options from file -->
         <ion-select-option>Schäferhund</ion-select-option>
         <ion-select-option>Golden Retriever</ion-select-option>
         <ion-select-option>Jack Russell Terrier</ion-select-option>
@@ -23,10 +23,10 @@
 
     <ion-item>
       <ion-label>Alter</ion-label>
-      <ion-input type="number" [(ngModel)]="age"></ion-input> <!-- TODO min and max -->
+      <ion-input type="number" [(ngModel)]="search.age"></ion-input> <!-- TODO min and max -->
     </ion-item>
  </ion-list>
 
-    <ion-button type="submit" (click)="search()">Suchen</ion-button>
+    <ion-button type="submit" (click)="do_search()">Suchen</ion-button>
 
 </ion-content>
