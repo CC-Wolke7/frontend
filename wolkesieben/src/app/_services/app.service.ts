@@ -35,8 +35,7 @@ export class AppService {
   login(googleUser: GoogleUser): Observable<User[]> { // TODO add : Promise<User>
     console.log('auth response id_token', googleUser.getAuthResponse().id_token);
     const headers: HttpHeaders = new HttpHeaders({
-      Authorization: `Bearer ${googleUser.getAuthResponse().id_token}`,
-      'Content-Type': `application/json`
+      Authorization: `Bearer ${googleUser.getAuthResponse().id_token}`
     });
     const options = {headers};
     const url = this.getUrl(this.ROUTES.user);

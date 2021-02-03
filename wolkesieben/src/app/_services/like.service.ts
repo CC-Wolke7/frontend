@@ -60,11 +60,7 @@ export class LikeService {
     const route = this.ROUTES.likes.replace(':offerId', `${offer.uuid}`);
     const url = this.getUrl(route);
 
-    const like: Like = await this.httpClient.get<Like>(url, options).toPromise();
-    if (like.total === 0) {
-      // like.user = 0;
-    }
-    return like;
+    return await this.httpClient.get<Like>(url, options).toPromise();
   }
 
   /**

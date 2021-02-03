@@ -23,7 +23,7 @@ export class OfferCardComponent implements OnInit {
   constructor(private navController: NavController, private likeService: LikeService) { }
 
   ngOnInit() {
-    console.log(this.offer);
+    // console.log(this.offer);
   }
 
   goToOffer(): void {

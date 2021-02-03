@@ -1,9 +1,8 @@
-<h3>Bilder und Videos</h3>
-
 <ion-grid>
   <ion-row>
-    <ion-col size="6" *ngFor="let image of images" class="ion-padding">
-      <img [src]="image" alt="">
+    <ion-col size-xl="3" size-lg="4" size-md="6" size-sm="8" size-xs="12"
+             *ngFor="let imgSrc of images.concat([previewImageUrl])">
+      <ion-img src="{{ imgSrc }}"></ion-img>
     </ion-col>
   </ion-row>
 </ion-grid>

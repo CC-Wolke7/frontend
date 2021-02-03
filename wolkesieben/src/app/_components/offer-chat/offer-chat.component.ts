@@ -33,7 +33,12 @@ export class OfferChatComponent implements OnInit, OnDestroy {
   }
 
   sendMessage() {
-    this.chatService.send(this.newMessage);
+    // this.chatService.send(this.newMessage);
+    this.messages.push({
+      sender: true,
+      body: this.newMessage,
+      timestamp: new Date()
+    });
     this.newMessage = '';
   }
 

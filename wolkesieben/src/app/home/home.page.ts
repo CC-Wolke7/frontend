@@ -26,11 +26,10 @@ export class HomePage implements OnInit {
     }
 
     ngOnInit() {
-        this.loadOffers().then();
         this.userService.getUser().then((user: User) => {
             this.user = user;
+            this.loadOffers().then();
             console.log(this.user);
-            //this.loadOffers().then();
         });
     }
 
@@ -47,13 +46,12 @@ export class HomePage implements OnInit {
         for (const offer of this.offers) {
             offer.like = await this.likeService.getLike(this.user, offer);
         }
-        console.warn(this.offers);
     }
 
     initUser(event): void {
-        console.log({event});
+        // console.log({event});
         this.userService.authenticate().then(googleUser => {
-            console.log({googleUser});
+            // console.log({googleUser});
         });
     }
 

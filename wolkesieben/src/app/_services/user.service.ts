@@ -27,8 +27,6 @@ export class UserService {
       this.isLoading = false;
       this.googleUser = this.authInstance.currentUser.get();
 
-      // console.log('google user', this.googleUser.getId());
-
       try {
         const users: User[] = await this.checkUser(this.googleUser).toPromise();
         return users[0];

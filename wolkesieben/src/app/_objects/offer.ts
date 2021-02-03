@@ -11,9 +11,7 @@ export class Offer {
     place: string;
     previewImageUrl: string;
     owner: string;
-    media: string[];
     like: Like;
     media: string[];
     sellerName: string;
-    description: string;
 }

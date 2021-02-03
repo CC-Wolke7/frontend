@@ -4,5 +4,5 @@
 <div class="box">
   <app-chat-message [message]="message" *ngFor="let message of messages"></app-chat-message>
 
-  <ion-input placeholder="Neue Nachricht" [(ngModel)]="newMessage"></ion-input>
+  <ion-input placeholder="Neue Nachricht" [(ngModel)]="newMessage" (keydown.enter)="sendMessage()"></ion-input>
 </div>
