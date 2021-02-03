@@ -9,8 +9,8 @@ import {ChatService} from '../../_services/chat.service';
 })
 export class OfferChatComponent implements OnInit, OnDestroy {
 
-  @Input() owner: string;
-  @Input() offerUuid: string;
+  @Input() ownerUuid: string;
+  @Input() userUuid: string;
   messages: Message[] = [];
   newMessage = '';
 
@@ -25,7 +25,10 @@ export class OfferChatComponent implements OnInit, OnDestroy {
       {sender: false, body: 'Ja, er liebt andere Hunde und auch Katzen', timestamp: new Date(2021, 1, 2)},
     ];
 
-    this.chatService.connect().subscribe(message => this.messages.push(message));
+    this.chatService.connect().subscribe(message => {
+      console.log('chat');
+      this.messages.push(message)
+    });
   }
 
   ngOnDestroy() {
@@ -33,7 +36,7 @@ export class OfferChatComponent implements OnInit, OnDestroy {
   }
 
   sendMessage() {
-    // this.chatService.send(this.newMessage);
+    this.chatService.send(this.newMessage);
     this.messages.push({
       sender: true,
       body: this.newMessage,

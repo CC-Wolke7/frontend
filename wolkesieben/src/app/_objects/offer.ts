@@ -10,8 +10,8 @@ export class Offer {
     sex: string;
     place: string;
     previewImageUrl: string;
-    owner: string;
     like: Like;
     media: string[];
     sellerName: string;
+    sellerUuid: string;
 }

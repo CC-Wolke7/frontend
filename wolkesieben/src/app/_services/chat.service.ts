@@ -12,7 +12,7 @@ export class ChatService {
 
     connection: WebSocketSubject<any>;
     RETRY_SECONDS = 10;
-    WEBSOCKET_URL = 'ws://localhost:3000/stream';
+    WEBSOCKET_URL = 'ws://localhost:3000/';
 
     constructor(private userService: UserService) {
         this.connect();
@@ -38,10 +38,11 @@ export class ChatService {
         }
     }
 
-    send(data: any) {
+    send(data: any, ownerUuid?: string) {
         if (!this.connection) {return;}
         const payload = {
             token: this.userService.user.jwtToken,
+            owner: ownerUuid,
             data
         };
         this.connection.next(payload);
