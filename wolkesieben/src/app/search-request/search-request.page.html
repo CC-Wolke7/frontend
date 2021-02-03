@@ -2,7 +2,7 @@
   <app-header [title]="'Tiersuche'"></app-header>
 
 
- <ion-list style="width:30em; align-items:center;">
+ <ion-list style="width:30em; align-items:center;"*ngIf="!loading">
     <ion-item>
       <ion-label>Tierart</ion-label>
       <ion-select [(ngModel)]="search.type"> <!-- TODO load options from file -->

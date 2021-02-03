@@ -29,7 +29,6 @@ export class HomePage implements OnInit {
         this.userService.getUser().then((user: User) => {
             this.user = user;
             this.loadOffers().then();
-            console.log(this.user);
         });
     }
 
@@ -49,10 +48,7 @@ export class HomePage implements OnInit {
     }
 
     initUser(event): void {
-        // console.log({event});
-        this.userService.authenticate().then(googleUser => {
-            // console.log({googleUser});
-        });
+        this.userService.authenticate().then();
     }
 
     logout(googleUser: GoogleUser) {
