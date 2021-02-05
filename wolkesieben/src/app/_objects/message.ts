@@ -1,5 +1,7 @@
 export class Message {
-    sender: boolean;
+    uuid: string;
+    chat: string;
+    sender: string;
+    date: Date;
     body: string;
-    timestamp: Date;
 }

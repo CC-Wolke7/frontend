@@ -25,6 +25,7 @@
     "@ionic/angular": "^5.0.0",
     "@types/gapi": "0.0.39",
     "@types/gapi.auth2": "0.0.52",
+    "qs": "^6.9.6",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"

@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+      <ion-button routerLink="/home">
+        <ion-icon name="home"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Nachrichten</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="4">
+        <ion-list>
+          <ion-list-header>Chats</ion-list-header>
+          <ion-item *ngFor="let chat of chats" (click)="getMessages(chat)">
+            <ion-avatar>
+              <ion-icon name="person"></ion-icon>
+            </ion-avatar>
+            <ion-label>{{chat.participants}}</ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+      <ion-col size="8" *ngIf="activeChat && activeChat.uuid">
+        <ion-list>
+          <ion-list-header>Nachrichten mit {{activeChat.uuid}}</ion-list-header>
+          <ion-item *ngFor="let message of messages">
+            <ion-text>{{message.body}}</ion-text>
+          </ion-item>
+        </ion-list>
+        <div *ngIf="activeChat && activeChat.uuid">
+          <ion-input [(ngModel)]="newMessage" (keydown.enter)="sendMessage()"></ion-input>
+          <ion-button (click)="sendMessage()">Senden</ion-button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
