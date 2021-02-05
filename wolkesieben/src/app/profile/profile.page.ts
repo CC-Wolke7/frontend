@@ -11,31 +11,36 @@ export class ProfilePage implements OnInit {
 
   imgUrl: string;
   savedImgUrl: string;
+  description: string;
+  blob: Blob;
+  reader: FileReader;
 
-  constructor(private appService: AppService) { }
+  constructor() { }
 
   ngOnInit() {
+    this.reader = new FileReader();
   }
 
   uploadImage(event){
     const file = event.target.files[0];
-    const reader = new FileReader();
 
-    reader.readAsArrayBuffer(file);
-    reader.onload = () => {
-      const blob: Blob = new Blob([new Uint8Array((reader.result as ArrayBuffer))]);
-      const blobURL: string = URL.createObjectURL(blob);
-      this.imgUrl = blobURL;
-    };
-
-    reader.onerror = (error) => {
-      console.log(error);
+    this.reader.readAsArrayBuffer(file);
+    this.reader.onloadend = () => {
+      const blob = new Blob([new Uint8Array((this.reader.result as ArrayBuffer))]);
+      this.imgUrl = URL.createObjectURL(blob);
+      this.blob = blob;
     };
   }
 
   saveImage(){
     this.savedImgUrl = this.imgUrl;
-    // TODO load to storage
+    this.reader.readAsDataURL(this.blob);
+    this.reader.onloadend = () => {
+      const base64data = this.reader.result;
+      console.log(base64data);
+      // TODO send to appservice
+      return;
+    };
   }
 
 }
