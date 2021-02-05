@@ -9,7 +9,7 @@
     <ion-grid>
         <ion-row>
             <ion-col>
-                <app-offer-chat *ngIf="chatActive" [owner]="offer.owner" [offerUuid]="offer.uuid"></app-offer-chat>
+                <app-offer-chat *ngIf="chatActive" [sellerName]="offer.sellerName" [sellerId]="offer.sellerId"></app-offer-chat>
                 <app-offer-detail-info [offer]="offer" *ngIf="!chatActive"></app-offer-detail-info>
                 <br>
                 <ion-button *ngIf="!chatActive" (click)="openChat()">Anbieter kontaktieren</ion-button>

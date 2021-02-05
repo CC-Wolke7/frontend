@@ -9,8 +9,8 @@ import {ChatService} from '../../_services/chat.service';
 })
 export class OfferChatComponent implements OnInit, OnDestroy {
 
-  @Input() ownerUuid: string;
-  @Input() userUuid: string;
+  @Input() sellerName: string;
+  @Input() sellerId: string;
   messages: Message[] = [];
   newMessage = '';
 
