@@ -1,6 +1,9 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Message} from '../../_objects/message';
 import {ChatService} from '../../_services/chat.service';
+import {User} from '../../_objects/user';
+import {Chat} from '../../_objects/chat';
+import {UserService} from '../../_services/user.service';
 
 @Component({
   selector: 'app-offer-chat',
@@ -9,26 +12,41 @@ import {ChatService} from '../../_services/chat.service';
 })
 export class OfferChatComponent implements OnInit, OnDestroy {
 
-  @Input() sellerName: string;
-  @Input() sellerId: string;
+  @Input() ownerUuid: string;
+  @Input() ownerName: string;
   messages: Message[] = [];
   newMessage = '';
+  user: User;
+  chat: Chat;
 
-  constructor(private chatService: ChatService) { }
+  constructor(private chatService: ChatService,
+              private userService: UserService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     // todo load messages
+    this.user = await this.userService.getUser();
     this.messages = [
-      {sender: true, body: 'Hallo, ich interessiere mich für Nox.', timestamp: new Date(2021, 0, 30)},
-      {sender: false, body: 'Guten Tag, das ist schön. Nox ist sehr lieb und verspielt.', timestamp: new Date(2021, 0, 31)},
-      {sender: true, body: 'Wunderbar, verträgt er sich mit anderen Hunden?', timestamp: new Date(2021, 1, 1)},
-      {sender: false, body: 'Ja, er liebt andere Hunde und auch Katzen', timestamp: new Date(2021, 1, 2)},
+      {chat: '', uuid: this.ownerUuid, sender: this.user.uuid, body: 'Hallo, ich interessiere mich für Nox.', date: new Date(2021, 0, 30)},
+      {chat: '', uuid: this.user.uuid, sender: this.ownerUuid, body: 'Guten Tag, das ist schön. Nox ist sehr lieb und verspielt.', date: new Date(2021, 0, 31)},
+      {chat: '', uuid: this.ownerUuid, sender: this.user.uuid, body: 'Wunderbar, verträgt er sich mit anderen Hunden?', date: new Date(2021, 1, 1)},
+      {chat: '', uuid: this.user.uuid, sender: this.ownerUuid, body: 'Ja, er liebt andere Hunde und auch Katzen', date: new Date(2021, 1, 2)},
     ];
 
     this.chatService.connect().subscribe(message => {
-      console.log('chat');
-      this.messages.push(message)
+      console.log(message);
+      this.messages.push(message);
     });
+    await this.getChat();
+  }
+
+  async getChat() {
+    console.warn(this.ownerUuid);
+    const chats = await this.chatService.getChats(this.ownerUuid);
+    if (chats.length === 0) {
+      this.chat = await this.chatService.pushChat(this.ownerUuid);
+    } else {
+      this.chat = chats[0];
+    }
   }
 
   ngOnDestroy() {
@@ -36,11 +54,13 @@ export class OfferChatComponent implements OnInit, OnDestroy {
   }
 
   sendMessage() {
-    this.chatService.send(this.newMessage);
+    this.chatService.send(this.newMessage, this.ownerUuid, this.chat);
     this.messages.push({
-      sender: true,
+      sender: this.ownerUuid,
       body: this.newMessage,
-      timestamp: new Date()
+      date: new Date(),
+      uuid: this.user.uuid,
+      chat: ''
     });
     this.newMessage = '';
   }

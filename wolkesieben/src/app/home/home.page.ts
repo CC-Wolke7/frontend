@@ -48,7 +48,9 @@ export class HomePage implements OnInit {
     }
 
     initUser(event): void {
-        this.userService.authenticate().then();
+        this.userService.authenticate().then((googleUser: GoogleUser) => {
+            console.log(googleUser);
+        });
     }
 
     logout(googleUser: GoogleUser) {

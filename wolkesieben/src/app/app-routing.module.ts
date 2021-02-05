@@ -31,6 +31,10 @@ const routes: Routes = [
     path: 'create-offer',
     loadChildren: () => import('./create-offer/create-offer.module').then( m => m.CreateOfferPageModule)
   },
+  {
+    path: 'chat',
+    loadChildren: () => import('./chat/chat.module').then( m => m.ChatPageModule)
+  },
 ];
 
 @NgModule({
