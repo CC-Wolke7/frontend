@@ -16,7 +16,7 @@ This is an awesome ionic app to spend your pet a new home.
 - `$ brew install node` <sup>1</sup>
 - `$ npm install -g @ionic/cli`
 - `$ cd path/to/wolkesieben/`
-- `$ ionic serve`<sup>2</sup>
+- `$ ionic serve --port 8001 `<sup>2</sup>
 
 <sup>1</sup>_Or just download and install NodeJS manually. [https://nodejs.org/en/download/](https://nodejs.org/en/download/)_
 
@@ -31,9 +31,11 @@ _in progress ..._
 ### self Hosting
 
 If you prefer self hosting, just run
+
 ```
 $ ionic build --prod
 ```
+
 and deploy the `www` folder to any server you like and open the `index.html` in your Browser
 
 ### iOS and Android
@@ -49,6 +51,3 @@ First you need to install additional software to create an iOS app
 - add platform to ionic project `$ ionic capacitor add ios` or `$ ionic capacitor add android`
 
 For more information see [https://ionicframework.com/docs/developing/ios](https://ionicframework.com/docs/developing/ios) or [https://ionicframework.com/docs/developing/android](https://ionicframework.com/docs/developing/android)
-
-
-
