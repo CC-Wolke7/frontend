@@ -4,16 +4,18 @@ import GoogleUser = gapi.auth2.GoogleUser;
 import {Observable} from 'rxjs';
 import {User} from '../_objects/user';
 import {Offer} from '../_objects/offer';
+import {Token} from "../_objects/token";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppService {
 
-  readonly LOCAL_URL = 'http://localhost:8100';
+  readonly LOCAL_URL = 'http://localhost:8000';
   readonly PROD_URL = 'https://app-ms.wolkesieben.appspot.com';
   readonly ROUTES = {
-    user: '/users/1/create_token/',
+    //user: '/users/1/create_token/',
+    user: '/api/token/google/',
     offers: '/offers'
   };
 
@@ -32,15 +34,17 @@ export class AppService {
     }
   }
 
-  login(googleUser: GoogleUser): Observable<User[]> { // TODO add : Promise<User>
+  async login(googleUser: GoogleUser): Promise<User> {
     // console.log('auth response id_token', googleUser.getAuthResponse().id_token);
     const headers: HttpHeaders = new HttpHeaders({
       Authorization: `Bearer ${googleUser.getAuthResponse().id_token}`
     });
     const options = {headers};
     const url = this.getUrl(this.ROUTES.user);
-    return this.httpClient.get<User[]>(url, options);
-
+    const jwtToken = await this.httpClient.get<Token>(url, options).toPromise();
+    const user = new User(googleUser, 'google');
+    user.jwtToken = jwtToken;
+    return user;
   }
 
   getOffers(): Observable<Offer[]> {

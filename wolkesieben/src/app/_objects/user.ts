@@ -1,11 +1,12 @@
 import GoogleUser = gapi.auth2.GoogleUser;
+import {Token} from "./token";
 
 export class User {
     userType = 'USER';
     uuid: string;
     userId: string;
     type: string;
-    jwtToken: string;
+    jwtToken: Token;
     firstname: string;
     lastname: string;
 

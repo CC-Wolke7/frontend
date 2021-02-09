@@ -15,7 +15,9 @@ export class ProfilePage implements OnInit {
   blob: Blob;
   reader: FileReader;
 
-  constructor() { }
+  constructor() {
+    this.description = 'init value!';
+  }
 
   ngOnInit() {
     this.reader = new FileReader();
@@ -41,6 +43,10 @@ export class ProfilePage implements OnInit {
       // TODO send to appservice
       return;
     };
+  }
+
+  changeDescription(){
+    this.description = 'changed';
   }
 
 }

@@ -7,8 +7,8 @@
         <ion-row>
             <ion-col>
                 <ion-title class="ion-text-center">Informationen</ion-title>
-                <p>Hallo ich bin die Tina und ich liebe Tiere</p>
-                <ion-button>Informationen bearbeiten</ion-button>
+                <ion-input placeholder="Beschreibung" [(ngModel)]="description"></ion-input>
+                <ion-button (click)="changeDescription()">Informationen bearbeiten</ion-button>
             </ion-col>
             <ion-col>
                 <ion-title class="ion-text-center">Profilbild</ion-title>

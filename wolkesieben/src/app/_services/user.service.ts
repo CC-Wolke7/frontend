@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {AppService} from './app.service';
-import GoogleUser = gapi.auth2.GoogleUser;
 import {User} from '../_objects/user';
-import {Observable} from 'rxjs';
+import GoogleUser = gapi.auth2.GoogleUser;
+import {Token} from '../_objects/token';
 
 @Injectable({
   providedIn: 'root'
@@ -28,11 +28,12 @@ export class UserService {
       this.googleUser = this.authInstance.currentUser.get();
 
       try {
-        const users: User[] = await this.checkUser(this.googleUser).toPromise();
-        return users[0];
+        return await this.checkUser(this.googleUser);
+        // const users: User[] = await this.checkUser(this.googleUser).toPromise();
+        // return users[0];
       } catch (e) {
         const user: User = new User(this.googleUser);
-        user.jwtToken = this.googleUser.getAuthResponse().id_token;
+        user.jwtToken = new Token(this.googleUser.getAuthResponse().id_token);
         return user;
       }
     } else {
@@ -55,7 +56,7 @@ export class UserService {
     // loaded and that we can call gapi.init
     return pload.then(async () => {
       await gapi.auth2
-          .init({ client_id: '882517722597-3p6j1koj84oa27kv4bc9t58egianqf3e.apps.googleusercontent.com' })
+          .init({ client_id: '481332583913-cieg25daahj0ujclj002o0ei5der0rsi.apps.googleusercontent.com' })
           .then(auth => {
             this.gapiSetup = true;
             this.authInstance = auth;
@@ -85,7 +86,7 @@ export class UserService {
     return this.authInstance.isSignedIn.get();
   }
 
-  checkUser(user: GoogleUser): Observable<User[]> {
-    return this.appService.login(user);
+  async checkUser(user: GoogleUser): Promise<User> {
+    return await this.appService.login(user);
   }
 }
