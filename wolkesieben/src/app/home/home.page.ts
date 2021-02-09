@@ -35,15 +35,18 @@ export class HomePage implements OnInit {
     async loadOffers() {
         try {
             this.offers = await this.offerService.getOffers().toPromise();
+            console.log({offers: this.offers});
             if (this.offers.length === 0) {
-                this.offers = await this.httpClient.get<Offer[]>('http://localhost:8000/assets/testdata/offers.json').toPromise();
+                this.offers = await this.httpClient.get<Offer[]>('http://localhost:8100/assets/testdata/offers.json').toPromise();
             }
         } catch (e) {
-            this.offers = await this.httpClient.get<Offer[]>('http://localhost:8000/assets/testdata/offers.json').toPromise();
+            this.offers = await this.httpClient.get<Offer[]>('http://localhost:8100/assets/testdata/offers.json').toPromise();
         }
 
         for (const offer of this.offers) {
-            offer.like = await this.likeService.getLike(this.user, offer);
+            this.likeService.getLike(offer).then((like: Like) => {
+                offer.like = like;
+            });
         }
     }
 

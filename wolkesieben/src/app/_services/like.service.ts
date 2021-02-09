@@ -10,6 +10,7 @@ import {Observable} from 'rxjs';
 })
 export class LikeService {
 
+  readonly LOCAL_STORAGE_KEY = 'appUser';
   readonly URL_LOCAL = 'http://localhost:3002';
   readonly URL_PROD = 'https://like-ms.wolkesieben.appspot.com';
   readonly ROUTES = {
@@ -20,14 +21,14 @@ export class LikeService {
 
   /**
    * @description get http header with authorization bearer for like microservice
-   * @param user: User
    * @return HttpHeaders: http header
    * @private
    * @static
    */
-  private static getHeader(user: User): HttpHeaders {
+  private getHeader(): HttpHeaders {
+    const user = JSON.parse(localStorage.getItem(this.LOCAL_STORAGE_KEY));
     return new HttpHeaders({
-      Authorization: `Bearer ${user.jwtToken}`
+      Authorization: `Bearer ${user.jwtToken.access}`
     });
   }
 
@@ -48,13 +49,12 @@ export class LikeService {
 
   /**
    * @description calls like microservice to get the likes for given offer
-   * @param user: User
    * @param offer: Offer
    * @return Promise<Like>: Promise of like object
    * @async
    */
-  async getLike(user: User, offer: Offer): Promise<Like> {
-    const headers: HttpHeaders = LikeService.getHeader(user);
+  async getLike(offer: Offer): Promise<Like> {
+    const headers: HttpHeaders = this.getHeader();
     const options = {headers};
 
     const route = this.ROUTES.likes.replace(':offerId', `${offer.uuid}`);
@@ -65,12 +65,11 @@ export class LikeService {
 
   /**
    * @description sends likes from one user to like microservice
-   * @param user: User
    * @param offer: Offer
    * @return Observable<void>: no return
    */
-  toggleLike(user: User, offer: Offer): Observable<void> {
-    const headers: HttpHeaders = LikeService.getHeader(user);
+  toggleLike(offer: Offer): Observable<void> {
+    const headers: HttpHeaders = this.getHeader();
     const options = {headers};
 
     const route = this.ROUTES.likes.replace(':offerId', `${offer.uuid}`);

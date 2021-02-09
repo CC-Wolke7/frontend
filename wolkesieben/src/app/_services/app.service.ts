@@ -11,11 +11,12 @@ import {Token} from "../_objects/token";
 })
 export class AppService {
 
+  readonly LOCAL_STORAGE_KEY = 'appUser';
   readonly LOCAL_URL = 'http://localhost:8000';
   readonly PROD_URL = 'https://app-ms.wolkesieben.appspot.com';
   readonly ROUTES = {
     //user: '/users/1/create_token/',
-    user: '/api/token/google/',
+    user: '/api/token/google',
     offers: '/offers'
   };
 
@@ -35,21 +36,35 @@ export class AppService {
   }
 
   async login(googleUser: GoogleUser): Promise<User> {
+    const u = localStorage.getItem(this.LOCAL_STORAGE_KEY);
+    if (u) {
+      return new Promise(JSON.parse(u));
+    }
     // console.log('auth response id_token', googleUser.getAuthResponse().id_token);
     const headers: HttpHeaders = new HttpHeaders({
       Authorization: `Bearer ${googleUser.getAuthResponse().id_token}`
     });
     const options = {headers};
     const url = this.getUrl(this.ROUTES.user);
-    const jwtToken = await this.httpClient.get<Token>(url, options).toPromise();
+    // console.log(googleUser, options, googleUser.getAuthResponse().id_token);
+    const jwtToken = await this.httpClient.get<any>(url, options).toPromise();
     const user = new User(googleUser, 'google');
     user.jwtToken = jwtToken;
+    localStorage.setItem(this.LOCAL_STORAGE_KEY, JSON.stringify(user));
     return user;
   }
 
   getOffers(): Observable<Offer[]> {
-    const options = {};
+    const user: User = JSON.parse(localStorage.getItem(this.LOCAL_STORAGE_KEY));
+    if (!user) {
+      return;
+    }
+    const headers: HttpHeaders = new HttpHeaders({
+      Authorization: `Bearer ${user.jwtToken.access}`
+    });
+    const options = {headers};
     const url = this.getUrl(this.ROUTES.offers);
+    console.log({headers, url});
     return this.httpClient.get<Offer[]>(url, options);
   }
 }

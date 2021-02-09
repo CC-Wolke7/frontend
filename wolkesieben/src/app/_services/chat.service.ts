@@ -31,7 +31,7 @@ export class ChatService {
 
     async putMessage(chatId, message: string): Promise<Message> {
         const headers: HttpHeaders = new HttpHeaders({
-            Authorization: `Bearer ${this.user.jwtToken}`
+            Authorization: `Bearer ${this.user.jwtToken.access}`
         });
         const params: HttpParams = new HttpParams();
         params.append('requestBody', qs.stringify(message));
@@ -41,7 +41,7 @@ export class ChatService {
 
     async getMessages(chatId): Promise<Message[]> {
         const headers: HttpHeaders = new HttpHeaders({
-            Authorization: `Bearer ${this.user.jwtToken}`
+            Authorization: `Bearer ${this.user.jwtToken.access}`
         });
         const options = {headers};
         const url = this.MESSAGES_HTTP_URL.replace(':chatId', chatId);
@@ -52,7 +52,7 @@ export class ChatService {
         await this.initUser();
 
         const headers: HttpHeaders = new HttpHeaders({
-            Authorization: `Bearer ${this.user.jwtToken}`
+            Authorization: `Bearer ${this.user.jwtToken.access}`
         });
         const params: HttpParams = new HttpParams();
         params.append('strictEqual', qs.stringify(false));
@@ -65,7 +65,7 @@ export class ChatService {
         await this.authenticate();
 
         const headers: HttpHeaders = new HttpHeaders({
-            Authorization: `Bearer ${this.user.jwtToken}`
+            Authorization: `Bearer ${this.user.jwtToken.access}`
         });
         const params: HttpParams = new HttpParams();
         params.append('strictEqual', qs.stringify(true));
@@ -76,7 +76,7 @@ export class ChatService {
 
     async pushChat(ownerUuid: string): Promise<Chat> {
         const headers: HttpHeaders = new HttpHeaders({
-            Authorization: `Bearer ${this.user.jwtToken}`
+            Authorization: `Bearer ${this.user.jwtToken.access}`
         });
         const params = {participants: [ownerUuid]};
         return this.httpClient.post<Chat>(this.HTTP_URL, params, {headers}).toPromise();
@@ -124,7 +124,7 @@ export class ChatService {
         if (!this.connection) {return;}
         await this.initUser();
         const payload = {
-            token: this.user.jwtToken
+            token: this.user.jwtToken.access
         };
         this.connection.next(payload);
     }
