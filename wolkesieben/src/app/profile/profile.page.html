@@ -1,18 +1,21 @@
 <ion-content>
   <app-header [title]="'Mein Profil'"></app-header>
 
-  <ion-title class="ion-text-center" style="font-size:3em" >{{ user.firstname }} {{ user.lastname }}</ion-title>
+  <ion-title class="ion-text-center" style="font-size:3em" ></ion-title>
 
   <ion-grid>
         <ion-row>
-
             <ion-col>
-
-
+                <ion-title class="ion-text-center">Informationen</ion-title>
+                <p>Hallo ich bin die Tina und ich liebe Tiere</p>
+                <ion-button>Informationen bearbeiten</ion-button>
             </ion-col>
             <ion-col>
-
-
+                <ion-title class="ion-text-center">Profilbild</ion-title>
+                <br>
+                <input type="file" (change)='uploadImage($event)'>
+                <ion-button (click)='saveImage()'>Profilbild ändern</ion-button>
+                <ion-img src="{{ savedImgUrl }}"></ion-img>
             </ion-col>
         </ion-row>
     </ion-grid>
