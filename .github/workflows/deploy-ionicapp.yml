@@ -38,5 +38,5 @@ jobs:
       - name: Deploy
         uses: google-github-actions/upload-cloud-storage@main
         with:
-          path: /www
+          path: wolkesieben/www
           destination: wolkesieben-frontend
