@@ -22,6 +22,8 @@ jobs:
     steps:
       - name: Use coturiv/setup-ionic
         uses: coturiv/setup-ionic@v1
+      - name: Go to project
+        run: cd ./wolkesieben
       - name: Build App
         run: ionic build --prod
   deploy:
