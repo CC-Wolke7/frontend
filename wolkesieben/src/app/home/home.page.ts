@@ -59,5 +59,7 @@ export class HomePage implements OnInit {
     logout(googleUser: GoogleUser) {
         googleUser.disconnect();
         this.user = null;
+        localStorage.clear();
+        window.location.reload();
     }
 }
