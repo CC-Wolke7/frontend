@@ -40,6 +40,6 @@ jobs:
         with:
           args: -d
         env:
-          GCP_SERVICE_ACCOUNT_KEY_FILE: ${{ GCP_SA_KEY }}
+          GCP_SERVICE_ACCOUNT_KEY_FILE: ${{ env.GCP_SA_KEY }}
           GCP_STORAGE_BUCKET: wolkesieben-ionic-app
           SOURCE_DIR: "wolkesieben/www"
