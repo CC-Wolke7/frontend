@@ -36,7 +36,7 @@ jobs:
           service_account_key: ${{ env.GCP_SA_KEY }}
           export_default_credentials: true
       - name: Deploy
-        uses: google-github-actions/upload-cloud-storage@main
+        uses: GoogleCloudPlatform/github-actions/upload-cloud-storage@master
         with:
           credentials: ${{ env.GCP_SA_KEY }}
           path: wolkesieben/www
