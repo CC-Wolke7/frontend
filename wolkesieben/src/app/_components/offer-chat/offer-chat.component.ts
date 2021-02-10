@@ -18,6 +18,7 @@ export class OfferChatComponent implements OnInit, OnDestroy {
   newMessage = '';
   user: User;
   chat: Chat;
+  sellerName = '';
 
   constructor(private chatService: ChatService,
               private userService: UserService) { }
