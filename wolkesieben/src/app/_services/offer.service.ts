@@ -8,17 +8,7 @@ import {Observable} from 'rxjs';
 })
 export class OfferService {
 
-    readonly URL_LOCAL = 'http://localhost:8100';
-
     constructor(private appService: AppService) {}
-
-    getRandomOffers(count: number = 24, detail: boolean = false) {
-        let path = '/offers';
-        if (isDevMode()) { // TODO remove for prod
-            path = '/assets/testdata/offers.json';
-        }
-        return this.appService.getOffers();
-    }
 
     getOffers(): Observable<Offer[]> {
         return this.appService.getOffers();

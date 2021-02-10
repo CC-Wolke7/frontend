@@ -21,9 +21,10 @@ export class AppService {
 
   constructor(private httpClient: HttpClient) { }
 
-  private static getHeaders(user: User): HttpHeaders {
+  private getHeaders(): HttpHeaders {
+    const user = JSON.parse(localStorage.getItem(this.LOCAL_STORAGE_KEY));
     return new HttpHeaders({
-      Authorization: `Bearer ${user.jwtToken}`
+      Authorization: `Bearer ${user.jwtToken.access}`
     });
   }
   private getUrl(route: string): string {
@@ -37,9 +38,10 @@ export class AppService {
   async login(googleUser: GoogleUser): Promise<User> {
     const u = localStorage.getItem(this.LOCAL_STORAGE_KEY);
     if (u) {
+      console.log('hasUser', JSON.parse(u));
       return new Promise(JSON.parse(u));
     }
-    // console.log('auth response id_token', googleUser.getAuthResponse().id_token);
+    console.log('auth response id_token', googleUser.getAuthResponse().id_token);
     const headers: HttpHeaders = new HttpHeaders({
       Authorization: `Bearer ${googleUser.getAuthResponse().id_token}`
     });
@@ -54,16 +56,9 @@ export class AppService {
   }
 
   getOffers(): Observable<Offer[]> {
-    const user: User = JSON.parse(localStorage.getItem(this.LOCAL_STORAGE_KEY));
-    if (!user) {
-      return;
-    }
-    const headers: HttpHeaders = new HttpHeaders({
-      Authorization: `Bearer ${user.jwtToken.access}`
-    });
+    const headers: HttpHeaders = this.getHeaders();
     const options = {headers};
     const url = this.getUrl(this.ROUTES.offers);
-    console.log({headers, url});
     return this.httpClient.get<Offer[]>(url, options);
   }
 }

@@ -12,7 +12,7 @@ export class LikeService {
 
   readonly LOCAL_STORAGE_KEY = 'appUser';
   readonly URL_LOCAL = 'http://localhost:3002';
-  readonly URL_PROD = 'https://like-ms.wolkesieben.appspot.com';
+  readonly URL_PROD = 'https://wolke-sieben-fs.ey.r.appspot.com/';
   readonly ROUTES = {
     likes: '/offer/:offerId/likes'
   };
@@ -56,7 +56,6 @@ export class LikeService {
   async getLike(offer: Offer): Promise<Like> {
     const headers: HttpHeaders = this.getHeader();
     const options = {headers};
-
     const route = this.ROUTES.likes.replace(':offerId', `${offer.uuid}`);
     const url = this.getUrl(route);
 

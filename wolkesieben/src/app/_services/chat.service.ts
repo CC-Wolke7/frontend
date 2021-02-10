@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable, isDevMode} from '@angular/core';
 import {WebSocketSubject} from 'rxjs/internal-compatibility';
 import {Observable, of} from 'rxjs';
 import {delay, filter, map, retryWhen, switchMap} from 'rxjs/operators';
@@ -17,9 +17,15 @@ export class ChatService {
 
     connection: WebSocketSubject<any>;
     RETRY_SECONDS = 10;
+
     WEBSOCKET_URL = 'ws://localhost:3000/';
+    WEBSOCKET_URL_PROD = 'ws://wolke-sieben-fs.ey.r.appspot.com/';
+
     HTTP_URL = 'http://localhost:3000/chats';
+    HTTP_URL_PROD = 'https://wolke-sieben-fs.ey.r.appspot.com/chats';
+
     MESSAGES_HTTP_URL = 'http://localhost:3000/chat/:chatId/messages';
+    MESSAGES_HTTP_URL_PROD = 'https://wolke-sieben-fs.ey.r.appspot.com/chat/:chatId/messages';
 
     user: User;
     chat: Chat;
@@ -29,13 +35,25 @@ export class ChatService {
         this.connect();
     }
 
+    getUrlWebsocket() {
+        return isDevMode() ? this.WEBSOCKET_URL : this.WEBSOCKET_URL_PROD;
+    }
+
+    getUrlHttp() {
+        return isDevMode() ? this.HTTP_URL : this.HTTP_URL_PROD;
+    }
+
+    getUrlMessages() {
+        return isDevMode() ? this.MESSAGES_HTTP_URL : this.MESSAGES_HTTP_URL_PROD;
+    }
+
     async putMessage(chatId, message: string): Promise<Message> {
         const headers: HttpHeaders = new HttpHeaders({
             Authorization: `Bearer ${this.user.jwtToken.access}`
         });
         const params: HttpParams = new HttpParams();
         params.append('requestBody', qs.stringify(message));
-        const url = this.MESSAGES_HTTP_URL.replace(':chatId', chatId);
+        const url = this.getUrlMessages().replace(':chatId', chatId);
         return this.httpClient.post<Message>(url, {message}, {headers}).toPromise();
     }
 
@@ -44,7 +62,7 @@ export class ChatService {
             Authorization: `Bearer ${this.user.jwtToken.access}`
         });
         const options = {headers};
-        const url = this.MESSAGES_HTTP_URL.replace(':chatId', chatId);
+        const url = this.getUrlMessages().replace(':chatId', chatId);
         return this.httpClient.get<Message[]>(url, options).toPromise();
     }
 
@@ -58,7 +76,7 @@ export class ChatService {
         params.append('strictEqual', qs.stringify(false));
         params.append('participants', qs.stringify([], {arrayFormat: 'indices'}));
         const options = {headers, params};
-        return this.httpClient.get<Chat[]>(this.HTTP_URL, options).toPromise();
+        return this.httpClient.get<Chat[]>(this.getUrlHttp(), options).toPromise();
     }
 
     async getChats(ownerUuid: string): Promise<Chat[]> {
@@ -71,7 +89,7 @@ export class ChatService {
         params.append('strictEqual', qs.stringify(true));
         params.append('participants', qs.stringify([ownerUuid], {arrayFormat: 'indices'}));
         const options = {headers, params};
-        return this.httpClient.get<Chat[]>(this.HTTP_URL, options).toPromise();
+        return this.httpClient.get<Chat[]>(this.getUrlHttp(), options).toPromise();
     }
 
     async pushChat(ownerUuid: string): Promise<Chat> {
@@ -79,11 +97,11 @@ export class ChatService {
             Authorization: `Bearer ${this.user.jwtToken.access}`
         });
         const params = {participants: [ownerUuid]};
-        return this.httpClient.post<Chat>(this.HTTP_URL, params, {headers}).toPromise();
+        return this.httpClient.post<Chat>(this.getUrlHttp(), params, {headers}).toPromise();
     }
 
     connect(): Observable<any> {
-        return of(this.WEBSOCKET_URL).pipe(
+        return of(this.getUrlWebsocket()).pipe(
             filter(apiUrl => !!apiUrl),
             switchMap(wsUrl => {
                 if (!this.connection) {
