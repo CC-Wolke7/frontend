@@ -39,5 +39,5 @@ jobs:
         uses: google-github-actions/upload-cloud-storage@main
         with:
           credentials: ${{ env.GCP_SA_KEY }}
-          path: wolkesieben/www
+          path: wolkesieben/www/
           destination: wolkesieben-ionic-app
