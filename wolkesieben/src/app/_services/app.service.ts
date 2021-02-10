@@ -13,7 +13,7 @@ export class AppService {
 
   readonly LOCAL_STORAGE_KEY = 'appUser';
   readonly LOCAL_URL = 'http://localhost:8000';
-  readonly PROD_URL = 'https://app-ms.wolkesieben.appspot.com';
+  readonly PROD_URL = 'https://app-api-xm7n7eaepa-ey.a.run.app/';
   readonly ROUTES = {
     //user: '/users/1/create_token/',
     user: '/api/token/google',
@@ -46,7 +46,7 @@ export class AppService {
     });
     const options = {headers};
     const url = this.getUrl(this.ROUTES.user);
-    // console.log(googleUser, options, googleUser.getAuthResponse().id_token);
+    console.log(googleUser, options, googleUser.getAuthResponse().id_token);
     const jwtToken = await this.httpClient.get<any>(url, options).toPromise();
     const user = new User(googleUser, 'google');
     user.jwtToken = jwtToken;
