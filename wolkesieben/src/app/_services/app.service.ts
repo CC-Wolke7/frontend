@@ -13,7 +13,7 @@ export class AppService {
 
   readonly LOCAL_STORAGE_KEY = 'appUser';
   readonly LOCAL_URL = 'http://localhost:8000';
-  readonly PROD_URL = 'https://app-api-xm7n7eaepa-ey.a.run.app/';
+  readonly PROD_URL = 'https://app-api-xm7n7eaepa-ey.a.run.app';
   readonly ROUTES = {
     //user: '/users/1/create_token/',
     user: '/api/token/google',
