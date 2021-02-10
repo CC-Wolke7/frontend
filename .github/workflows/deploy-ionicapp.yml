@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install Ionic
-        run: npm install @ionic/cli
+        run: npm install -g @ionic/cli
       - name: Build App
         run: ionic build --prod
   deploy:
