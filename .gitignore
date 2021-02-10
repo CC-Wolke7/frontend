@@ -1,2 +1,7 @@
 .DS_Store
 Thumbs.db
+/.idea/.gitignore
+/.idea/frontend.iml
+/.idea/modules.xml
+/.idea/inspectionProfiles/Project_Default.xml
+/.idea/vcs.xml
