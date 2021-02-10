@@ -35,6 +35,8 @@ jobs:
           project_id: ${{ env.GCP_PROJECT_ID }}
           service_account_key: ${{ env.GCP_SA_KEY }}
           export_default_credentials: true
+      - name: copy htaccess
+        run: cp .htaccess wolkesieben/www/.htaccess
       - name: Sync www dir
         uses: weslenng/gcp-storage-sync@master
         with:
