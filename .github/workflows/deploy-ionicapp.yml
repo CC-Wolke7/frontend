@@ -29,9 +29,6 @@ jobs:
           cd wolkesieben
           npm install
           ionic build --prod
-      - name: Copy .htaccess file
-        run: |
-          cp .htaccess wolkesieben/www/.htaccess
       - name: Set up Google Cloud SDK
         uses: google-github-actions/setup-gcloud@master
         with:
@@ -44,3 +41,9 @@ jobs:
           credentials: ${{ env.GCP_SA_KEY }}
           path: wolkesieben/www
           destination: wolkesieben-ionic-app
+      - name: Deploy htaccess
+        uses: google-github-actions/upload-cloud-storage@main
+        with:
+          credentials: ${{ env.GCP_SA_KEY }}
+          path: .htaccess
+          destination: wolkesieben-ionic-app/.htaccess
