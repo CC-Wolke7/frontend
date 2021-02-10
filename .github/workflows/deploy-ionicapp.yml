@@ -22,10 +22,11 @@ jobs:
     steps:
       - name: Use coturiv/setup-ionic
         uses: coturiv/setup-ionic@v1
+      - name: Checkout source code
+        uses: actions/checkout@v2
       - name: Build App
         run: |
-          pwd
-          ls
+          ls -ltr
           cd wolkesieben
           ionic build --prod
   deploy:
