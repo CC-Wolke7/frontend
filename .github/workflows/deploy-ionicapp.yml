@@ -46,4 +46,4 @@ jobs:
         with:
           credentials: ${{ env.GCP_SA_KEY }}
           path: .htaccess
-          destination: wolkesieben-ionic-app/.htaccess
+          destination: wolkesieben-ionic-app
