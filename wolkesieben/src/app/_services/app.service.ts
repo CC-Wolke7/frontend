@@ -15,7 +15,6 @@ export class AppService {
   readonly LOCAL_URL = 'http://localhost:8000';
   readonly PROD_URL = 'https://app-api-xm7n7eaepa-ey.a.run.app';
   readonly ROUTES = {
-    //user: '/users/1/create_token/',
     user: '/api/token/google',
     offers: '/offers'
   };
