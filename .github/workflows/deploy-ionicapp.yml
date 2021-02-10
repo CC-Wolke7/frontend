@@ -37,4 +37,4 @@ jobs:
           export_default_credentials: true
 
       - name: Deploy
-        run: gsutil cp dist/ gs://wolkesieben-frontend/
+        run: gsutil cp www gs://wolkesieben-frontend/
