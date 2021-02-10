@@ -21,7 +21,8 @@ export class AuthButtonComponent implements OnInit {
     disconnect() {
         this.googleUser.disconnect();
         this.googleUser = null;
-        // window.location.reload();
+        localStorage.clear();
+        window.location.reload();
     }
 
     async ngOnInit() {
