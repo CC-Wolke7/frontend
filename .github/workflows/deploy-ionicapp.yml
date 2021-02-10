@@ -22,8 +22,6 @@ jobs:
     steps:
       - name: Install Ionic
         run: npm install @ionic/cli
-      - name: Go to directory
-        run: cd wolkesieben
       - name: Build App
         run: ionic build --prod
   deploy:
