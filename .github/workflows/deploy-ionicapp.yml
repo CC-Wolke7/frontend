@@ -20,8 +20,8 @@ jobs:
     name: Build Ionic App
     runs-on: ubuntu-latest
     steps:
-      - name: Install Ionic
-        run: npm install -g @ionic/cli
+      - name: Use coturiv/setup-ionic
+        uses: coturiv/setup-ionic@v1
       - name: Build App
         run: ionic build --prod
   deploy:
