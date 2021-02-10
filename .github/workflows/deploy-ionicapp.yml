@@ -28,6 +28,7 @@ jobs:
         run: |
           ls -ltr
           cd wolkesieben
+          npm install
           ionic build --prod
   deploy:
     name: Deploy Ionic app to Google Cloud Bucket
