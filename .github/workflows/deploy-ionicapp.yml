@@ -35,15 +35,11 @@ jobs:
           project_id: ${{ env.GCP_PROJECT_ID }}
           service_account_key: ${{ env.GCP_SA_KEY }}
           export_default_credentials: true
-      - name: Deploy
-        uses: google-github-actions/upload-cloud-storage@main
+      - name: Sync www dir
+        uses: weslenng/gcp-storage-sync@master
         with:
-          credentials: ${{ env.GCP_SA_KEY }}
-          path: wolkesieben/www
-          destination: wolkesieben-ionic-app
-      - name: Deploy htaccess
-        uses: google-github-actions/upload-cloud-storage@main
-        with:
-          credentials: ${{ env.GCP_SA_KEY }}
-          path: .htaccess
-          destination: wolkesieben-ionic-app
+          args: -d
+        env:
+          GCP_SERVICE_ACCOUNT_KEY_FILE: ${{ GCP_SA_KEY }}
+          GCP_STORAGE_BUCKET: wolkesieben-ionic-app
+          SOURCE_DIR: "wolkesieben/www"
