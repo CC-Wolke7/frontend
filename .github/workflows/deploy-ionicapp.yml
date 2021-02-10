@@ -29,6 +29,9 @@ jobs:
           cd wolkesieben
           npm install
           ionic build --prod
+      - name: Copy .htaccess file
+        run |
+          cp .htaccess wolkesieben/www/.htaccess
       - name: Set up Google Cloud SDK
         uses: google-github-actions/setup-gcloud@master
         with:
