@@ -1,0 +1,41 @@
+# This is a basic workflow that is manually triggered
+
+name: Build and Deploy Ionic App
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  GITHUB_TOKEN: ${{ github.token }}
+  GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+  GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+  SERVICE_NAME: ionic-app
+  IMAGE_NAME: frontend
+  IMAGE_VERSION: ${{ github.sha }}
+
+jobs:
+  build:
+    name: Build Ionic App
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Ionic
+        run: npm install @ionic/cli
+      - name: Go to directory
+        run: cd wolkesieben
+      - name: Build App
+        run: ionic build --prod
+  deploy:
+    name: Deploy Ionic app to Google Cloud Bucket
+    runs-on: ubuntu-latest
+    steps:
+    - name: Set up Google Cloud SDK
+      uses: google-github-actions/setup-gcloud@master
+      with:
+        project_id: ${{ env.GCP_PROJECT_ID }}
+        service_account_key: ${{ env.GCP_SA_KEY }}
+        export_default_credentials: true
+
+    - name: Deploy
+      run: gsutil cp dist/ gs://wolkesieben-frontend/
