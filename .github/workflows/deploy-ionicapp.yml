@@ -24,6 +24,9 @@ jobs:
         uses: coturiv/setup-ionic@v1
       - name: Build App
         run: |
+          pwd
+          ls
+          cd wolkesieben
           ionic build --prod
   deploy:
     name: Deploy Ionic app to Google Cloud Bucket
