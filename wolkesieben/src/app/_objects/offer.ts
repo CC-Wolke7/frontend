@@ -1,18 +1,19 @@
 import {Like} from './like';
+import {User} from './user';
 
 export class Offer {
-    id: number;
-    type: string;
+    // id: number;
+    species: string;
     breed: string;
     description: string;
     uuid: string;
     name: string;
     age: number;
     sex: string;
+    sterile: boolean;
     place: string;
-    previewImageUrl: string;
+    date_published: Date;
     like: Like;
     media: string[];
-    sellerName: string;
-    sellerUuid: string;
+    published_by: User;
 }

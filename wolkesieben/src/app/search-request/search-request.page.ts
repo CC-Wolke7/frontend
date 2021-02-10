@@ -31,7 +31,7 @@ export class SearchRequestPage implements OnInit {
     this.offers = await this.offerService.getOffers().toPromise();
     this.offers.filter((o: Offer) => {
       return (
-        o.type === this.search.type &&
+        o.species === this.search.type &&
         (!this.search.breed ||
             o.breed === this.search.breed) &&
             o.age === this.search.age

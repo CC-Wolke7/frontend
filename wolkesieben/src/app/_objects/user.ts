@@ -1,18 +1,21 @@
 import GoogleUser = gapi.auth2.GoogleUser;
-import {Token} from "./token";
+import {Token} from './token';
+import {Offer} from './offer';
 
 export class User {
-    userType = 'USER';
+    is_staff = false;
     uuid: string;
-    userId: string;
-    type: string;
+    externalId: string;
+    signUpMethod: string;
     jwtToken: Token;
-    firstname: string;
-    lastname: string;
+    name: string;
+    description: string;
+    profileImageName: string;
+    offers: Offer[];
 
     constructor(user: GoogleUser, type = 'google') {
-        this.userId = user.getId();
+        this.externalId = user.getId();
         this.uuid = ''; // generate uuid
-        this.type = type;
+        this.signUpMethod = type;
     }
 }

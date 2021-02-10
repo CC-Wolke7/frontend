@@ -6,8 +6,7 @@
     "age": 3,
     "sex": "M",
     "place": "Wiesbaden",
-    "previewImageUrl": "/assets/testdata/images/nox.jpg",
-    "media": [],
+    "media": ["/assets/testdata/images/nox.jpg"],
     "sellerName": "Hanna Hundeverkäufer",
     "sellerUuid": "c0e53e78-5ec5-4afa-beea-e1b885673615",
     "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
@@ -33,8 +32,7 @@
     "age": 5,
     "sex": "M",
     "place": "Frankfurt a.M.",
-    "previewImageUrl": "/assets/testdata/images/lucky.jpg",
-    "media": [],
+    "media": ["/assets/testdata/images/lucky.jpg"],
     "sellerName": "Hans Hundi",
     "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
   },
@@ -45,8 +43,7 @@
     "age": 9,
     "sex": "F",
     "place": "Wiesbaden",
-    "previewImageUrl": "/assets/testdata/images/lucy.jpg",
-    "media": [],
+    "media": ["/assets/testdata/images/lucy.jpg"],
     "sellerName": "Someone Someone",
     "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
   },
@@ -57,8 +54,7 @@
     "age": 3,
     "sex": "F",
     "place": "Bad Camberg",
-    "previewImageUrl": "/assets/testdata/images/perdie.jpg",
-    "media": [],
+    "media": ["/assets/testdata/images/perdie.jpg"],
     "sellerName": "Someone Someone",
     "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
   },
@@ -69,8 +65,7 @@
     "age": 11,
     "sex": "M",
     "place": "Mainz",
-    "previewImageUrl": "/assets/testdata/images/bronko.jpg",
-    "media": [],
+    "media": ["/assets/testdata/images/bronko.jpg"],
     "sellerName": "Someone Someone",
     "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
   },
@@ -81,8 +76,7 @@
     "age": 5,
     "sex": "F",
     "place": "Rüsselsheim",
-    "previewImageUrl": "/assets/testdata/images/garfield.jpg",
-    "media": [],
+    "media": ["/assets/testdata/images/garfield.jpg"],
     "sellerName": "Someone Someone",
     "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
   },
@@ -93,8 +87,7 @@
     "age": 4,
     "sex": "M",
     "place": "Wiesbaden",
-    "previewImageUrl": "/assets/testdata/images/willi.jpg",
-    "media": [],
+    "media": ["/assets/testdata/images/willi.jpg"],
     "sellerName": "Someone Someone",
     "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
   },
@@ -105,8 +98,7 @@
     "age": 0.5,
     "sex": "M",
     "place": "Sao Paulo, Brasilien",
-    "previewImageUrl": "/assets/testdata/images/lukas.jpg",
-    "media": [],
+    "media": ["/assets/testdata/images/lukas.jpg"],
     "sellerName": "Someone Someone",
     "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
   },
@@ -117,8 +109,7 @@
     "age": 16,
     "sex": "M",
     "place": "Dubai, UAE",
-    "previewImageUrl": "/assets/testdata/images/rolf.jpg",
-    "media": [],
+    "media": ["/assets/testdata/images/rolf.jpg"],
     "sellerName": "Someone Someone",
     "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
   },
@@ -129,8 +120,7 @@
     "age": 0,
     "sex": "F",
     "place": "Rüsselsheim",
-    "previewImageUrl": "/assets/testdata/images/ada.jpg",
-    "media": [],
+    "media": ["/assets/testdata/images/ada.jpg"],
     "sellerName": "Someone Someone",
     "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
   },
@@ -141,8 +131,7 @@
     "age": 67000000,
     "sex": "F",
     "place": "Pangea, Earth",
-    "previewImageUrl": "/assets/testdata/images/rita.jpg",
-    "media": [],
+    "media": ["/assets/testdata/images/rita.jpg"],
     "sellerName": "Someone Someone",
     "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
   }
