@@ -8,6 +8,7 @@ import { ChatPageRoutingModule } from './chat-routing.module';
 
 import { ChatPage } from './chat.page';
 import {PipesModule} from '../_pipes/pipes.module';
+import {SharedModule} from "../shared/shared.module";
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import {PipesModule} from '../_pipes/pipes.module';
     FormsModule,
     IonicModule,
     ChatPageRoutingModule,
-    PipesModule
+    PipesModule,
+    SharedModule
   ],
   declarations: [ChatPage]
 })

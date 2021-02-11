@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {User} from "../../_objects/user";
 
 @Component({
   selector: 'app-header',
@@ -7,10 +8,12 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   @Input() title: string;
-  // TODO @Input() userName: string;
+  user: User;
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.user = JSON.parse(localStorage.getItem('appUser'));
+  }
 
 }

@@ -1,3 +1,8 @@
-<ion-label *ngIf="googleUser && googleUser.isSignedIn()">Willkommen, {{googleUser.getBasicProfile().getName()}}</ion-label>
-<ion-button *ngIf="!googleUser || !googleUser.isSignedIn()" (click)="authenticate()">Authenticate</ion-button>
-<ion-button *ngIf="googleUser && googleUser.isSignedIn()" (click)="disconnect()">Logout</ion-button>
+<a *ngIf="!googleUser || !googleUser.isSignedIn()" (click)="authenticate()" class="logout-button">
+    <ion-icon name="log-in"></ion-icon>
+    <ion-text>Einloggen</ion-text>
+</a>
+<a *ngIf="googleUser && googleUser.isSignedIn()" (click)="disconnect()" class="logout-button">
+    <ion-icon name="power"></ion-icon>
+    <ion-text>Logout</ion-text>
+</a>

@@ -51,7 +51,10 @@ export class AppService {
     const jwtToken = await this.httpClient.get<any>(url, options).toPromise();
     const user = new User(googleUser, 'google');
     user.jwtToken = jwtToken;
-    user.uuid = (jwt_decode(user.jwtToken.access) as any).sub;
+    const tokenDecoded: any = jwt_decode(user.jwtToken.access);
+    user.uuid = tokenDecoded.sub;
+    user.name = tokenDecoded.name;
+    console.log(tokenDecoded);
     localStorage.setItem(this.LOCAL_STORAGE_KEY, JSON.stringify(user));
     return user;
   }

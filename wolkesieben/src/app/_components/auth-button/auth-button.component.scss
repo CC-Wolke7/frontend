@@ -1,0 +1,23 @@
+.logout-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  margin-right: 10px;
+  margin-left: 10px;
+
+  --color: var(--ion-color-dark);
+  color: var(--ion-color-dark);
+  transition: color 0.3s;
+
+  &:hover {
+    --color: var(--ion-color-primary);
+    color: var(--ion-color-primary);
+  }
+
+  ion-icon {
+    font-size: 32px;
+    margin-bottom: 5px;
+  }
+}
