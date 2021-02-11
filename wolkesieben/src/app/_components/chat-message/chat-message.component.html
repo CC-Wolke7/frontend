@@ -1,6 +1,6 @@
 <ion-row>
   <ion-col>
-    <div class="message" [class.sent]="message.sender" [class.received]="!message.sender" >
+    <div class="message" [class.sent]="message.sender === user.uuid" [class.received]="message.sender !== user.uuid" >
       {{message.body}}
       <div class="timestamp">{{message.date | germanDate}}</div>
     </div>

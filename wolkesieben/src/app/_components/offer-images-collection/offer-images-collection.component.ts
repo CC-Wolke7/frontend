@@ -8,7 +8,6 @@ import {Component, Input, OnInit} from '@angular/core';
 export class OfferImagesCollectionComponent implements OnInit {
 
   @Input() images: string[];
-  @Input() previewImageUrl: string;
 
   constructor() { }
 

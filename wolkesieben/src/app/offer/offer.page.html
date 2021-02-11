@@ -9,7 +9,7 @@
     <ion-grid>
         <ion-row>
             <ion-col>
-                <app-offer-chat *ngIf="chatActive" [ownerUuid]="offer.published_by.uuid" [ownerName]="offer.published_by.name"></app-offer-chat>
+                <app-offer-chat *ngIf="chatActive" [owner]="offer.published_by"></app-offer-chat>
                 <app-offer-detail-info [offer]="offer" *ngIf="!chatActive"></app-offer-detail-info>
                 <br>
                 <ion-button *ngIf="!chatActive" (click)="openChat()">Anbieter kontaktieren</ion-button>
@@ -17,7 +17,7 @@
             </ion-col>
             <ion-col>
                 <ion-title style="font-size:2em" class="ion-text-center">Bilder</ion-title>
-                <app-offer-images-collection [previewImageUrl]="offer.media[0]" [images]="offer.media"></app-offer-images-collection>
+                <app-offer-images-collection [images]="offer.media"></app-offer-images-collection>
             </ion-col>
         </ion-row>
     </ion-grid>

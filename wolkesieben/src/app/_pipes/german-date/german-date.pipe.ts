@@ -6,6 +6,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class GermanDatePipe implements PipeTransform {
 
   transform(value: Date): string {
+    if (!value.getFullYear) {
+      value = new Date(value);
+    }
     const y = `${value.getFullYear()}`;
     const m = `0${value.getMonth() + 1}`.slice(-2);
     const d = `0${value.getDate()}`.slice(-2);

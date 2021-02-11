@@ -2,7 +2,6 @@ import {Like} from './like';
 import {User} from './user';
 
 export class Offer {
-    // id: number;
     species: string;
     breed: string;
     description: string;

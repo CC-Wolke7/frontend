@@ -10,6 +10,9 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import {HttpClientModule} from '@angular/common/http';
 import {AuthButtonComponent} from './_components/auth-button/auth-button.component';
+import {GermanDatePipe} from './_pipes/german-date/german-date.pipe';
+import {SexPipe} from './_pipes/sex/sex.pipe';
+import {SortMessagesPipe} from './_pipes/sort-messages/sort-messages.pipe';
 
 
 

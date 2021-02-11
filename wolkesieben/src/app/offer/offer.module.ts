@@ -11,6 +11,7 @@ import {OfferDetailInfoComponent} from '../_components/offer-detail-info/offer-d
 import {ChatMessageComponent} from '../_components/chat-message/chat-message.component';
 import {GermanDatePipe} from '../_pipes/german-date/german-date.pipe';
 import {SharedModule} from '../shared/shared.module';
+import {PipesModule} from '../_pipes/pipes.module';
 
 @NgModule({
     imports: [
@@ -19,11 +20,10 @@ import {SharedModule} from '../shared/shared.module';
         IonicModule,
         SharedModule,
         OfferPageRoutingModule,
+        PipesModule
     ],
     declarations: [
         OfferPage,
-        SexPipe,
-        GermanDatePipe,
         OfferImagesCollectionComponent,
         OfferChatComponent,
         OfferDetailInfoComponent,

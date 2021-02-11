@@ -4,7 +4,7 @@ import GoogleUser = gapi.auth2.GoogleUser;
 import {Observable} from 'rxjs';
 import {User} from '../_objects/user';
 import {Offer} from '../_objects/offer';
-import {Token} from "../_objects/token";
+import jwt_decode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -51,6 +51,7 @@ export class AppService {
     const jwtToken = await this.httpClient.get<any>(url, options).toPromise();
     const user = new User(googleUser, 'google');
     user.jwtToken = jwtToken;
+    user.uuid = (jwt_decode(user.jwtToken.access) as any).sub;
     localStorage.setItem(this.LOCAL_STORAGE_KEY, JSON.stringify(user));
     return user;
   }
