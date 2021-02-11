@@ -1,44 +1,39 @@
-<ion-header>
-  <ion-grid>
-        <ion-row>
-            <ion-col>
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-title slot="start">
+            <div class="ion-justify-content-start" style="display: flex">
+                <div class="logo">
+                    <img src="assets/icon/appicon.png" alt="appicon" height="64" width="64">
+                </div>
                 <div>
-                  <ion-button [routerLink]="'/home'">
-                  Startseite
-                  </ion-button>
-
-                  <ion-button [routerLink]="'/search-request'">
-                    Tiersuche
-                  </ion-button>
-
-                  <ion-button>
-                    Merkliste
-                  </ion-button>
-
-                  <ion-button [routerLink]="'/profile'">
-                    Mein Profil
-                  </ion-button>
-
-                    <ion-button routerLink="/chat">
-                        Nachrichten
-                    </ion-button>
+                    <h1>Wolke Sieben - <span class="small">Wo tiere ein Zuhause finden</span></h1>
+                    <h4 *ngIf="user">Hey, {{user.name}}! <span class="small">Du befindest dich hier: {{title}}</span></h4>
                 </div>
-            </ion-col>
-
-            <ion-col>
-                <div class="title ion-text-center">
-                  <h1>Wolke 7</h1>
-                  <h2>Wo Tiere ein Zuhause finden</h2>
-                  <h3>{{ title }}</h3>
-                </div>
-
-            </ion-col>
-
-            <ion-col>
-              <!-- <p>Hey, {{ userName }}!</p> -->
-              <p>Hey, default!</p>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
+            </div>
+        </ion-title>
+        <ion-buttons slot="end" class="toolbar-buttons">
+            <a routerLink="/home">
+                <ion-icon name="home"></ion-icon>
+                <ion-text class="toolbar-button">Startseite</ion-text>
+            </a>
+            <a routerLink="/search-request">
+                <ion-icon name="search"></ion-icon>
+                <ion-text>Tiersuche</ion-text>
+            </a>
+            <a routerLink="/"> <!-- TODO -->
+                <ion-icon name="star"></ion-icon>
+                <ion-text>Merkliste</ion-text>
+            </a>
+            <a routerLink="/profile">
+                <ion-icon name="person"></ion-icon>
+                <ion-text>Mein Profil</ion-text>
+            </a>
+            <a routerLink="/chat">
+                <ion-icon name="chatbubbles"></ion-icon>
+                <ion-text>Nachrichten</ion-text>
+            </a>
+            <app-auth-button></app-auth-button>
+        </ion-buttons>
+    </ion-toolbar>
 
 </ion-header>
