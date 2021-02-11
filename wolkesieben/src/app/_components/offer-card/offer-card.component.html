@@ -3,7 +3,7 @@
   <div class="image-wrapper" [ngStyle]="{'background-image': 'url(' + offer.media[0] + ')'}">
     <!--img [src]="offer.previewImageUrl" alt=""-->
 
-    <div class="like-area" (click)="toggleLike(); $event.stopPropagation()">
+    <div class="like-area" (click)="toggleLike(); $event.stopPropagation()" *ngIf="user">
       <ion-icon color="danger" name="heart" *ngIf="offer.like && offer.like.user"></ion-icon>
       <ion-icon color="white" name="heart" *ngIf="offer.like && !offer.like.user"></ion-icon>
       <ion-icon color="danger" name="heart-outline" *ngIf="offer.like && !offer.like.user"></ion-icon>

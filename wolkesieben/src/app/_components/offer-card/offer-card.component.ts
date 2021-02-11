@@ -20,14 +20,13 @@ export class OfferCardComponent implements OnInit {
 
   @Output() likesUpdated: EventEmitter<Like[]> = new EventEmitter<Like[]>();
 
-  constructor(private navController: NavController, private likeService: LikeService) { }
+  constructor(private navController: NavController,
+              private likeService: LikeService) { }
 
-  ngOnInit() {
-    // console.log(this.offer);
-  }
+  ngOnInit() {}
 
   goToOffer(): void {
-    if (this.user || !this.user) {
+    if (this.user) {
       const navigationExtras: NavigationExtras = {state: this.offer};
       this.navController.navigateForward(`/offer/${this.offer.uuid}`, navigationExtras).then();
     }
