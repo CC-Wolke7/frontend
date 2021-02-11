@@ -72,7 +72,11 @@ export class UserService {
     // Resolve or reject signin Promise
     return new Promise(async () => {
       await this.authInstance.signIn().then(
-          user => this.googleUser = user,
+          async user => {
+            this.googleUser = user;
+            await this.checkUser(this.googleUser);
+            window.location.reload();
+          },
           error => this.error = error);
     });
   }

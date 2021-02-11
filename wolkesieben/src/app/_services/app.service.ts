@@ -38,23 +38,19 @@ export class AppService {
   async login(googleUser: GoogleUser): Promise<User> {
     const u = localStorage.getItem(this.LOCAL_STORAGE_KEY);
     if (u) {
-      console.log('hasUser', JSON.parse(u));
       return new Promise(JSON.parse(u));
     }
-    console.log('auth response id_token', googleUser.getAuthResponse().id_token);
     const headers: HttpHeaders = new HttpHeaders({
       Authorization: `Bearer ${googleUser.getAuthResponse().id_token}`
     });
     const options = {headers};
     const url = this.getUrl(this.ROUTES.user);
-    console.log(googleUser, options, googleUser.getAuthResponse().id_token);
     const jwtToken = await this.httpClient.get<any>(url, options).toPromise();
     const user = new User(googleUser, 'google');
     user.jwtToken = jwtToken;
     const tokenDecoded: any = jwt_decode(user.jwtToken.access);
     user.uuid = tokenDecoded.sub;
     user.name = tokenDecoded.name;
-    console.log(tokenDecoded);
     localStorage.setItem(this.LOCAL_STORAGE_KEY, JSON.stringify(user));
     return user;
   }
