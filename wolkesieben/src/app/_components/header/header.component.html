@@ -12,23 +12,23 @@
             </div>
         </ion-title>
         <ion-buttons slot="end" class="toolbar-buttons">
-            <a routerLink="/home">
+            <a routerLink="/home" *ngIf="user">
                 <ion-icon name="home"></ion-icon>
                 <ion-text class="toolbar-button">Startseite</ion-text>
             </a>
-            <a routerLink="/search-request">
+            <a routerLink="/search-request" *ngIf="user">
                 <ion-icon name="search"></ion-icon>
                 <ion-text>Tiersuche</ion-text>
             </a>
-            <a routerLink="/"> <!-- TODO -->
+            <a routerLink="/" *ngIf="user"> <!-- TODO -->
                 <ion-icon name="star"></ion-icon>
                 <ion-text>Merkliste</ion-text>
             </a>
-            <a routerLink="/profile">
+            <a routerLink="/profile" *ngIf="user">
                 <ion-icon name="person"></ion-icon>
                 <ion-text>Mein Profil</ion-text>
             </a>
-            <a routerLink="/chat">
+            <a routerLink="/chat" *ngIf="user">
                 <ion-icon name="chatbubbles"></ion-icon>
                 <ion-text>Nachrichten</ion-text>
             </a>
