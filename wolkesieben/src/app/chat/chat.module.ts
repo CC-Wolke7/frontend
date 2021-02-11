@@ -8,7 +8,9 @@ import { ChatPageRoutingModule } from './chat-routing.module';
 
 import { ChatPage } from './chat.page';
 import {PipesModule} from '../_pipes/pipes.module';
-import {SharedModule} from "../shared/shared.module";
+import {SharedModule} from '../shared/shared.module';
+import {OfferPageModule} from '../offer/offer.module';
+import {AngularSplitModule} from 'angular-split';
 
 @NgModule({
   imports: [
@@ -17,7 +19,9 @@ import {SharedModule} from "../shared/shared.module";
     IonicModule,
     ChatPageRoutingModule,
     PipesModule,
-    SharedModule
+    SharedModule,
+    OfferPageModule,
+    AngularSplitModule
   ],
   declarations: [ChatPage]
 })

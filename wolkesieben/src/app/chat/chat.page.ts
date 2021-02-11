@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Chat} from '../_objects/chat';
 import {ChatService} from '../_services/chat.service';
 import {User} from '../_objects/user';
@@ -19,6 +19,8 @@ export class ChatPage implements OnInit {
   messages: Message[];
   newMessage: string;
 
+  @ViewChild('chatContent') chatContent;
+
   constructor(private chatService: ChatService,
               private websocketService: WebsocketService) {
 
@@ -32,6 +34,7 @@ export class ChatPage implements OnInit {
     this.activeChat = chat;
     this.messages = await this.chatService.getMessages(chat.uuid);
     this.initChat();
+    this.scrollViewToButton();
   }
 
   initChat() {
@@ -41,6 +44,7 @@ export class ChatPage implements OnInit {
     this.websocketService.ws.subscribe(msg => {
       if (msg.event === WebSocketEventName.ReceivedMessage) {
         this.messages.push(msg.data);
+        this.scrollViewToButton();
       } else {
         console.error(msg);
       }
@@ -70,5 +74,11 @@ export class ChatPage implements OnInit {
     const chat: Chat = await this.chatService.pushChat(user.uuid);
     this.chats.push(chat);
     await this.getMessages(chat);
+  }
+
+  scrollViewToButton() {
+    setTimeout(() => {
+      this.chatContent.nativeElement.scrollTop = this.chatContent.nativeElement.scrollHeight;
+    }, 500);
   }
 }

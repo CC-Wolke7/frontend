@@ -22,6 +22,9 @@ import {PipesModule} from '../_pipes/pipes.module';
         OfferPageRoutingModule,
         PipesModule
     ],
+    exports: [
+        ChatMessageComponent
+    ],
     declarations: [
         OfferPage,
         OfferImagesCollectionComponent,

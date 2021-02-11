@@ -1,32 +1,56 @@
 <app-header title="Nachrichten"></app-header>
 
 <ion-content>
-  <ion-grid>
-    <ion-row>
-      <ion-col size="4">
-        <ion-list>
-          <ion-list-header>Chats</ion-list-header>
-          <ion-item *ngFor="let chat of chats" (click)="getMessages(chat)">
-            <ion-avatar>
-              <ion-icon name="person"></ion-icon>
-            </ion-avatar>
-            <ion-label>{{chat.participants}}</ion-label>
-          </ion-item>
-        </ion-list>
-      </ion-col>
-      <ion-col size="8" *ngIf="activeChat && activeChat.uuid">
-        <ion-list>
-          <ion-list-header>Nachrichten mit {{activeChat.uuid}}</ion-list-header>
-          <ion-item *ngFor="let message of messages | sortMessages">
-            <ion-text>{{message.body}} - ({{message.date | germanDate}})</ion-text>
-          </ion-item>
-        </ion-list>
-        <div *ngIf="activeChat && activeChat.uuid">
-          <ion-input [(ngModel)]="newMessage" (keydown.enter)="send()"></ion-input>
-          <ion-button (click)="send()">Senden</ion-button>
-        </div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
 
+  <as-split direction="horizontal" [disabled]="true" [gutterSize]="2">
+    <as-split-area [size]="4 / 12 * 100">
+      <ion-list class="chats-list">
+        <ion-list-header>Chats</ion-list-header>
+        <ion-item *ngFor="let chat of chats" (click)="getMessages(chat)"
+                  [class.active]="activeChat && chat.uuid == activeChat.uuid"
+                  [detail]="!activeChat || chat.uuid != activeChat.uuid">
+          <ion-avatar><ion-icon name="person"></ion-icon></ion-avatar>
+          <ion-label>{{chat.participants}}</ion-label>
+        </ion-item>
+        <ion-item detail>
+          <ion-avatar><ion-icon name="person"></ion-icon></ion-avatar>
+          <ion-label>[Mock] - Diez, Savina</ion-label>
+        </ion-item>
+        <ion-item detail>
+          <ion-avatar><ion-icon name="person"></ion-icon></ion-avatar>
+          <ion-label>[Mock] - Fuhrmeister, Klaus</ion-label>
+        </ion-item>
+        <ion-item detail>
+          <ion-avatar><ion-icon name="person"></ion-icon></ion-avatar>
+          <ion-label>[Mock] - Müller, Arne</ion-label>
+        </ion-item>
+        <ion-item detail>
+          <ion-avatar><ion-icon name="person"></ion-icon></ion-avatar>
+          <ion-label>[Mock] - Sauer, Nik</ion-label>
+        </ion-item>
+      </ion-list>
+    </as-split-area>
+
+    <as-split-area [size]="8 / 12 * 100">
+
+      <as-split direction="vertical" unit="pixel" [disabled]="true" [gutterSize]="2">
+        <as-split-area class="ion-padding-top" #chatContent>
+          <ion-list lines="none" class="chat-detail" *ngIf="activeChat && activeChat.uuid">
+            <ion-list-header>Nachrichten mit {{activeChat.uuid}}</ion-list-header>
+            <ion-item *ngFor="let message of messages | sortMessages">
+              <app-chat-message style="width: 100%" [message]="message"></app-chat-message>
+            </ion-item>
+          </ion-list>
+        </as-split-area>
+
+        <as-split-area [size]="200">
+          <div *ngIf="activeChat && activeChat.uuid">
+            <ion-textarea class="new-message-textarea" rows="5" [(ngModel)]="newMessage" placeholder="Neue Nachricht"></ion-textarea>
+            <ion-button color="success" class="send-button ion-float-end" (click)="send()">Nachricht Senden</ion-button>
+          </div>
+        </as-split-area>
+      </as-split>
+
+    </as-split-area>
+  </as-split>
 </ion-content>
