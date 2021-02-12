@@ -12,11 +12,11 @@ export class FavService {
   constructor(private httpClient: HttpClient) { }
 
   private static getUrl() {
-    return `${isDevMode() ? AppService.LOCAL_URL : AppService.PROD_URL}/users/:userId/`;
+    return `${isDevMode() ? AppService.APP_URL_LOCAL : AppService.APP_URL_PROD}/users/:userId/get_favorites/`;
   }
 
   private static postUrl() {
-    return `${isDevMode() ? AppService.LOCAL_URL : AppService.PROD_URL}/favorites/`;
+    return `${isDevMode() ? AppService.APP_URL_LOCAL : AppService.APP_URL_PROD}/users/:userId/favorite/`;
   }
 
   async getFavs(): Promise<any> {
@@ -30,7 +30,7 @@ export class FavService {
     const user = JSON.parse(localStorage.getItem(AppService.LOCAL_STORAGE_KEY)) as User;
     const url = FavService.postUrl().replace(':userId', user.uuid);
     const headers = AppService.getHeaders();
-    const payload = {user: user.uuid, offers: offer.uuid};
+    const payload = {offer: offer.uuid};
     return this.httpClient.post(url, payload, {headers}).toPromise();
   }
 }
