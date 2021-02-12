@@ -1,24 +1,54 @@
-<ion-content>
-    <app-header [title]="'Details zum Angebot'"></app-header>
+<app-header [title]="'Details zum Angebot'"></app-header>
 
-    <!-- <app-offertitle></app-offertitle> TODO -->
-    <ion-title class="ion-text-center" style="font-size:3em">{{ offer.name }}</ion-title>
-    <ion-title class="ion-text-center" style="font-size:2em">
-        {{ offer.age }} Jahre, {{offer.sex | sex}}, aus {{ offer.place }}
-    </ion-title>
-    <ion-grid>
-        <ion-row>
-            <ion-col>
-                <app-offer-chat *ngIf="chatActive" [owner]="offer.published_by"></app-offer-chat>
-                <app-offer-detail-info [offer]="offer" *ngIf="!chatActive"></app-offer-detail-info>
-                <br>
-                <ion-button *ngIf="!chatActive" (click)="openChat()">Anbieter kontaktieren</ion-button>
-                <ion-button *ngIf="chatActive" (click)="closeChat()">Chat Beenden</ion-button>
-            </ion-col>
-            <ion-col>
-                <ion-title style="font-size:2em" class="ion-text-center">Bilder</ion-title>
-                <app-offer-images-collection [images]="offer.media"></app-offer-images-collection>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
+<ion-content>
+    <div class="offer-header-wrapper">
+        <div class="offer-header">
+            <div class="offer-header-image" style=" background-image: url({{offer.media[0]}})"></div>
+            <div class="offer-header-content">
+                <ion-text class="offer-header-name">{{ offer.name }}</ion-text>
+                <ion-text><b>Alter:</b> {{ offer.age }} Jahre</ion-text>
+                <ion-text><b>Geschlecht:</b> {{ offer.sex | sex }}</ion-text>
+                <ion-text><b>Ort:</b> {{ offer.place }}</ion-text>
+            </div>
+        </div>
+    </div>
+
+    <div class="offer-content-wrapper">
+        <div class="offer-content">
+            <ion-grid>
+                <ion-row>
+                    <ion-col size="4">
+                        <ion-card>
+                            <ion-card-header>
+                                <ion-card-title>Beschreibung</ion-card-title>
+                            </ion-card-header>
+                            <ion-card-content>
+                                <app-offer-detail-info [offer]="offer" *ngIf="!chatActive"></app-offer-detail-info>
+                            </ion-card-content>
+                        </ion-card>
+                    </ion-col>
+                    <ion-col size="4">
+                        <ion-card>
+                            <ion-card-header>
+                                <ion-card-title>Bilder und Videos</ion-card-title>
+                            </ion-card-header>
+                            <ion-card-content>
+                                <app-offer-images-collection [images]="offer.media"></app-offer-images-collection>
+                            </ion-card-content>
+                        </ion-card>
+                    </ion-col>
+                    <ion-col size="4">
+                        <ion-card>
+                            <ion-card-header>
+                                <ion-card-title>Anbieter kontaktieren</ion-card-title>
+                            </ion-card-header>
+                            <ion-card-content>
+                                <app-offer-chat [owner]="offer.published_by"></app-offer-chat>
+                            </ion-card-content>
+                        </ion-card>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </div>
+    </div>
 </ion-content>

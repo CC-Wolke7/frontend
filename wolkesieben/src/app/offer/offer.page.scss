@@ -1,0 +1,46 @@
+.offer-header-wrapper {
+
+  padding-top: 30px;
+  padding-bottom: 80px;
+  background-color: var(--ion-color-primary);
+
+  .offer-header {
+    max-width: 1000px;
+    margin: auto;
+    display: flex;
+    align-items: start;
+  }
+
+  .offer-header-image {
+    height: 120px;
+    width: 120px;
+    background-size: cover;
+    border-radius: 50%;
+    background-position: center center;
+  }
+
+  .offer-header-content {
+    padding-left: 30px;
+
+    ion-text {
+      display: block;
+      margin-bottom: 15px;
+    }
+
+    .offer-header-name {
+      font-size: 3em;
+      font-weight: 700;
+    }
+
+  }
+}
+
+.offer-content-wrapper {
+
+  .offer-content {
+    margin-top: -50px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

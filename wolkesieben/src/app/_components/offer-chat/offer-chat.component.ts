@@ -49,7 +49,7 @@ export class OfferChatComponent implements OnInit, OnDestroy {
     } else {
       this.chat = chats[0];
     }
-    await this.getMessages();
+    // await this.getMessages();
   }
 
   ngOnDestroy() {
