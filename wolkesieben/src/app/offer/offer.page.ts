@@ -28,14 +28,12 @@ export class OfferPage implements OnInit {
   async checkAccess() {
     if (!this.offer) {
       const uuid = this.route.snapshot.paramMap.get('uuid');
-      console.log({uuid});
       try {
         this.offer = await this.offerService.getOffer(uuid);
         this.offer.sex = 'F'; // fixme remove fallback
         if (this.offer.media.length === 0) { // fixme remove fallback
           this.offer.media.push('assets/testdata/images/nox.jpg');
         }
-        console.log(this.offer);
       } catch (e) {
         console.warn(e);
       }
@@ -45,8 +43,6 @@ export class OfferPage implements OnInit {
   ngOnInit() {
     this.getParam();
     this.checkAccess().then();
-
-    console.log(this.offer);
   }
 
   openChat() {

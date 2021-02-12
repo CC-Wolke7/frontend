@@ -4,6 +4,7 @@ import {ChatService} from '../../_services/chat.service';
 import {Chat} from '../../_objects/chat';
 import {User} from '../../_objects/user';
 import {WebSocketEventName, WebsocketService} from '../../_services/websocket.service';
+import {AppService} from "../../_services/app.service";
 
 @Component({
   selector: 'app-offer-chat',
@@ -40,7 +41,7 @@ export class OfferChatComponent implements OnInit, OnDestroy {
   async getChat() {
     // todo remove fallback
     if (!this.owner) {
-      this.owner = JSON.parse(localStorage.getItem('appUser'));
+      this.owner = JSON.parse(localStorage.getItem(AppService.LOCAL_STORAGE_KEY));
     }
 
     const chats = await this.chatService.getChats(this.owner.uuid);

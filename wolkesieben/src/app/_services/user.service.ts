@@ -3,6 +3,7 @@ import {AppService} from './app.service';
 import {User} from '../_objects/user';
 import GoogleUser = gapi.auth2.GoogleUser;
 import {Token} from '../_objects/token';
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +19,13 @@ export class UserService {
 
   isLoading = true;
 
-  constructor(private appService: AppService) {
+  constructor(private appService: AppService,
+              private httpClient: HttpClient) {
 
+  }
+
+  async getByUrl(url: string) {
+    return await this.httpClient.get<any>(url).toPromise();
   }
 
   async getUser(): Promise<User> {

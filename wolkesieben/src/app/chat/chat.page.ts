@@ -6,6 +6,7 @@ import {UserService} from '../_services/user.service';
 import {Message} from '../_objects/message';
 import {v4 as uuidv4} from 'uuid';
 import {WebSocketEventName, WebsocketService} from '../_services/websocket.service';
+import {AppService} from "../_services/app.service";
 
 @Component({
   selector: 'app-chat',
@@ -65,10 +66,10 @@ export class ChatPage implements OnInit {
   }
 
   async createChat() {
-    const user = JSON.parse(localStorage.getItem('appUser')) as User;
+    const user = JSON.parse(localStorage.getItem(AppService.LOCAL_STORAGE_KEY)) as User;
     if (!user.uuid) {
       user.uuid = uuidv4();
-      localStorage.setItem('appUser', JSON.stringify(user));
+      localStorage.setItem(AppService.LOCAL_STORAGE_KEY, JSON.stringify(user));
     }
     console.log(user.uuid);
     const chat: Chat = await this.chatService.pushChat(user.uuid);

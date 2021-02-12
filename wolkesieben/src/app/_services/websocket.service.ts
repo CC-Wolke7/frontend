@@ -4,6 +4,7 @@ import {webSocket, WebSocketSubject} from 'rxjs/webSocket';
 import {Message} from '../_objects/message';
 import {User} from '../_objects/user';
 import {Chat} from '../_objects/chat';
+import {AppService} from "./app.service";
 
 export enum WebSocketEventName {
   AuthRequest = 'WS_AUTH_REQUEST',
@@ -38,7 +39,7 @@ export class WebsocketService {
   init() {
     this.ws = webSocket(this.getUrl());
 
-    const user = JSON.parse(localStorage.getItem('appUser')) as User;
+    const user = JSON.parse(localStorage.getItem(AppService.LOCAL_STORAGE_KEY)) as User;
     const authReqEvt: WebSocketEvent<WsAuthRequestPayload> = {
       event: WebSocketEventName.AuthRequest,
       data: {token: user.jwtToken.access}

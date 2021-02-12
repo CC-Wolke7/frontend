@@ -3,7 +3,7 @@ import {AppService} from './app.service';
 import {Offer} from '../_objects/offer';
 import {Observable} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {User} from "../_objects/user";
+import {User} from '../_objects/user';
 
 @Injectable({
     providedIn: 'root'
@@ -14,13 +14,8 @@ export class OfferService {
                 private httpClient: HttpClient) {
     }
 
-    private getHeaders() {
-        const user = JSON.parse(localStorage.getItem('appUser')) as User;
-        return new HttpHeaders({Authorization: `Bearer ${user.jwtToken.access}`});
-    }
-
-    private getUrl() {
-        return isDevMode() ? 'http://localhost:8000' : '';
+    private static getUrl() {
+        return isDevMode() ? AppService.LOCAL_URL : AppService.PROD_URL;
     }
 
     getOffers(): Observable<Offer[]> {
@@ -28,9 +23,8 @@ export class OfferService {
     }
 
     async getOffer(uuid: string): Promise<Offer> {
-        const url = `${this.getUrl()}/offers/${1}`;
-        console.log(url);
-        const headers = this.getHeaders();
+        const url = `${OfferService.getUrl()}/offers/${uuid}`;
+        const headers = AppService.getHeaders();
         return this.httpClient.get<Offer>(url, {headers}).toPromise();
     }
 }

@@ -11,9 +11,10 @@ import jwt_decode from 'jwt-decode';
 })
 export class AppService {
 
-  readonly LOCAL_STORAGE_KEY = 'appUser';
-  readonly LOCAL_URL = 'http://localhost:8000';
-  readonly PROD_URL = 'https://app-api-xm7n7eaepa-ey.a.run.app';
+  static readonly LOCAL_STORAGE_KEY = 'appUser';
+  static readonly LOCAL_URL = 'http://localhost:8000';
+  static readonly PROD_URL = 'https://app-api-xm7n7eaepa-ey.a.run.app';
+
   readonly ROUTES = {
     user: '/api/token/google',
     offers: '/offers'
@@ -21,22 +22,23 @@ export class AppService {
 
   constructor(private httpClient: HttpClient) { }
 
-  private getHeaders(): HttpHeaders {
-    const user = JSON.parse(localStorage.getItem(this.LOCAL_STORAGE_KEY));
+  static getHeaders(): HttpHeaders {
+    const user = JSON.parse(localStorage.getItem(AppService.LOCAL_STORAGE_KEY));
     return new HttpHeaders({
       Authorization: `Bearer ${user.jwtToken.access}`
     });
   }
+
   private getUrl(route: string): string {
     if (isDevMode()) {
-      return `${this.LOCAL_URL}${route}`;
+      return `${AppService.LOCAL_URL}${route}`;
     } else {
-      return `${this.PROD_URL}${route}`;
+      return `${AppService.PROD_URL}${route}`;
     }
   }
 
   async login(googleUser: GoogleUser): Promise<User> {
-    const u = localStorage.getItem(this.LOCAL_STORAGE_KEY);
+    const u = localStorage.getItem(AppService.LOCAL_STORAGE_KEY);
     if (u) {
       return new Promise(JSON.parse(u));
     }
@@ -51,12 +53,12 @@ export class AppService {
     const tokenDecoded: any = jwt_decode(user.jwtToken.access);
     user.uuid = tokenDecoded.sub;
     user.name = tokenDecoded.name;
-    localStorage.setItem(this.LOCAL_STORAGE_KEY, JSON.stringify(user));
+    localStorage.setItem(AppService.LOCAL_STORAGE_KEY, JSON.stringify(user));
     return user;
   }
 
   getOffers(): Observable<Offer[]> {
-    const headers: HttpHeaders = this.getHeaders();
+    const headers: HttpHeaders = AppService.getHeaders();
     const options = {headers};
     const url = this.getUrl(this.ROUTES.offers);
     return this.httpClient.get<Offer[]>(url, options);

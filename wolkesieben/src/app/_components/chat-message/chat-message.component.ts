@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Message} from '../../_objects/message';
 import {User} from "../../_objects/user";
+import {AppService} from "../../_services/app.service";
 
 @Component({
   selector: 'app-chat-message',
@@ -13,7 +14,7 @@ export class ChatMessageComponent implements OnInit {
   user: User;
 
   constructor() {
-    this.user = JSON.parse(localStorage.getItem('appUser'));
+    this.user = JSON.parse(localStorage.getItem(AppService.LOCAL_STORAGE_KEY));
   }
 
   ngOnInit() {
