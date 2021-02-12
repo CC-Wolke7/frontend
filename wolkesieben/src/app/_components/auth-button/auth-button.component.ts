@@ -28,6 +28,8 @@ export class AuthButtonComponent implements OnInit {
     async ngOnInit() {
         if (await this.userService.checkIfUserAuthenticated()) {
             this.googleUser = this.userService.getGoogleUser();
+        } else {
+            localStorage.clear();
         }
     }
 }
