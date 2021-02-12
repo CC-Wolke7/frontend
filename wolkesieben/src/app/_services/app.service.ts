@@ -12,8 +12,15 @@ import jwt_decode from 'jwt-decode';
 export class AppService {
 
   static readonly LOCAL_STORAGE_KEY = 'appUser';
-  static readonly LOCAL_URL = 'http://localhost:8000';
-  static readonly PROD_URL = 'https://app-api-xm7n7eaepa-ey.a.run.app';
+
+  static readonly APP_URL_LOCAL = 'http://localhost:8000';
+  static readonly APP_URL_PROD = 'https://app.cc-wolkesieben.de';
+
+  static readonly LIKE_URL_LOCAL = 'http://localhost:3002';
+  static readonly LIKE_URL_PROD = 'https://like.cc-wolkesieben.de';
+
+  static readonly CHAT_URL_LOCAL = 'http://localhost:3000';
+  static readonly CHAT_URL_PROD = 'https://chat.cc-wolkesieben.de';
 
   readonly ROUTES = {
     user: '/api/token/google',
@@ -29,12 +36,8 @@ export class AppService {
     });
   }
 
-  private getUrl(route: string): string {
-    if (isDevMode()) {
-      return `${AppService.LOCAL_URL}${route}`;
-    } else {
-      return `${AppService.PROD_URL}${route}`;
-    }
+  private static getUrl(route: string): string {
+    return `${isDevMode() ? AppService.APP_URL_LOCAL : AppService.APP_URL_PROD}${route}`;
   }
 
   async login(googleUser: GoogleUser): Promise<User> {
@@ -46,7 +49,7 @@ export class AppService {
       Authorization: `Bearer ${googleUser.getAuthResponse().id_token}`
     });
     const options = {headers};
-    const url = this.getUrl(this.ROUTES.user);
+    const url = AppService.getUrl(this.ROUTES.user);
     const jwtToken = await this.httpClient.get<any>(url, options).toPromise();
     const user = new User(googleUser, 'google');
     user.jwtToken = jwtToken;
@@ -60,7 +63,7 @@ export class AppService {
   getOffers(): Observable<Offer[]> {
     const headers: HttpHeaders = AppService.getHeaders();
     const options = {headers};
-    const url = this.getUrl(this.ROUTES.offers);
+    const url = AppService.getUrl(this.ROUTES.offers);
     return this.httpClient.get<Offer[]>(url, options);
   }
 }

@@ -4,6 +4,7 @@ import {Like} from '../_objects/like';
 import {Offer} from '../_objects/offer';
 import {User} from '../_objects/user';
 import {Observable} from 'rxjs';
+import {AppService} from "./app.service";
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,17 @@ export class LikeService {
   constructor(private httpClient: HttpClient) {}
 
   /**
+   * @description gets full url in dependence of environment for given route
+   * @param route: string
+   * @return string: url of like service
+   * @private
+   * @static
+   */
+  private static getUrl(route: string): string {
+    return `${isDevMode() ? AppService.LIKE_URL_LOCAL : AppService.LIKE_URL_PROD}${route}`;
+  }
+
+  /**
    * @description get http header with authorization bearer for like microservice
    * @return HttpHeaders: http header
    * @private
@@ -33,21 +45,6 @@ export class LikeService {
   }
 
   /**
-   * @description gets full url in dependence of environment for given route
-   * @param route: string
-   * @return string: url of like service
-   * @private
-   * @static
-   */
-  private getUrl(route: string): string {
-    if (isDevMode()) {
-      return `${this.URL_LOCAL}${route}`;
-    } else {
-      return `${this.URL_PROD}${route}`;
-    }
-  }
-
-  /**
    * @description calls like microservice to get the likes for given offer
    * @param offer: Offer
    * @return Promise<Like>: Promise of like object
@@ -57,7 +54,7 @@ export class LikeService {
     const headers: HttpHeaders = this.getHeader();
     const options = {headers};
     const route = this.ROUTES.likes.replace(':offerId', `${offer.uuid}`);
-    const url = this.getUrl(route);
+    const url = LikeService.getUrl(route);
 
     return await this.httpClient.get<Like>(url, options).toPromise();
   }
@@ -72,7 +69,7 @@ export class LikeService {
     const options = {headers};
 
     const route = this.ROUTES.likes.replace(':offerId', `${offer.uuid}`);
-    const url = this.getUrl(route);
+    const url = LikeService.getUrl(route);
 
     return this.httpClient.put<void>(url, {}, options);
   }

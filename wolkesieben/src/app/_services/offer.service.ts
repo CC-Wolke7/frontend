@@ -14,8 +14,8 @@ export class OfferService {
                 private httpClient: HttpClient) {
     }
 
-    private static getUrl() {
-        return isDevMode() ? AppService.LOCAL_URL : AppService.PROD_URL;
+    private static getUrl(route: string) {
+        return `${isDevMode() ? AppService.APP_URL_LOCAL : AppService.APP_URL_PROD}${route}`;
     }
 
     getOffers(): Observable<Offer[]> {
@@ -23,7 +23,7 @@ export class OfferService {
     }
 
     async getOffer(uuid: string): Promise<Offer> {
-        const url = `${OfferService.getUrl()}/offers/${uuid}`;
+        const url = OfferService.getUrl(`/offers/${uuid}`);
         const headers = AppService.getHeaders();
         return this.httpClient.get<Offer>(url, {headers}).toPromise();
     }

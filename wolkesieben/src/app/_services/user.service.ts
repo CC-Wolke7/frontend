@@ -3,7 +3,7 @@ import {AppService} from './app.service';
 import {User} from '../_objects/user';
 import GoogleUser = gapi.auth2.GoogleUser;
 import {Token} from '../_objects/token';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -20,9 +20,7 @@ export class UserService {
   isLoading = true;
 
   constructor(private appService: AppService,
-              private httpClient: HttpClient) {
-
-  }
+              private httpClient: HttpClient) {}
 
   async getByUrl(url: string) {
     return await this.httpClient.get<any>(url).toPromise();
@@ -35,8 +33,6 @@ export class UserService {
 
       try {
         return await this.checkUser(this.googleUser);
-        // const users: User[] = await this.checkUser(this.googleUser).toPromise();
-        // return users[0];
       } catch (e) {
         const user: User = new User(this.googleUser);
         user.jwtToken = new Token(this.googleUser.getAuthResponse().id_token);
@@ -52,14 +48,10 @@ export class UserService {
   }
 
   async initGoogleAuth(): Promise<void> {
-    //  Create a new Promise where the resolve
-    // function is the callback passed to gapi.load
     const pload = new Promise((resolve) => {
       gapi.load('auth2', resolve);
     });
 
-    // When the first promise resolves, it means we have gapi
-    // loaded and that we can call gapi.init
     return pload.then(async () => {
       await gapi.auth2
           .init({ client_id: '481332583913-cieg25daahj0ujclj002o0ei5der0rsi.apps.googleusercontent.com' })
@@ -75,7 +67,6 @@ export class UserService {
       await this.initGoogleAuth();
     }
 
-    // Resolve or reject signin Promise
     return new Promise(async () => {
       await this.authInstance.signIn().then(
           async user => {
@@ -88,11 +79,9 @@ export class UserService {
   }
 
   async checkIfUserAuthenticated(): Promise<boolean> {
-    // Initialize gapi if not done yet
     if (!this.gapiSetup) {
       await this.initGoogleAuth();
     }
-
     return this.authInstance.isSignedIn.get();
   }
 
