@@ -13,7 +13,8 @@ export class OfferPage implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private navController: NavController) { }
+              private navController: NavController,
+              private offerService: OfferService) { }
 
   offer: Offer;
   chatActive: boolean;
@@ -24,15 +25,26 @@ export class OfferPage implements OnInit {
     });
   }
 
-  private checkAccess() {
+  async checkAccess() {
     if (!this.offer) {
-      this.navController.navigateRoot('/').then();
+      const uuid = this.route.snapshot.paramMap.get('uuid');
+      console.log({uuid});
+      try {
+        this.offer = await this.offerService.getOffer(uuid);
+        this.offer.sex = 'F'; // fixme remove fallback
+        if (this.offer.media.length === 0) { // fixme remove fallback
+          this.offer.media.push('assets/testdata/images/nox.jpg');
+        }
+        console.log(this.offer);
+      } catch (e) {
+        console.warn(e);
+      }
     }
   }
 
   ngOnInit() {
     this.getParam();
-    this.checkAccess();
+    this.checkAccess().then();
 
     console.log(this.offer);
   }

@@ -10,7 +10,7 @@
   background-repeat: no-repeat;
   position: relative;
 
-  .like-area {
+  .like-area, .fav-area {
     position: absolute;
     bottom: 20px;
     right: 20px;
@@ -24,6 +24,10 @@
       position: absolute;
       font-size: 32px;
     }
+  }
+
+  .fav-area {
+    right: 62px;
   }
 }
 
@@ -45,5 +49,8 @@ img {
 }
 
 .like-area {
+  cursor: pointer;
+}
+.fav-area {
   cursor: pointer;
 }

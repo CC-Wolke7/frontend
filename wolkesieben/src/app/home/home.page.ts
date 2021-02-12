@@ -34,9 +34,27 @@ export class HomePage implements OnInit {
 
     async loadOffers() {
         try {
-            this.offers = await this.offerService.getOffers().toPromise();
-            if (this.offers.length === 0) {
+            const offers: any = await this.offerService.getOffers().toPromise();
+            console.log(offers);
+            if (offers.length === 0) {
                 this.offers = await this.httpClient.get<Offer[]>('/assets/testdata/offers.json').toPromise();
+            } else {
+                for (const offer of offers) {
+                    offer.sex = 'F'; // fixme remove fallback
+                    offer.place = 'Frankfurt am Main'; // fixme remove fallback
+                    if (offer.media.length === 0) { // fixme remove fallback
+                        offer.media.push('assets/testdata/images/nox.jpg');
+                    }
+                    try {
+                        const user = await this.httpClient.get<User>(offer.published_by).toPromise();
+                        console.log(user);
+                        offer.published_by = user;
+                    } catch (e) {
+                        console.warn(e);
+                        offer.published_by = JSON.parse(localStorage.getItem('appUser'));  // fixme remove fallback
+                    }
+                }
+                this.offers = offers;
             }
         } catch (e) {
             this.offers = await this.httpClient.get<Offer[]>('/assets/testdata/offers.json').toPromise();

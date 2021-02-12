@@ -36,4 +36,8 @@ export class OfferCardComponent implements OnInit {
     await this.likeService.toggleLike(this.offer).toPromise();
     this.offer.like = await this.likeService.getLike(this.offer);
   }
+
+    async toggleFav(): Promise<void> {
+
+    }
 }
