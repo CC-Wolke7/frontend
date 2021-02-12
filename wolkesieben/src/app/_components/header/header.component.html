@@ -32,6 +32,10 @@
                 <ion-icon name="chatbubbles"></ion-icon>
                 <ion-text>Nachrichten</ion-text>
             </a>
+            <a routerLink="/new-offer" *ngIf="user">
+                <ion-icon name="add"></ion-icon>
+                <ion-text>Neue Anzeige</ion-text>
+            </a>
             <app-auth-button></app-auth-button>
         </ion-buttons>
     </ion-toolbar>

@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {User} from "../../_objects/user";
+import {User} from '../../_objects/user';
+import {AppService} from '../../_services/app.service';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +14,7 @@ export class HeaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.user = JSON.parse(localStorage.getItem('appUser'));
+    this.user = JSON.parse(localStorage.getItem(AppService.LOCAL_STORAGE_KEY));
   }
 
 }
