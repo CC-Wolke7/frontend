@@ -15,7 +15,7 @@ import {AuthButtonComponent} from './_components/auth-button/auth-button.compone
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
+  imports: [BrowserModule, IonicModule.forRoot({animated: false}), AppRoutingModule, HttpClientModule],
   providers: [
     StatusBar,
     SplashScreen,
