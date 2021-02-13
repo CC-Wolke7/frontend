@@ -31,9 +31,11 @@ export class OfferCardComponent implements OnInit {
 
   async ngOnInit() {
     this.offer = this.setFallback(this.offer); // fixme removeFallback
-    // this.isFav = await this.isFaved();
-    this.offer.published_by = await this.getUser((this.offer.published_by) as any);
-    this.offer.like = await this.likeService.getLike(this.offer);
+    if (this.user) {
+      // this.isFav = await this.isFaved();
+      this.offer.published_by = await this.getUser((this.offer.published_by) as any);
+      this.offer.like = await this.likeService.getLike(this.offer);
+    }
   }
 
   goToOffer(): void {
