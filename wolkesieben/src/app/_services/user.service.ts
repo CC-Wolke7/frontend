@@ -22,6 +22,10 @@ export class UserService {
   constructor(private appService: AppService,
               private httpClient: HttpClient) {}
 
+  public static getLocalUser() {
+    return JSON.parse(localStorage.getItem(AppService.LOCAL_STORAGE_KEY));
+  }
+
   async getByUrl(url: string) {
     return await this.httpClient.get<any>(url).toPromise();
   }

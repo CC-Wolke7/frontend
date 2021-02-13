@@ -1,21 +1,28 @@
-<ion-content>
-  <app-header [title]="'Mein Profil'"></app-header>
+<app-header [title]="'Mein Profil'"></app-header>
 
-  <ion-title class="ion-text-center" style="font-size:3em" ></ion-title>
+<ion-content *ngIf="user">
+  <ion-title class="ion-text-center" style="font-size:3em" >{{user.name}}</ion-title>
 
   <ion-grid>
         <ion-row>
             <ion-col>
                 <ion-title class="ion-text-center">Informationen</ion-title>
-                <ion-input placeholder="Beschreibung" [(ngModel)]="description"></ion-input>
+                <ion-input placeholder="Beschreibung" [(ngModel)]="user.description"></ion-input>
                 <ion-button (click)="changeDescription()">Informationen bearbeiten</ion-button>
             </ion-col>
             <ion-col>
                 <ion-title class="ion-text-center">Profilbild</ion-title>
+                <label>
+                    <input style="display: none;" type="file" (change)='uploadImage($event)'>
+                    <a class="upload-button">Datei wählen</a>
+                </label>
+
+                <ion-button (click)='saveImage()'>Speichern</ion-button>
                 <br>
-                <input type="file" (change)='uploadImage($event)'>
-                <ion-button (click)='saveImage()'>Profilbild ändern</ion-button>
-                <ion-img src="{{ savedImgUrl }}"></ion-img>
+                <ion-img *ngIf="savedImgUrl" src="{{ savedImgUrl }}"></ion-img>
+                <div class="default-image" *ngIf="!savedImgUrl">
+                    <ion-icon name="person-circle-outline"></ion-icon>
+                </div>
             </ion-col>
         </ion-row>
     </ion-grid>
