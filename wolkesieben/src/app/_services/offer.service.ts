@@ -22,6 +22,12 @@ export class OfferService {
         return this.appService.getOffers();
     }
 
+    async getImages(uuid: string): Promise<any[]> {
+        const url = OfferService.getUrl('/offers/:offerUuid/get_images').replace(':offerUuid', uuid);
+        const headers = AppService.getHeaders();
+        return this.httpClient.get<any[]>(url, {headers}).toPromise();
+    }
+
     async getOffer(uuid: string): Promise<Offer> {
         const url = OfferService.getUrl(`/offers/${uuid}`);
         const headers = AppService.getHeaders();

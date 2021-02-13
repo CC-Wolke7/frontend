@@ -19,6 +19,10 @@ export class FavService {
     return `${isDevMode() ? AppService.APP_URL_LOCAL : AppService.APP_URL_PROD}/users/:userId/favorite/`;
   }
 
+  private static deleteUrl() {
+    return `${isDevMode() ? AppService.APP_URL_LOCAL : AppService.APP_URL_PROD}/users/:userId/favorite/`;
+  }
+
   async getFavs(): Promise<any> {
     const user = JSON.parse(localStorage.getItem(AppService.LOCAL_STORAGE_KEY)) as User;
     const url = FavService.getUrl().replace(':userId', user.uuid);
@@ -32,5 +36,13 @@ export class FavService {
     const headers = AppService.getHeaders();
     const payload = {offer: offer.uuid};
     return this.httpClient.post(url, payload, {headers}).toPromise();
+  }
+
+  async removeFav(offer: Offer) {
+    const user = JSON.parse(localStorage.getItem(AppService.LOCAL_STORAGE_KEY)) as User;
+    const url = FavService.deleteUrl().replace(':userId', user.uuid);
+    const headers = AppService.getHeaders();
+    const payload = {offer: offer.uuid};
+    return this.httpClient.delete(url, {headers, params: payload}).toPromise();
   }
 }
