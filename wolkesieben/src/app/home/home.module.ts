@@ -6,9 +6,7 @@ import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
 import { OfferCardComponent } from '../_components/offer-card/offer-card.component';
-import { AuthButtonComponent } from '../_components/auth-button/auth-button.component';
 import { SharedModule } from '../shared/shared.module';
-import {HeaderComponent} from "../_components/header/header.component";
 
 
 @NgModule({
@@ -20,6 +18,7 @@ import {HeaderComponent} from "../_components/header/header.component";
         SharedModule
     ],
     exports: [
+        OfferCardComponent
     ],
     declarations: [HomePage, OfferCardComponent]
 })
