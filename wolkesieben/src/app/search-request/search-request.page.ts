@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {NavigationExtras} from "@angular/router";
-import {NavController} from "@ionic/angular";
-import {Search} from "../_objects/search";
-import {AppService} from "../_services/app.service";
-import {Offer} from "../_objects/offer";
+import {NavigationExtras} from '@angular/router';
+import {NavController} from '@ionic/angular';
+import {Search} from '../_objects/search';
+import {AppService} from '../_services/app.service';
+import {Offer} from '../_objects/offer';
 import {OfferService} from '../_services/offer.service';
+import {UserService} from '../_services/user.service';
 
 @Component({
   selector: 'app-search-request',
@@ -19,9 +20,11 @@ export class SearchRequestPage implements OnInit {
 
   constructor(private navController: NavController,
               private appService: AppService,
-              private offerService: OfferService) {}
+              private offerService: OfferService,
+              private userService: UserService) {}
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.userService.getUser();
     this.search = new Search();
     this.loading = false;
   }

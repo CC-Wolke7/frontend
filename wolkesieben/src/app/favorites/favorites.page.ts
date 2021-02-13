@@ -16,10 +16,11 @@ export class FavoritesPage implements OnInit {
   user: User;
 
   constructor(private favService: FavService,
-              private offerService: OfferService) { }
+              private offerService: OfferService,
+              private userService: UserService) { }
 
   async ngOnInit() {
-    this.user = UserService.getLocalUser();
+    this.user = await this.userService.getUser();
     const favs = await this.favService.getFavs();
     for (const fav of favs) {
       this.favorites.push(await this.offerService.getOffer(fav));
