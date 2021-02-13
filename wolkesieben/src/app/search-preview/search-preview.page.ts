@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {NavController} from '@ionic/angular';
 import {Offer} from '../_objects/offer';
+import {UserService} from "../_services/user.service";
 
 @Component({
   selector: 'app-search-preview',
@@ -14,7 +15,8 @@ export class SearchPreviewPage implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private navController: NavController) { }
+              private navController: NavController,
+              private userService: UserService) { }
 
 
   private getParam() {
@@ -23,12 +25,12 @@ export class SearchPreviewPage implements OnInit {
     });
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.userService.getUser();
     this.getParam();
     if (!this.offers) {
-      this.navController.navigateRoot('/').then();
+      this.navController.navigateRoot('/search-request').then();
     }
-    console.log(this.offers);
   }
 
 }

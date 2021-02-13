@@ -10,8 +10,8 @@ export class CreateOfferPage implements OnInit {
 
   constructor(private userService: UserService) { }
 
-  ngOnInit() {
-
+  async ngOnInit() {
+    await this.userService.getUser();
   }
 
 }
