@@ -34,11 +34,9 @@ export class HomePage implements OnInit {
 
     async loadOffers() {
         try {
-            // this.offers = await this.httpClient.get<Offer[]>('/assets/testdata/offers.json').toPromise();
             this.offers = await this.offerService.getOffers().toPromise();
         } catch (e) {
-            // fixme remove fallback
-            this.offers = await this.httpClient.get<Offer[]>('/assets/testdata/offers.json').toPromise();
+            this.offers = [];
         }
     }
 

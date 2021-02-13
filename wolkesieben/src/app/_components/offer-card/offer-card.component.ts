@@ -87,7 +87,7 @@ export class OfferCardComponent implements OnInit {
       offer.place = 'Frankfurt am Main';
     }
     if (offer.media.length === 0) {
-      offer.media.push('assets/testdata/images/nox.jpg');
+      offer.media.push('assets/images/placeholder.jpg');
     }
     return offer;
   }

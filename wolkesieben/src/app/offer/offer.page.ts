@@ -32,7 +32,7 @@ export class OfferPage implements OnInit {
         this.offer = await this.offerService.getOffer(uuid);
         this.offer.sex = 'F'; // fixme remove fallback
         if (this.offer.media.length === 0) { // fixme remove fallback
-          this.offer.media.push('assets/testdata/images/nox.jpg');
+          this.offer.media.push('assets/images/placeholder.jpg');
         }
       } catch (e) {
         console.warn(e);
