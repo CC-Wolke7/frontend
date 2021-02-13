@@ -1,0 +1,45 @@
+<ion-list>
+  <ion-item>
+    <ion-label>Name des Tieres</ion-label>
+    <ion-input [(ngModel)]="offer.name"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Tierart</ion-label>
+    <ion-select [(ngModel)]="offer.species">
+      <ion-select-option [value]="species" *ngFor="let species of allSpecies">
+        {{species}}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Rasse</ion-label>
+    <ion-select [(ngModel)]="offer.breed">
+      <ion-select-option [value]="breed" *ngFor="let breed of allBreeds">
+        {{breed}}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Alter</ion-label>
+    <ion-input type="number" [(ngModel)]="offer.age"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Ort</ion-label>
+    <ion-input type="number" [(ngModel)]="offer.place"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Geschlecht</ion-label>
+    <ion-select [(ngModel)]="offer.sex">
+      <ion-select-option value="Male">Männlich</ion-select-option>
+      <ion-select-option value="Female">Weiblich</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>{{offer.sex === 'Male' ? 'Kastriert' : 'Sterilisiert'}}</ion-label>
+    <ion-toggle [(ngModel)]="offer.sterile"></ion-toggle>
+  </ion-item>
+  <ion-item>
+    <ion-label>Beschreibung</ion-label>
+    <ion-textarea [(ngModel)]="offer.description"></ion-textarea>
+  </ion-item>
+</ion-list>
