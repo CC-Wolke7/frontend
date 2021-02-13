@@ -1,5 +1,32 @@
 <app-header title="Neue Anzeige erstellen"></app-header>
 
 <ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <ion-card>
+                    <ion-card-header>
+                        <ion-card-title>Angaben zur Anzeige</ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content>
+                        <app-edit-offer [offer]="offer"></app-edit-offer>
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
 
+            <ion-col>
+                <ion-card>
+                    <ion-card-header>
+                        <ion-card-title>Bilder hochladen</ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content>
+                        <label>
+                            <input type="file" style="display: none;">
+                            <a class="upload-button">Datei auswählen</a>
+                        </label>
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-content>
