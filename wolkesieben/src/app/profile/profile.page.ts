@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from '../_objects/user';
 import {UserService} from '../_services/user.service';
+import {AppService} from "../_services/app.service";
 
 @Component({
   selector: 'app-profile',
@@ -14,9 +15,9 @@ export class ProfilePage implements OnInit {
   description: string;
   blob: Blob;
   reader: FileReader;
+  user: User;
 
   constructor(private appService: AppService, private userService: UserService) {
-    user: User;
     this.description = 'init value!';
   }
 
@@ -52,7 +53,7 @@ export class ProfilePage implements OnInit {
   }
 
   subscribe(breed: string){
-    const user = JSON.parse(localStorage.getItem(this.appService.LOCAL_STORAGE_KEY)) as User;
+    const user = JSON.parse(localStorage.getItem(AppService.LOCAL_STORAGE_KEY)) as User;
     console.log(user);
     console.log(breed);
     this.appService.subscribe(user, breed);
