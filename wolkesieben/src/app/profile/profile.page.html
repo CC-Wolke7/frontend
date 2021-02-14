@@ -19,6 +19,8 @@
 
                 <ion-button (click)='saveImage()'>Speichern</ion-button>
                 <br>
+                <ion-button (click)='subscribe("golden_retriever")'>Subscribe for golden_retriever</ion-button>
+
                 <ion-img *ngIf="savedImgUrl" src="{{ savedImgUrl }}"></ion-img>
                 <div class="default-image" *ngIf="!savedImgUrl">
                     <ion-icon name="person-circle-outline"></ion-icon>

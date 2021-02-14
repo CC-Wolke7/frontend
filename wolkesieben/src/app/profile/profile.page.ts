@@ -15,9 +15,8 @@ export class ProfilePage implements OnInit {
   blob: Blob;
   reader: FileReader;
 
-  user: User;
-
-  constructor(private userService: UserService) {
+  constructor(private appService: AppService, private userService: UserService) {
+    user: User;
     this.description = 'init value!';
   }
 
@@ -50,6 +49,13 @@ export class ProfilePage implements OnInit {
 
   changeDescription(){
     this.description = 'changed';
+  }
+
+  subscribe(breed: string){
+    const user = JSON.parse(localStorage.getItem(AppService.LOCAL_STORAGE_KEY)) as User;
+    console.log(user);
+    console.log(breed);
+    this.appService.subscribe(user, breed);
   }
 
 }

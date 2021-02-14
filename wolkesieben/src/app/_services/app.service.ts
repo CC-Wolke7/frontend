@@ -24,7 +24,8 @@ export class AppService {
 
   readonly ROUTES = {
     user: '/api/token/google',
-    offers: '/offers'
+    offers: '/offers',
+    subscription: '/users/:userUuid/subscription'
   };
 
   constructor(private httpClient: HttpClient) { }
@@ -66,4 +67,14 @@ export class AppService {
     const url = AppService.getUrl(this.ROUTES.offers);
     return this.httpClient.get<Offer[]>(url, options);
   }
+
+  subscribe(user: User, breed: string) {
+    const headers: HttpHeaders = AppService.getHeaders();
+    console.log(headers);
+    const options = {headers};
+    const url = AppService.getUrl(this.ROUTES.subscription.replace(':userUuid', user.uuid));
+    console.log(url);
+    this.httpClient.post(url, {'breed': breed}, options);
+  }
+
 }
