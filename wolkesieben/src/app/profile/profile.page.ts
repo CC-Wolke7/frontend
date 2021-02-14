@@ -52,7 +52,7 @@ export class ProfilePage implements OnInit {
   }
 
   subscribe(breed: string){
-    const user = JSON.parse(localStorage.getItem(AppService.LOCAL_STORAGE_KEY)) as User;
+    const user = JSON.parse(localStorage.getItem(this.appService.LOCAL_STORAGE_KEY)) as User;
     console.log(user);
     console.log(breed);
     this.appService.subscribe(user, breed);

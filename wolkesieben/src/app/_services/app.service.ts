@@ -74,7 +74,7 @@ export class AppService {
     const options = {headers};
     const url = AppService.getUrl(this.ROUTES.subscription.replace(':userUuid', user.uuid));
     console.log(url);
-    this.httpClient.post(url, {'breed': breed}, options);
+    this.httpClient.post(url, {'breed': 'Jack Russel'}, options);
   }
 
 }
