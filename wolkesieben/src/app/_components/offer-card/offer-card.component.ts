@@ -9,6 +9,7 @@ import {NavigationExtras} from '@angular/router';
 import {FavService} from "../../_services/fav.service";
 import {UserService} from "../../_services/user.service";
 import {AppService} from "../../_services/app.service";
+import {OfferService} from "../../_services/offer.service";
 
 @Component({
   selector: 'app-offer-card',
@@ -27,12 +28,13 @@ export class OfferCardComponent implements OnInit {
   constructor(private navController: NavController,
               private likeService: LikeService,
               private favService: FavService,
-              private userService: UserService) { }
+              private userService: UserService,
+              private offerService: OfferService) { }
 
   async ngOnInit() {
-    this.offer = this.setFallback(this.offer); // fixme removeFallback
+    await this.getImages();
     if (this.user) {
-      // this.isFav = await this.isFaved();
+      await this.isFaved();
       this.offer.published_by = await this.getUser((this.offer.published_by) as any);
       this.offer.like = await this.likeService.getLike(this.offer);
     }
@@ -53,44 +55,30 @@ export class OfferCardComponent implements OnInit {
     }
   }
 
-  async isFaved(): Promise<boolean> {
-    try {
-      const db_user = await this.favService.getFavs();
-      const favs = db_user.favorites;
-      return new Promise(async () => {
-        return favs.indexOf(this.offer.uuid) !== -1;
-      });
-    } catch (e) {
-      return new Promise(async () => {
-        return false;
-      });
-    }
+  async isFaved() {
+    const favs = await this.favService.getFavs();
+    this.isFav = favs.indexOf(this.offer.uuid) !== -1;
   }
 
   async toggleLike(): Promise<void> {
     await this.likeService.toggleLike(this.offer).toPromise();
     this.offer.like = await this.likeService.getLike(this.offer);
+
   }
 
   async toggleFav(): Promise<void> {
-    await this.favService.saveFav(this.offer);
+    if (!this.isFav) {
+      await this.favService.saveFav(this.offer);
+    } else {
+      await this.favService.removeFav(this.offer);
+    }
+    await this.isFaved();
   }
 
-  /**
-   * @description fallback function for offer: fill in required fields
-   * @param offer: Offer
-   * @return Offer
-   */
-  setFallback(offer: Offer): Offer {
-    if (!offer.sex) {
-      offer.sex = 'F';
+  async getImages() {
+    this.offer.media = await this.offerService.getImages(this.offer.uuid);
+    if (!this.offer.media || this.offer.media.length === 0) {
+      this.offer.media = ['assets/images/placeholder.jpg'];
     }
-    if (!offer.place) {
-      offer.place = 'Frankfurt am Main';
-    }
-    if (offer.media.length === 0) {
-      offer.media.push('assets/images/placeholder.jpg');
-    }
-    return offer;
   }
 }

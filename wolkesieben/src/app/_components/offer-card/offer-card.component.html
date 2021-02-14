@@ -1,18 +1,18 @@
-<div class="wrapper" (click)="goToOffer()">
+<div class="wrapper" (click)="goToOffer()" *ngIf="offer">
 
-  <div class="image-wrapper" [ngStyle]="{'background-image': 'url(' + offer.media[0] + ')'}">
+  <div class="image-wrapper" *ngIf="offer.media && offer.media.length" [ngStyle]="{'background-image': 'url(' + offer.media[0] + ')'}">
     <!--img [src]="offer.previewImageUrl" alt=""-->
 
-    <div class="like-area" (click)="toggleLike(); $event.stopPropagation()" *ngIf="user">
-      <ion-icon color="danger" name="heart" *ngIf="offer.like && offer.like.user"></ion-icon>
-      <ion-icon color="white" name="heart" *ngIf="offer.like && !offer.like.user"></ion-icon>
-      <ion-icon color="danger" name="heart-outline" *ngIf="offer.like && !offer.like.user"></ion-icon>
+    <div class="like-area" (click)="toggleLike(); $event.stopPropagation()" *ngIf="user && offer.like">
+      <ion-icon color="danger" name="heart" *ngIf="offer.like.user"></ion-icon>
+      <ion-icon color="white" name="heart" *ngIf="!offer.like.user"></ion-icon>
+      <ion-icon color="danger" name="heart-outline" *ngIf="!offer.like.user"></ion-icon>
     </div>
 
     <div class="fav-area" (click)="toggleFav(); $event.stopPropagation()" *ngIf="user">
-      <ion-icon color="primary" name="star" *ngIf="false"></ion-icon>
-      <ion-icon color="white" name="star" *ngIf="true"></ion-icon>
-      <ion-icon color="primary" name="star-outline" *ngIf="true"></ion-icon>
+      <ion-icon color="primary" name="star" *ngIf="isFav"></ion-icon>
+      <ion-icon color="white" name="star" *ngIf="!isFav"></ion-icon>
+      <ion-icon color="primary" name="star-outline" *ngIf="!isFav"></ion-icon>
     </div>
   </div>
 

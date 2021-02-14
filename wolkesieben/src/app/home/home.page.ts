@@ -25,11 +25,9 @@ export class HomePage implements OnInit {
                 private userService: UserService) {
     }
 
-    ngOnInit() {
-        this.userService.getUser().then((user: User) => {
-            this.user = user;
-            this.loadOffers().then();
-        });
+    async ngOnInit() {
+        this.user = await this.userService.getUser();
+        await this.loadOffers();
     }
 
     async loadOffers() {

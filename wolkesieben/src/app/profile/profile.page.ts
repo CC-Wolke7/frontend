@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from '../_objects/user';
-import {AppService} from '../_services/app.service';
+import {UserService} from '../_services/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -15,11 +15,13 @@ export class ProfilePage implements OnInit {
   blob: Blob;
   reader: FileReader;
 
-  constructor(private appService: AppService) {
+  constructor(private appService: AppService, private userService: UserService) {
+    user: User;
     this.description = 'init value!';
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.user = await this.userService.getUser();
     this.reader = new FileReader();
   }
 

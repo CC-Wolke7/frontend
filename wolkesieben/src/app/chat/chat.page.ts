@@ -23,12 +23,14 @@ export class ChatPage implements OnInit {
   @ViewChild('chatContent') chatContent;
 
   constructor(private chatService: ChatService,
-              private websocketService: WebsocketService) {
+              private websocketService: WebsocketService,
+              private userService: UserService) {
 
   }
 
-  ngOnInit() {
-    this.getChats().then();
+  async ngOnInit() {
+    await this.userService.getUser();
+    await this.getChats();
   }
 
   async getMessages(chat: Chat) {
