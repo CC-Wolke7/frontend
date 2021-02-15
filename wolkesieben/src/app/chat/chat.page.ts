@@ -19,6 +19,7 @@ export class ChatPage implements OnInit {
   activeChat: Chat;
   messages: Message[];
   newMessage: string;
+  user: User;
 
   @ViewChild('chatContent') chatContent;
 
@@ -29,7 +30,7 @@ export class ChatPage implements OnInit {
   }
 
   async ngOnInit() {
-    await this.userService.getUser();
+    this.user = await this.userService.getUser();
     await this.getChats();
   }
 
@@ -56,6 +57,16 @@ export class ChatPage implements OnInit {
 
   async getChats() {
     this.chats = await this.chatService.getAllChats();
+    await this.chats.forEach(chat => {
+      for (const p of chat.participants) {
+        if (p === this.user.uuid) {
+          continue;
+        }
+        this.userService.getByUrl(p).then(user => {
+          chat.chatPartner = user.name;
+        });
+      }
+    });
   }
 
   send() {

@@ -4,6 +4,7 @@ import {OfferService} from '../_services/offer.service';
 import {Offer} from '../_objects/offer';
 import {NavController} from '@ionic/angular';
 import {UserService} from '../_services/user.service';
+import {User} from "../_objects/user";
 
 @Component({
   selector: 'app-offer',
@@ -19,6 +20,7 @@ export class OfferPage implements OnInit {
               private userService: UserService) { }
 
   offer: Offer;
+  owner: User;
   chatActive: boolean;
 
   private getParam() {
@@ -27,6 +29,10 @@ export class OfferPage implements OnInit {
         this.offer = (this.router.getCurrentNavigation().extras.state as Offer);
       }
     });
+  }
+
+  private async getOwner() {
+    this.owner = await this.userService.getByUrl(this.offer.published_by as string);
   }
 
   async checkAccess() {
@@ -48,5 +54,6 @@ export class OfferPage implements OnInit {
     await this.userService.getUser();
     this.getParam();
     await this.checkAccess();
+    await this.getOwner();
   }
 }

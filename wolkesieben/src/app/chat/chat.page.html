@@ -10,7 +10,7 @@
                   [class.active]="activeChat && chat.uuid == activeChat.uuid"
                   [detail]="!activeChat || chat.uuid != activeChat.uuid">
           <ion-avatar><ion-icon name="person"></ion-icon></ion-avatar>
-          <ion-label>{{chat.participants}}</ion-label>
+          <ion-label>{{chat.chatPartner}}</ion-label>
         </ion-item>
       </ion-list>
     </as-split-area>

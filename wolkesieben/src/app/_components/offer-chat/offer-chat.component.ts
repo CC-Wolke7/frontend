@@ -5,6 +5,7 @@ import {Chat} from '../../_objects/chat';
 import {User} from '../../_objects/user';
 import {WebSocketEventName, WebsocketService} from '../../_services/websocket.service';
 import {AppService} from "../../_services/app.service";
+import {UserService} from "../../_services/user.service";
 
 @Component({
   selector: 'app-offer-chat',
@@ -13,17 +14,20 @@ import {AppService} from "../../_services/app.service";
 })
 export class OfferChatComponent implements OnInit, OnDestroy {
 
-  @Input() owner: User;
+  @Input() owner: string;
 
   messages: Message[] = [];
   newMessage = '';
   chat: Chat;
+  chatPartner: User;
 
   constructor(private chatService: ChatService,
-              private websocketService: WebsocketService) { }
+              private websocketService: WebsocketService,
+              private userService: UserService) { }
 
   async ngOnInit() {
     await this.getChat();
+    await this.getUser();
     this.websocketService.init();
     this.websocketService.ws.subscribe((response) => {
       if (response.event === WebSocketEventName.ReceivedMessage) {
@@ -32,6 +36,10 @@ export class OfferChatComponent implements OnInit, OnDestroy {
         console.error(response);
       }
     });
+  }
+
+  async getUser() {
+    this.chatPartner = await this.userService.getByUrl(this.owner);
   }
 
   async getMessages() {
@@ -44,9 +52,9 @@ export class OfferChatComponent implements OnInit, OnDestroy {
       this.owner = JSON.parse(localStorage.getItem(AppService.LOCAL_STORAGE_KEY));
     }
 
-    const chats = await this.chatService.getChats(this.owner.uuid);
+    const chats = await this.chatService.getChats(this.owner);
     if (chats.length === 0) {
-      this.chat = await this.chatService.pushChat(this.owner.uuid);
+      this.chat = await this.chatService.pushChat(this.owner);
     } else {
       this.chat = chats[0];
     }

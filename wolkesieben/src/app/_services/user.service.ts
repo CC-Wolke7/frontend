@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable, isDevMode} from '@angular/core';
 import {AppService} from './app.service';
 import {User} from '../_objects/user';
 import GoogleUser = gapi.auth2.GoogleUser;
@@ -26,8 +26,14 @@ export class UserService {
     return JSON.parse(localStorage.getItem(AppService.LOCAL_STORAGE_KEY));
   }
 
-  async getByUrl(url: string) {
-    return await this.httpClient.get<any>(url).toPromise();
+  private static getUrl() {
+    return isDevMode() ? AppService.APP_URL_LOCAL : AppService.APP_URL_PROD;
+  }
+
+  async getByUrl(uuid: string) {
+    const headers = AppService.getHeaders();
+    const url = `${UserService.getUrl()}/users/${uuid}/`;
+    return await this.httpClient.get<any>(url, {headers}).toPromise();
   }
 
   async getUser(): Promise<User> {

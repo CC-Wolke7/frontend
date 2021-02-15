@@ -35,7 +35,6 @@ export class OfferCardComponent implements OnInit {
     await this.getImages();
     if (this.user) {
       await this.isFaved();
-      this.offer.published_by = await this.getUser((this.offer.published_by) as any);
       this.offer.like = await this.likeService.getLike(this.offer);
     }
   }
@@ -47,13 +46,13 @@ export class OfferCardComponent implements OnInit {
     }
   }
 
-  async getUser(url: string): Promise<any> {
+  /* async getUser(url: string): Promise<any> {
     try {
       return await this.userService.getByUrl(url);
     } catch (e) {
       return JSON.parse(localStorage.getItem(AppService.LOCAL_STORAGE_KEY));  // fixme remove fallback
     }
-  }
+  }*/
 
   async isFaved() {
     const favs = await this.favService.getFavs();
