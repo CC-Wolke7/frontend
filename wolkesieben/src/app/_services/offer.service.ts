@@ -2,7 +2,7 @@ import {Injectable, isDevMode} from '@angular/core';
 import {AppService} from './app.service';
 import {Offer} from '../_objects/offer';
 import {Observable} from 'rxjs';
-import {HttpClient, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import * as qs from 'qs';
 
 @Injectable({
@@ -24,7 +24,7 @@ export class OfferService {
 
     async getImages(uuid: string): Promise<any[]> {
         const url = OfferService.getUrl('/offers/:offerUuid/get_images').replace(':offerUuid', uuid);
-        const headers = AppService.getHeaders();
+        const headers = new HttpHeaders();
         return this.httpClient.get<any[]>(url, {headers}).toPromise();
     }
 
