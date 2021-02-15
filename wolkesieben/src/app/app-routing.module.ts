@@ -28,10 +28,6 @@ const routes: Routes = [
     loadChildren: () => import('./offer/offer.module').then( m => m.OfferPageModule)
   },
   {
-    path: 'create-offer',
-    loadChildren: () => import('./create-offer/create-offer.module').then( m => m.CreateOfferPageModule)
-  },
-  {
     path: 'chat',
     loadChildren: () => import('./chat/chat.module').then( m => m.ChatPageModule)
   },
