@@ -33,7 +33,7 @@ export class WebsocketService {
   constructor() {}
 
   getUrl() {
-    return `ws://${isDevMode() ? 'localhost:3000' : 'wolke-sieben-fs.ey.r.appspot.com'}`;
+    return `${isDevMode() ? 'ws://localhost:3000' : 'wss://chat.cc-wolkesieben.de'}`;
   }
 
   init() {
