@@ -1,11 +1,11 @@
 <ion-list>
   <ion-item>
     <ion-label>Name des Tieres</ion-label>
-    <ion-input [(ngModel)]="offer.name"></ion-input>
+    <ion-input slot="end" [(ngModel)]="offer.name"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label>Tierart</ion-label>
-    <ion-select [(ngModel)]="offer.species">
+    <ion-select [(ngModel)]="offer.species" (ionChange)="loadBreeds()">
       <ion-select-option [value]="species" *ngFor="let species of allSpecies">
         {{species}}
       </ion-select-option>
@@ -21,11 +21,11 @@
   </ion-item>
   <ion-item>
     <ion-label>Alter</ion-label>
-    <ion-input type="number" [(ngModel)]="offer.age"></ion-input>
+    <ion-input slot="end" type="number" [(ngModel)]="offer.age"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label>Ort</ion-label>
-    <ion-input type="number" [(ngModel)]="offer.place"></ion-input>
+    <ion-input slot="end" [(ngModel)]="offer.place"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label>Geschlecht</ion-label>
@@ -40,6 +40,6 @@
   </ion-item>
   <ion-item>
     <ion-label>Beschreibung</ion-label>
-    <ion-textarea [(ngModel)]="offer.description"></ion-textarea>
+    <ion-textarea slot="end" [(ngModel)]="offer.description"></ion-textarea>
   </ion-item>
 </ion-list>

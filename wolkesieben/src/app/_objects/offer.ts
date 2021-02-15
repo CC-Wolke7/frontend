@@ -14,5 +14,5 @@ export class Offer {
     date_published: Date;
     like: Like;
     media: string[];
-    published_by: User;
+    published_by: string;
 }

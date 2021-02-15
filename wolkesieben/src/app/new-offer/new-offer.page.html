@@ -4,6 +4,11 @@
     <ion-grid>
         <ion-row>
             <ion-col>
+                <ion-button (click)="submitOffer()">Speichern</ion-button>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
                 <ion-card>
                     <ion-card-header>
                         <ion-card-title>Angaben zur Anzeige</ion-card-title>
@@ -21,9 +26,12 @@
                     </ion-card-header>
                     <ion-card-content>
                         <label>
-                            <input type="file" style="display: none;">
+                            <input type="file" style="display: none;" (change)="uploadImage($event)">
                             <a class="upload-button">Datei auswählen</a>
                         </label>
+                        <div>
+                            <ion-img [src]="imgUrl"></ion-img>
+                        </div>
                     </ion-card-content>
                 </ion-card>
             </ion-col>
