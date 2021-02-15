@@ -44,7 +44,7 @@ export class AppService {
   async login(googleUser: GoogleUser): Promise<User> {
     const u = localStorage.getItem(AppService.LOCAL_STORAGE_KEY);
     if (u) {
-      return new Promise(JSON.parse(u));
+      return Promise.resolve( JSON.parse(u));
     }
     const headers: HttpHeaders = new HttpHeaders({
       Authorization: `Bearer ${googleUser.getAuthResponse().id_token}`

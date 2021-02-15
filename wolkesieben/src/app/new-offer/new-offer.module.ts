@@ -7,7 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { NewOfferPageRoutingModule } from './new-offer-routing.module';
 
 import { NewOfferPage } from './new-offer.page';
-import {SharedModule} from "../shared/shared.module";
+import {SharedModule} from '../shared/shared.module';
+import {EditOfferComponent} from '../_components/edit-offer/edit-offer.component';
 
 @NgModule({
     imports: [
@@ -17,6 +18,7 @@ import {SharedModule} from "../shared/shared.module";
         NewOfferPageRoutingModule,
         SharedModule
     ],
-  declarations: [NewOfferPage]
+    exports: [EditOfferComponent],
+  declarations: [NewOfferPage, EditOfferComponent]
 })
 export class NewOfferPageModule {}
