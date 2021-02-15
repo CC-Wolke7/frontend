@@ -20,7 +20,7 @@
       <as-split direction="vertical" unit="pixel" [disabled]="true" [gutterSize]="2">
         <as-split-area class="ion-padding-top" #chatContent>
           <ion-list lines="none" class="chat-detail" *ngIf="activeChat && activeChat.uuid">
-            <ion-list-header>Nachrichten mit {{activeChat.uuid}}</ion-list-header>
+            <ion-list-header>Nachrichten mit {{activeChat.chatPartner}}</ion-list-header>
             <ion-item *ngFor="let message of messages | sortMessages">
               <app-chat-message style="width: 100%" [message]="message"></app-chat-message>
             </ion-item>
