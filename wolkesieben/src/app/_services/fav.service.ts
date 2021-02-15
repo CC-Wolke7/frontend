@@ -20,7 +20,7 @@ export class FavService {
   }
 
   private static deleteUrl() {
-    return `${isDevMode() ? AppService.APP_URL_LOCAL : AppService.APP_URL_PROD}/users/:userId/favorite/`;
+    return `${isDevMode() ? AppService.APP_URL_LOCAL : AppService.APP_URL_PROD}/users/:userId/delete_favorite/`;
   }
 
   async getFavs(): Promise<any> {
