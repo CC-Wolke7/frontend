@@ -23,13 +23,13 @@ export class OfferService {
     }
 
     async getImages(uuid: string): Promise<any[]> {
-        const url = OfferService.getUrl('/offers/:offerUuid/get_images').replace(':offerUuid', uuid);
+        const url = OfferService.getUrl('/offers/:offerUuid/get_images/').replace(':offerUuid', uuid);
         const headers = new HttpHeaders();
         return this.httpClient.get<any[]>(url, {headers}).toPromise();
     }
 
     async uploadImage(uuid: string, data: any) {
-        const url = OfferService.getUrl('/offers/:offerUuid/upload_image').replace(':offerUuid', uuid);
+        const url = OfferService.getUrl('/offers/:offerUuid/upload_image/').replace(':offerUuid', uuid);
         const headers = AppService.getHeaders();
         const params: HttpParams = new HttpParams();
         params.append('name', qs.stringify(data.name));
@@ -38,7 +38,7 @@ export class OfferService {
     }
 
     async getOffer(uuid: string): Promise<Offer> {
-        const url = OfferService.getUrl(`/offers/${uuid}`);
+        const url = OfferService.getUrl(`/offers/${uuid}/`);
         const headers = AppService.getHeaders();
         return this.httpClient.get<Offer>(url, {headers}).toPromise();
     }
