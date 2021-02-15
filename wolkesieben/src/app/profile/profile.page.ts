@@ -52,11 +52,11 @@ export class ProfilePage implements OnInit {
     this.description = 'changed';
   }
 
-  subscribe(breed: string){
+  async subscribe(breed: string){
     const user = JSON.parse(localStorage.getItem(AppService.LOCAL_STORAGE_KEY)) as User;
     console.log(user);
     console.log(breed);
-    this.appService.subscribe(user, breed);
+    await this.appService.subscribe(user, breed);
   }
 
 }

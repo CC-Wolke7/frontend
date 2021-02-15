@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 import {User} from '../_objects/user';
 import {Offer} from '../_objects/offer';
 import jwt_decode from 'jwt-decode';
+import * as qs from 'qs';
 
 @Injectable({
   providedIn: 'root'
@@ -68,15 +69,15 @@ export class AppService {
     return this.httpClient.get<Offer[]>(url, options);
   }
 
-  subscribe(user: User, chosenBreed: string) {
+  async subscribe(user: User, chosenBreed: string) {
     const headers: HttpHeaders = AppService.getHeaders();
     console.log(headers);
     const options = {headers};
     const url = AppService.getUrl(this.ROUTES.subscription.replace(':userUuid', user.uuid));
     console.log(url);
     const params: HttpParams = new HttpParams();
-    params.append('breed', chosenBreed);
-    this.httpClient.post(url, params, options);
+    params.append('breed', qs.stringify(chosenBreed));
+    return this.httpClient.post(url, params, options).toPromise();
   }
 
 }
