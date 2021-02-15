@@ -45,3 +45,6 @@ jobs:
           GCP_SERVICE_ACCOUNT_KEY_FILE: ${{ env.GCP_SA_KEY }}
           GCP_STORAGE_BUCKET: wolkesieben-ionic-app
           SOURCE_DIR: "wolkesieben/www"
+      - name: set 404 page
+        run: |
+          gsutil web set -m index.html -e index.html gs://wolkesieben-ionic-app
