@@ -34,7 +34,7 @@ export class NewOfferPage implements OnInit {
 
   private async sendImage() {
     const imageData = {
-      name: `${this.offer.name}`,
+      name: `${this.offer.name}`, // TODO create unique file name
       image: this.base64Data
     };
     await this.offerService.uploadImage(this.offer.uuid, imageData);
@@ -51,7 +51,6 @@ export class NewOfferPage implements OnInit {
       const blob = new Blob([new Uint8Array((this.reader.result as ArrayBuffer))]);
       this.imgUrl = URL.createObjectURL(blob);
       this.blob = blob;
-      console.log(this.blob);
       this.getBase64().then();
     };
 
@@ -63,7 +62,6 @@ export class NewOfferPage implements OnInit {
     this.reader.readAsDataURL(this.blob);
     this.reader.onloadend = () => {
       this.base64Data = this.reader.result;
-      console.log(this.base64Data);
     };
 }
 
