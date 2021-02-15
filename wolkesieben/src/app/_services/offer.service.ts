@@ -50,7 +50,7 @@ export class OfferService {
     }
 
     async getSpecies(): Promise<any[]> {
-        const url = OfferService.getUrl('/species/?species=all');
+        const url = OfferService.getUrl('/species/');
         const headers = AppService.getHeaders();
         return this.httpClient.get<any[]>(url, {headers}).toPromise();
     }
