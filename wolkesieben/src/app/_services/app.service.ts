@@ -63,7 +63,7 @@ export class AppService {
   }
 
   getOffers(): Observable<Offer[]> {
-    const headers: HttpHeaders = AppService.getHeaders();
+    const headers: HttpHeaders = new HttpHeaders();
     const options = {headers};
     const url = AppService.getUrl(this.ROUTES.offers);
     return this.httpClient.get<Offer[]>(url, options);
