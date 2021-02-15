@@ -1,5 +1,5 @@
 import {Injectable, isDevMode} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import GoogleUser = gapi.auth2.GoogleUser;
 import {Observable} from 'rxjs';
 import {User} from '../_objects/user';
@@ -74,7 +74,9 @@ export class AppService {
     const options = {headers};
     const url = AppService.getUrl(this.ROUTES.subscription.replace(':userUuid', user.uuid));
     console.log(url);
-    this.httpClient.post(url, {breed: chosenBreed}, options);
+    const params: HttpParams = new HttpParams();
+    params.append('breed', chosenBreed);
+    this.httpClient.post(url, params, options);
   }
 
 }
