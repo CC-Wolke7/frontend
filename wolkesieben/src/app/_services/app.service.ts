@@ -26,7 +26,8 @@ export class AppService {
   readonly ROUTES = {
     user: '/api/token/google',
     offers: '/offers',
-    subscription: '/users/:userUuid/subscription/'
+    subscription: '/users/:userUuid/subscription/',
+    uploadImg: '/users/:userUuid/upload_profile_image'
   };
 
   constructor(private httpClient: HttpClient) { }
@@ -69,15 +70,23 @@ export class AppService {
     return this.httpClient.get<Offer[]>(url, options);
   }
 
-  async subscribe(user: User, chosenBreed: string) {
+  subscribe(user: User, chosenBreed: string) {
     const headers: HttpHeaders = AppService.getHeaders();
-    console.log(headers);
-    const options = {headers};
     const url = AppService.getUrl(this.ROUTES.subscription.replace(':userUuid', user.uuid));
     console.log(url);
     const params: HttpParams = new HttpParams();
     params.append('breed', qs.stringify(chosenBreed));
-    return this.httpClient.post(url, params, options).toPromise();
+    this.httpClient.post(url, params, {headers});
+  }
+
+  uploadImage(user: User, base64data: string){
+    const headers: HttpHeaders = AppService.getHeaders();
+    const url = AppService.getUrl(this.ROUTES.uploadImg.replace(':userUuid', user.uuid));
+    console.log(url);
+    const params: HttpParams = new HttpParams();
+    params.append('name', `profileImg-${user.uuid}`);
+    params.append('image', base64data);
+    this.httpClient.put(url, params, {headers});
   }
 
 }

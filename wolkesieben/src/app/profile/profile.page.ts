@@ -43,7 +43,7 @@ export class ProfilePage implements OnInit {
     this.reader.onloadend = () => {
       const base64data = this.reader.result;
       console.log(base64data);
-      // TODO send to appservice
+      this.appService.uploadImage(this.user, base64data as string);
       return;
     };
   }
@@ -52,11 +52,11 @@ export class ProfilePage implements OnInit {
     this.description = 'changed';
   }
 
-  async subscribe(breed: string){
+  subscribe(breed: string){
     const user = JSON.parse(localStorage.getItem(AppService.LOCAL_STORAGE_KEY)) as User;
     console.log(user);
     console.log(breed);
-    await this.appService.subscribe(user, breed);
+    this.appService.subscribe(user, breed);
   }
 
 }
