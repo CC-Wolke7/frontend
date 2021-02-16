@@ -11,10 +11,12 @@ export class SortMessagesPipe implements PipeTransform {
       return values;
     }
     return values.sort((a: Message, b: Message) => {
-      if (+a.date > +b.date) {
-        return asc ? -1 : 1;
+      const da = new Date(a.date);
+      const db = new Date(b.date);
+      if (+da > +db) {
+        return asc ? 1 : -1;
       }
-      return asc ? 1 : -1;
+      return asc ? -1 : 1;
     });
   }
 
