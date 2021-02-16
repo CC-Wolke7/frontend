@@ -9,15 +9,6 @@
                 <ion-title class="ion-text-center">Informationen</ion-title>
                 <ion-input type="text" placeholder="Beschreibung" [(ngModel)]="user.description"></ion-input>
                 <ion-button (click)="changeDescription()">Informationen bearbeiten</ion-button>
-            </ion-col>
-            <ion-col>
-                <ion-title class="ion-text-center">Profilbild</ion-title>
-                <label>
-                    <input style="display: none;" type="file" (change)='uploadImage($event)'>
-                    <a class="upload-button">Datei wählen</a>
-                </label>
-                <div></div>
-                <ion-button (click)='saveImage()'>Speichern</ion-button>
 
                 <ion-title>Rassen abonnieren</ion-title>
 
@@ -36,6 +27,18 @@
                 </ion-item>
 
                 <ion-button (click)='subscribe(breed)'>{{ breed }} abonnieren</ion-button>
+
+            </ion-col>
+            <ion-col>
+                <ion-title class="ion-text-center">Profilbild</ion-title>
+                <label>
+                    <input style="display: none;" type="file" (change)='uploadImage($event)'>
+                    <a class="upload-button">Datei wählen</a>
+                </label>
+                <div></div>
+                <ion-button (click)='saveImage()'>Speichern</ion-button>
+
+
 
                 <ion-img *ngIf="savedImgUrl" src="{{ savedImgUrl }}"></ion-img>
                 <div class="default-image" *ngIf="!savedImgUrl">
