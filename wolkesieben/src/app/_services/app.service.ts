@@ -96,7 +96,7 @@ export class AppService {
   async changeDescription(user: User, description: string){
     const headers: HttpHeaders = AppService.getHeaders();
     const url = AppService.getUrl(this.ROUTES.changeDescription.replace(':userUuid', user.uuid));
-    const params = {description: description};
+    const params = {description};
     return await this.httpClient.request('patch', url, {headers, body: params}).toPromise();
   }
 

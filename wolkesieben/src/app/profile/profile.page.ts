@@ -22,9 +22,7 @@ export class ProfilePage implements OnInit {
   allSpecies: string[] = [];
   allBreeds: string[] = [];
 
-  constructor(private appService: AppService, private userService: UserService, private offerService: OfferService) {
-    this.description = 'init value!';
-  }
+  constructor(private appService: AppService, private userService: UserService, private offerService: OfferService) { }
 
   async ngOnInit() {
     this.user = await this.userService.getUser();
@@ -58,7 +56,10 @@ export class ProfilePage implements OnInit {
 
   changeDescription(){
     const user = JSON.parse(localStorage.getItem(AppService.LOCAL_STORAGE_KEY)) as User;
-    this.appService.changeDescription(user, this.description);
+    console.log(this.description);
+    this.appService.changeDescription(user, this.description).then((res) => {
+      console.log(res);
+    });
   }
 
   subscribe(breed: string){
