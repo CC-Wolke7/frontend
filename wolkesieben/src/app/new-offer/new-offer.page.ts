@@ -4,6 +4,7 @@ import {User} from "../_objects/user";
 import {Offer} from "../_objects/offer";
 import {OfferService} from "../_services/offer.service";
 import {AppService} from "../_services/app.service";
+import {AlertController, NavController} from "@ionic/angular";
 
 @Component({
   selector: 'app-new-offer',
@@ -25,7 +26,9 @@ export class NewOfferPage implements OnInit {
   base64Data: string | ArrayBuffer;
 
   constructor(private userService: UserService,
-              private offerService: OfferService) { }
+              private offerService: OfferService,
+              private alertController: AlertController,
+              private navController: NavController) { }
 
   private async sendOffer() {
     this.offer.published_by = this.user.uuid;
@@ -34,10 +37,20 @@ export class NewOfferPage implements OnInit {
 
   private async sendImage() {
     this.reader.readAsDataURL(this.blob);
-    this.reader.onload = () => {
+    this.reader.onload = async () => {
       const base64data = this.reader.result;
-      this.offerService.uploadImage(this.offer.uuid, base64data as string);
+      await this.offerService.uploadImage(this.offer.uuid, base64data as string);
+      await this.presentSuccessAlert();
+      await this.navController.navigateRoot('/');
     };
+  }
+
+  async presentSuccessAlert() {
+    const alert = await this.alertController.create({
+      header: 'Anzeige wurde erfolgreich erstellt.',
+      buttons: ['OK']
+    });
+    await alert.present();
   }
 
   async ngOnInit() {
