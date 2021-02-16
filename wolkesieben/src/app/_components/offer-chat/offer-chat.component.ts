@@ -14,12 +14,11 @@ import {UserService} from "../../_services/user.service";
 })
 export class OfferChatComponent implements OnInit, OnDestroy {
 
-  @Input() owner: string;
+  @Input() owner: User;
 
   messages: Message[] = [];
   newMessage = '';
   chat: Chat;
-  chatPartner: User;
 
   constructor(private chatService: ChatService,
               private websocketService: WebsocketService,
@@ -27,7 +26,7 @@ export class OfferChatComponent implements OnInit, OnDestroy {
 
   async ngOnInit() {
     await this.getChat();
-    await this.getUser();
+    // await this.getUser();
     this.websocketService.init();
     this.websocketService.ws.subscribe((response) => {
       if (response.event === WebSocketEventName.ReceivedMessage) {
@@ -38,9 +37,9 @@ export class OfferChatComponent implements OnInit, OnDestroy {
     });
   }
 
-  async getUser() {
+  /*async getUser() {
     this.chatPartner = await this.userService.getByUrl(this.owner);
-  }
+  }*/
 
   async getMessages() {
     this.messages = await this.chatService.getMessages(this.chat.uuid);
@@ -52,12 +51,12 @@ export class OfferChatComponent implements OnInit, OnDestroy {
       this.owner = JSON.parse(localStorage.getItem(AppService.LOCAL_STORAGE_KEY));
     }
 
-    const chats = await this.chatService.getChats(this.owner);
+    /*const chats = await this.chatService.getChats(this.owner.uuid);
     if (chats.length === 0) {
-      this.chat = await this.chatService.pushChat(this.owner);
+      this.chat = await this.chatService.pushChat(this.owner.uuid);
     } else {
       this.chat = chats[0];
-    }
+    }*/
     // await this.getMessages();
   }
 
@@ -65,7 +64,13 @@ export class OfferChatComponent implements OnInit, OnDestroy {
     // this.chatService.closeConnection();
   }
 
-  sendMessage() {
+  async sendMessage() {
+    const chats = await this.chatService.getChats(this.owner.uuid);
+    if (chats.length === 0) {
+      this.chat = await this.chatService.pushChat(this.owner.uuid);
+    } else {
+      this.chat = chats[0];
+    }
     this.websocketService.sendMessage({chat: this.chat.uuid, message: this.newMessage});
     this.newMessage = '';
   }
