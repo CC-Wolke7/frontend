@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {User} from '../_objects/user';
 import {UserService} from '../_services/user.service';
 import {AppService} from "../_services/app.service";
+import {OfferService} from "../_services/offer.service";
 
 @Component({
   selector: 'app-profile',
@@ -16,7 +17,12 @@ export class ProfilePage implements OnInit {
   reader: FileReader;
   user: User;
 
-  constructor(private appService: AppService, private userService: UserService) {
+  type: string;
+  breed: string;
+  allSpecies: string[] = [];
+  allBreeds: string[] = [];
+
+  constructor(private appService: AppService, private userService: UserService, private offerService: OfferService) {
     this.description = 'init value!';
   }
 
@@ -50,9 +56,15 @@ export class ProfilePage implements OnInit {
 
   subscribe(breed: string){
     const user = JSON.parse(localStorage.getItem(AppService.LOCAL_STORAGE_KEY)) as User;
-    console.log(user);
-    console.log(breed);
     this.appService.subscribe(user, breed);
+  }
+
+  async loadSpecies() {
+    this.allSpecies = await this.offerService.getSpecies();
+  }
+
+  async loadBreeds() {
+    this.allBreeds = await this.offerService.getBreeds(this.type);
   }
 
 }
