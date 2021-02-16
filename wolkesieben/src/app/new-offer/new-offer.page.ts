@@ -33,34 +33,37 @@ export class NewOfferPage implements OnInit {
   }
 
   private async sendImage() {
-    const imageData = {
-      name: `${this.offer.name}`, // TODO create unique file name
-      image: this.base64Data
+    this.reader.readAsDataURL(this.blob);
+    this.reader.onload = () => {
+      const base64data = this.reader.result;
+      this.offerService.uploadImage(this.offer.uuid, base64data as string);
     };
-    await this.offerService.uploadImage(this.offer.uuid, imageData);
   }
 
   async ngOnInit() {
     this.offer = new Offer();
+
     this.user = await this.userService.getUser();
+    console.log(this.user.uuid, this.user.jwtToken.access);
+    this.reader = new FileReader();
   }
 
   uploadImage(event) {
-    this.reader = new FileReader();
-    this.reader.onloadend = () => {
+    const file = event.target.files[0];
+    this.reader.readAsArrayBuffer(file);
+
+    this.reader.onload = () => {
       const blob = new Blob([new Uint8Array((this.reader.result as ArrayBuffer))]);
       this.imgUrl = URL.createObjectURL(blob);
       this.blob = blob;
       this.getBase64().then();
     };
 
-    const file = event.target.files[0];
-    this.reader.readAsArrayBuffer(file);
   }
 
   async getBase64(): Promise<any> {
     this.reader.readAsDataURL(this.blob);
-    this.reader.onloadend = () => {
+    this.reader.onload = () => {
       this.base64Data = this.reader.result;
     };
 }
