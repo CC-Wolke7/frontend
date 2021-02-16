@@ -28,7 +28,7 @@ export class NewOfferPage implements OnInit {
               private offerService: OfferService) { }
 
   private async sendOffer() {
-    this.offer.published_by = OfferService.getUrl(`/users/${this.user.uuid}/`);
+    this.offer.published_by = this.user.uuid;
     this.offer = await this.offerService.uploadOffer(this.offer);
   }
 
