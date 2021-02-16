@@ -57,11 +57,13 @@ export class ProfilePage implements OnInit {
   }
 
   changeDescription(){
-    this.description = 'changed';
+    const user = JSON.parse(localStorage.getItem(AppService.LOCAL_STORAGE_KEY)) as User;
+    this.appService.changeDescription(user, this.description);
   }
 
   subscribe(breed: string){
     const user = JSON.parse(localStorage.getItem(AppService.LOCAL_STORAGE_KEY)) as User;
+    console.log(user.jwtToken);
     this.appService.subscribe(user, breed);
   }
 

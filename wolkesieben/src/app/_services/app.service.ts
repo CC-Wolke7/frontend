@@ -28,7 +28,8 @@ export class AppService {
     offers: '/offers',
     subscription: '/users/:userUuid/subscription/',
     uploadImg: '/users/:userUuid/upload_profile_image/',
-    getImage: '/users/:userUuid/get_profile_image/'
+    getImage: '/users/:userUuid/get_profile_image/',
+    changeDescription: '/users/:userUuid/'
   };
 
   constructor(private httpClient: HttpClient) { }
@@ -90,6 +91,13 @@ export class AppService {
     const url = AppService.getUrl(this.ROUTES.uploadImg.replace(':userUuid', user.uuid));
     const params = {name: `profileImg-${user.uuid}`, image: base64data};
     return await this.httpClient.request('put', url, {headers, body: params}).toPromise();
+  }
+
+  async changeDescription(user: User, description: string){
+    const headers: HttpHeaders = AppService.getHeaders();
+    const url = AppService.getUrl(this.ROUTES.changeDescription.replace(':userUuid', user.uuid));
+    const params = {description: description};
+    return await this.httpClient.request('patch', url, {headers, body: params}).toPromise();
   }
 
 }
