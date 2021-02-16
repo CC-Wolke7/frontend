@@ -21,12 +21,14 @@ export class ProfilePage implements OnInit {
   breed: string;
   allSpecies: string[] = [];
   allBreeds: string[] = [];
+  subscriptions: string[] = [];
 
   constructor(private appService: AppService, private userService: UserService, private offerService: OfferService) { }
 
   async ngOnInit() {
     this.user = await this.userService.getUser();
     this.reader = new FileReader();
+    await this.loadSubscriptions();
     await this.loadSpecies();
     await this.getImage();
   }
@@ -56,8 +58,6 @@ export class ProfilePage implements OnInit {
 
   changeDescription(){
     const user = JSON.parse(localStorage.getItem(AppService.LOCAL_STORAGE_KEY)) as User;
-    console.log(user);
-    console.log(this.description);
     this.appService.changeDescription(user, this.description).then((res) => {
       user.description = this.description;
       localStorage.setItem(AppService.LOCAL_STORAGE_KEY, JSON.stringify(user));
@@ -65,10 +65,11 @@ export class ProfilePage implements OnInit {
     });
   }
 
-  subscribe(breed: string){
+  async subscribe(breed: string){
     const user = JSON.parse(localStorage.getItem(AppService.LOCAL_STORAGE_KEY)) as User;
     console.log(user.jwtToken);
-    this.appService.subscribe(user, breed);
+    await this.appService.subscribe(user, breed);
+    await this.loadSubscriptions();
   }
 
   async loadSpecies() {
@@ -77,6 +78,10 @@ export class ProfilePage implements OnInit {
 
   async loadBreeds() {
     this.allBreeds = await this.offerService.getBreeds(this.type);
+  }
+
+  async loadSubscriptions() {
+    this.subscriptions = await this.appService.getSubscriptions(this.user);
   }
 
 }
