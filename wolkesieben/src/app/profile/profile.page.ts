@@ -10,7 +10,6 @@ import {AppService} from "../_services/app.service";
 })
 export class ProfilePage implements OnInit {
 
-  imgUrl: string;
   savedImgUrl: string;
   description: string;
   blob: Blob;
@@ -32,19 +31,16 @@ export class ProfilePage implements OnInit {
     this.reader.readAsArrayBuffer(file);
     this.reader.onloadend = () => {
       const blob = new Blob([new Uint8Array((this.reader.result as ArrayBuffer))]);
-      this.imgUrl = URL.createObjectURL(blob);
+      this.savedImgUrl = URL.createObjectURL(blob);
       this.blob = blob;
     };
   }
 
   saveImage(){
-    this.savedImgUrl = this.imgUrl;
     this.reader.readAsDataURL(this.blob);
     this.reader.onloadend = () => {
       const base64data = this.reader.result;
-      console.log(base64data);
       this.appService.uploadImage(this.user, base64data as string);
-      return;
     };
   }
 

@@ -82,11 +82,10 @@ export class AppService {
   uploadImage(user: User, base64data: string){
     const headers: HttpHeaders = AppService.getHeaders();
     const url = AppService.getUrl(this.ROUTES.uploadImg.replace(':userUuid', user.uuid));
-    console.log(url);
     const params: HttpParams = new HttpParams();
     params.append('name', `profileImg-${user.uuid}`);
     params.append('image', base64data);
-    this.httpClient.put(url, params, {headers});
+    this.httpClient.put(url, params, {headers, params});
   }
 
 }
