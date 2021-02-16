@@ -29,7 +29,8 @@ export class AppService {
     subscription: '/users/:userUuid/subscription/',
     uploadImg: '/users/:userUuid/upload_profile_image/',
     getImage: '/users/:userUuid/get_profile_image/',
-    changeDescription: '/users/:userUuid/'
+    changeDescription: '/users/:userUuid/',
+    getSubscriptions: '/users/:userUuid/get_subscriptions/'
   };
 
   constructor(private httpClient: HttpClient) { }
@@ -98,6 +99,12 @@ export class AppService {
     const url = AppService.getUrl(this.ROUTES.changeDescription.replace(':userUuid', user.uuid));
     const params = {description};
     return await this.httpClient.request('patch', url, {headers, body: params}).toPromise();
+  }
+
+  async getSubscriptions(user: User){
+    const headers: HttpHeaders = AppService.getHeaders();
+    const url = AppService.getUrl(this.ROUTES.getSubscriptions.replace(':userUuid', user.uuid));
+    return await this.httpClient.request<string[]>('get', url, {headers}).toPromise();
   }
 
 }
