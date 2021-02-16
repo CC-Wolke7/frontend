@@ -62,6 +62,10 @@ export class ChatPage implements OnInit {
         if (p === this.user.uuid) {
           continue;
         }
+        if (p === 'b6256195-1ac6-4146-8d75-d796447c06ad') {
+          chat.chatPartner = 'Recommendations for you';
+          continue;
+        }
         this.userService.getByUrl(p).then(user => {
           chat.chatPartner = user.name;
         });
