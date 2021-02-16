@@ -30,13 +30,17 @@ export class ProfilePage implements OnInit {
     this.user = await this.userService.getUser();
     this.reader = new FileReader();
     await this.loadSpecies();
+    await this.getImage();
+  }
+
+  async getImage() {
+    this.savedImgUrl = await this.appService.getImage(this.user);
   }
 
   uploadImage(event){
     const file = event.target.files[0];
-
     this.reader.readAsArrayBuffer(file);
-    this.reader.onloadend = () => {
+    this.reader.onload = () => {
       const blob = new Blob([new Uint8Array((this.reader.result as ArrayBuffer))]);
       this.savedImgUrl = URL.createObjectURL(blob);
       this.blob = blob;
@@ -45,7 +49,8 @@ export class ProfilePage implements OnInit {
 
   saveImage(){
     this.reader.readAsDataURL(this.blob);
-    this.reader.onloadend = () => {
+    this.reader.onload = () => {
+      console.log('reader on load');
       const base64data = this.reader.result;
       this.appService.uploadImage(this.user, base64data as string);
     };

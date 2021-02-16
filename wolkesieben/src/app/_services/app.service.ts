@@ -27,7 +27,8 @@ export class AppService {
     user: '/api/token/google',
     offers: '/offers',
     subscription: '/users/:userUuid/subscription/',
-    uploadImg: '/users/:userUuid/upload_profile_image'
+    uploadImg: '/users/:userUuid/upload_profile_image/',
+    getImage: '/users/:userUuid/get_profile_image/'
   };
 
   constructor(private httpClient: HttpClient) { }
@@ -41,6 +42,13 @@ export class AppService {
 
   private static getUrl(route: string): string {
     return `${isDevMode() ? AppService.APP_URL_LOCAL : AppService.APP_URL_PROD}${route}`;
+  }
+
+  async getImage(user: User): Promise<string> {
+    const headers: HttpHeaders = AppService.getHeaders();
+    const options = {headers};
+    const url = AppService.getUrl(this.ROUTES.getImage).replace(':userUuid', user.uuid);
+    return this.httpClient.get<string>(url, options).toPromise();
   }
 
   async login(googleUser: GoogleUser): Promise<User> {
@@ -70,22 +78,18 @@ export class AppService {
     return this.httpClient.get<Offer[]>(url, options);
   }
 
-  subscribe(user: User, chosenBreed: string) {
+  async subscribe(user: User, chosenBreed: string) {
     const headers: HttpHeaders = AppService.getHeaders();
     const url = AppService.getUrl(this.ROUTES.subscription.replace(':userUuid', user.uuid));
-    console.log(url);
-    const params: HttpParams = new HttpParams();
-    params.append('breed', qs.stringify(chosenBreed));
-    this.httpClient.post(url, params, {headers});
+    const params = {breed: chosenBreed};
+    return await this.httpClient.request('post', url, {headers, body: params}).toPromise();
   }
 
-  uploadImage(user: User, base64data: string){
+  async uploadImage(user: User, base64data: string){
     const headers: HttpHeaders = AppService.getHeaders();
     const url = AppService.getUrl(this.ROUTES.uploadImg.replace(':userUuid', user.uuid));
-    const params: HttpParams = new HttpParams();
-    params.append('name', `profileImg-${user.uuid}`);
-    params.append('image', base64data);
-    this.httpClient.put(url, params, {headers, params});
+    const params = {name: `profileImg-${user.uuid}`, image: base64data};
+    return await this.httpClient.request('put', url, {headers, body: params}).toPromise();
   }
 
 }
