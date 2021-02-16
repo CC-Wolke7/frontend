@@ -41,9 +41,9 @@ export class ChatService {
 
     async getChats(ownerUuid: string): Promise<Chat[]> {
         const headers: HttpHeaders = AppService.getHeaders();
-        const params: HttpParams = new HttpParams();
-        params.append('strictEqual', qs.stringify(true));
-        params.append('participants', qs.stringify([ownerUuid], {arrayFormat: 'indices'}));
+        let params: HttpParams = new HttpParams();
+        params = params.append('strictEqual', 'true');
+        params = params.append('participants[]', ownerUuid);
         const options = {headers, params};
         return this.httpClient.get<Chat[]>(ChatService.getUrlHttp(), options).toPromise();
     }

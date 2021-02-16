@@ -25,8 +25,6 @@ export class OfferChatComponent implements OnInit, OnDestroy {
               private userService: UserService) { }
 
   async ngOnInit() {
-    await this.getChat();
-    // await this.getUser();
     this.websocketService.init();
     this.websocketService.ws.subscribe((response) => {
       if (response.event === WebSocketEventName.ReceivedMessage) {
@@ -37,31 +35,12 @@ export class OfferChatComponent implements OnInit, OnDestroy {
     });
   }
 
-  /*async getUser() {
-    this.chatPartner = await this.userService.getByUrl(this.owner);
-  }*/
-
   async getMessages() {
     this.messages = await this.chatService.getMessages(this.chat.uuid);
   }
 
-  async getChat() {
-    // todo remove fallback
-    if (!this.owner) {
-      this.owner = JSON.parse(localStorage.getItem(AppService.LOCAL_STORAGE_KEY));
-    }
-
-    /*const chats = await this.chatService.getChats(this.owner.uuid);
-    if (chats.length === 0) {
-      this.chat = await this.chatService.pushChat(this.owner.uuid);
-    } else {
-      this.chat = chats[0];
-    }*/
-    // await this.getMessages();
-  }
-
   ngOnDestroy() {
-    // this.chatService.closeConnection();
+    this.websocketService.close();
   }
 
   async sendMessage() {
