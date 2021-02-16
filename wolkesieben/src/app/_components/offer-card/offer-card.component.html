@@ -23,12 +23,12 @@
         <ion-text class="name-age">
           {{offer.name}}, {{offer.age}}
         </ion-text>
-        <ion-icon class="sex-icon" [name]="offer.sex == 'M' ? 'male' : 'female'"></ion-icon>
+        <ion-icon class="sex-icon" [name]="offer.sex.toLowerCase()"></ion-icon>
       </div>
 
       <div>
         <ion-text class="place" color="secondary">
-          {{offer.place}}
+          {{offer.location}}
         </ion-text>
       </div>
     </div>

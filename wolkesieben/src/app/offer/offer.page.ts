@@ -21,8 +21,6 @@ export class OfferPage implements OnInit {
     this.route.queryParams.subscribe(() => {
       if (this.router && this.router.getCurrentNavigation() && this.router.getCurrentNavigation().extras) {
         this.offer = (this.router.getCurrentNavigation().extras.state as Offer);
-      } else {
-        console.log('router dead');
       }
     });
   }
@@ -31,12 +29,8 @@ export class OfferPage implements OnInit {
   owner: User;
   chatActive: boolean;
 
-  private getParam() {
-
-  }
-
   private async getOwner() {
-    this.owner = await this.userService.getByUrl(this.offer.published_by as string);
+    this.owner = await this.userService.getByUrl(this.offer.published_by);
   }
 
   async checkAccess() {
@@ -56,8 +50,8 @@ export class OfferPage implements OnInit {
 
   async ngOnInit() {
     await this.userService.getUser();
-    this.getParam();
     await this.checkAccess();
     await this.getOwner();
+    console.log(this.offer);
   }
 }

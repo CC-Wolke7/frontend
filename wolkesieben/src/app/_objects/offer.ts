@@ -9,7 +9,7 @@ export class Offer {
     age: number;
     sex: string;
     sterile: boolean;
-    place: string;
+    location: string;
     date_published: Date;
     like: Like;
     media: string[];
