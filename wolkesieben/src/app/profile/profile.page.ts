@@ -29,6 +29,7 @@ export class ProfilePage implements OnInit {
   async ngOnInit() {
     this.user = await this.userService.getUser();
     this.reader = new FileReader();
+    await this.loadSpecies();
   }
 
   uploadImage(event){

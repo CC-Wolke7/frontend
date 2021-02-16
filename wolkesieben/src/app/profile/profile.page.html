@@ -23,14 +23,14 @@
 
                 <ion-item>
                     <ion-label>Tierart</ion-label>
-                    <ion-select [(ngModel)]="type" (ionChange)="loadSpecies()">
+                    <ion-select [(ngModel)]="type" (ionChange)="loadBreeds()">
                         <ion-select-option *ngFor="let species of allSpecies" [value]="species">{{species}}</ion-select-option>
                     </ion-select>
                 </ion-item>
 
                 <ion-item>
                     <ion-label>Rasse</ion-label>
-                    <ion-select [(ngModel)]="breed" (ionChange)="loadBreeds()">
+                    <ion-select [(ngModel)]="breed">
                         <ion-select-option *ngFor="let breeds of allBreeds" [value]="breeds">{{breeds}}</ion-select-option>
                     </ion-select>
                 </ion-item>
