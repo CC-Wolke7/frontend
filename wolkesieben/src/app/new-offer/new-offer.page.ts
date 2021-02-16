@@ -36,28 +36,36 @@ export class NewOfferPage implements OnInit {
   }
 
   private async sendImage() {
-    this.reader.readAsDataURL(this.blob);
-    this.reader.onload = async () => {
-      const base64data = this.reader.result;
-      await this.offerService.uploadImage(this.offer.uuid, base64data as string);
+    if (this.blob instanceof Blob) {
+      this.reader.readAsDataURL(this.blob);
+      this.reader.onload = async () => {
+        const base64data = this.reader.result;
+        await this.offerService.uploadImage(this.offer.uuid, base64data as string);
+        await this.presentSuccessAlert();
+      };
+    } else {
       await this.presentSuccessAlert();
-      await this.navController.navigateRoot('/');
-    };
+    }
   }
 
   async presentSuccessAlert() {
     const alert = await this.alertController.create({
       header: 'Anzeige wurde erfolgreich erstellt.',
-      buttons: ['OK']
+      message: 'Du wirst jetzt zur Startseite weitergeleitet.',
+      buttons: [{
+        text: 'OK',
+        role: 'cancel',
+        handler: () => {
+          this.navController.navigateRoot('/').then();
+        }
+      }]
     });
     await alert.present();
   }
 
   async ngOnInit() {
     this.offer = new Offer();
-
     this.user = await this.userService.getUser();
-    console.log(this.user.uuid, this.user.jwtToken.access);
     this.reader = new FileReader();
   }
 
