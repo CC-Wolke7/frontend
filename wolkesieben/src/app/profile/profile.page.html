@@ -18,8 +18,24 @@
                 </label>
 
                 <ion-button (click)='saveImage()'>Speichern</ion-button>
-                <br>
-                <ion-button (click)='subscribe("Chicken")'>Subscribe for Chicken</ion-button>
+
+                <ion-title>Rassen abonnieren</ion-title>
+
+                <ion-item>
+                    <ion-label>Tierart</ion-label>
+                    <ion-select [(ngModel)]="type" (ionChange)="loadSpecies()">
+                        <ion-select-option *ngFor="let species of allSpecies" [value]="species">{{species}}</ion-select-option>
+                    </ion-select>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>Rasse</ion-label>
+                    <ion-select [(ngModel)]="breed" (ionChange)="loadBreeds()">
+                        <ion-select-option *ngFor="let breeds of allBreeds" [value]="breeds">{{breeds}}</ion-select-option>
+                    </ion-select>
+                </ion-item>
+
+                <ion-button (click)='subscribe(breed)'>{{ breed }} abonnieren</ion-button>
 
                 <ion-img *ngIf="savedImgUrl" src="{{ savedImgUrl }}"></ion-img>
                 <div class="default-image" *ngIf="!savedImgUrl">
