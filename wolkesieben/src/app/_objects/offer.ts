@@ -1,5 +1,4 @@
 import {Like} from './like';
-import {User} from './user';
 
 export class Offer {
     species: string;
@@ -15,4 +14,8 @@ export class Offer {
     like: Like;
     media: string[];
     published_by: string;
+
+    constructor() {
+        this.sterile = false;
+    }
 }
