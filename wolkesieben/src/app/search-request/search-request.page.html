@@ -5,19 +5,15 @@
  <ion-list style="width:30em; align-items:center;"*ngIf="!loading">
     <ion-item>
       <ion-label>Tierart</ion-label>
-      <ion-select [(ngModel)]="search.type"> <!-- TODO load options from file -->
-        <ion-select-option>Hund</ion-select-option>
-        <ion-select-option>Katze</ion-select-option>
-        <ion-select-option>Maus</ion-select-option>
+      <ion-select [(ngModel)]="search.type" (ionChange)="loadBreeds()">
+        <ion-select-option *ngFor="let species of allSpecies" [value]="species">{{species}}</ion-select-option>
       </ion-select>
     </ion-item>
 
     <ion-item>
       <ion-label>Rasse</ion-label>
       <ion-select [(ngModel)]="search.breed"> <!-- TODO load options from file -->
-        <ion-select-option>Schäferhund</ion-select-option>
-        <ion-select-option>Golden Retriever</ion-select-option>
-        <ion-select-option>Jack Russell Terrier</ion-select-option>
+        <ion-select-option *ngFor="let breed of allBreeds" [value]="breed">{{breed}}</ion-select-option>
       </ion-select>
     </ion-item>
 
