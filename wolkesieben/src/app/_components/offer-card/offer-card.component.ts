@@ -24,6 +24,7 @@ export class OfferCardComponent implements OnInit {
   isFav = false;
 
   @Output() likesUpdated: EventEmitter<Like[]> = new EventEmitter<Like[]>();
+  @Output() unFav: EventEmitter<void> = new EventEmitter<void>();
 
   constructor(private navController: NavController,
               private likeService: LikeService,
@@ -70,6 +71,7 @@ export class OfferCardComponent implements OnInit {
       await this.favService.saveFav(this.offer);
     } else {
       await this.favService.removeFav(this.offer);
+      this.unFav.next();
     }
     await this.isFaved();
   }

@@ -1,8 +1,9 @@
 import {Injectable, isDevMode} from '@angular/core';
 import {User} from '../_objects/user';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Offer} from '../_objects/offer';
 import {AppService} from './app.service';
+import * as qs from 'qs';
 
 @Injectable({
   providedIn: 'root'
@@ -42,7 +43,7 @@ export class FavService {
     const user = JSON.parse(localStorage.getItem(AppService.LOCAL_STORAGE_KEY)) as User;
     const url = FavService.deleteUrl().replace(':userId', user.uuid);
     const headers = AppService.getHeaders();
-    const payload = {offer: offer.uuid};
-    return this.httpClient.delete(url, {headers, params: payload}).toPromise();
+    const body = {offer: offer.uuid};
+    return this.httpClient.request('delete', `${url}`, {headers, body}).toPromise();
   }
 }
