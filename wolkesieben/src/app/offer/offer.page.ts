@@ -17,18 +17,22 @@ export class OfferPage implements OnInit {
               private router: Router,
               private navController: NavController,
               private offerService: OfferService,
-              private userService: UserService) { }
+              private userService: UserService) {
+    this.route.queryParams.subscribe(() => {
+      if (this.router && this.router.getCurrentNavigation() && this.router.getCurrentNavigation().extras) {
+        this.offer = (this.router.getCurrentNavigation().extras.state as Offer);
+      } else {
+        console.log('router dead');
+      }
+    });
+  }
 
   offer: Offer;
   owner: User;
   chatActive: boolean;
 
   private getParam() {
-    this.route.queryParams.subscribe(() => {
-      if (this.router && this.router.getCurrentNavigation() && this.router.getCurrentNavigation().extras) {
-        this.offer = (this.router.getCurrentNavigation().extras.state as Offer);
-      }
-    });
+
   }
 
   private async getOwner() {

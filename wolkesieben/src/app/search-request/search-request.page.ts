@@ -17,6 +17,8 @@ export class SearchRequestPage implements OnInit {
   search: Search;
   offers: Offer[];
   loading = true;
+  allBreeds: string[] = [];
+  allSpecies: string[] = [];
 
   constructor(private navController: NavController,
               private appService: AppService,
@@ -27,12 +29,13 @@ export class SearchRequestPage implements OnInit {
     await this.userService.getUser();
     this.search = new Search();
     this.loading = false;
+    await this.loadSpecies();
   }
 
   async do_search(){
     // filter
     this.offers = await this.offerService.getOffers().toPromise();
-    this.offers.filter((o: Offer) => {
+    this.offers = this.offers.filter((o: Offer) => {
       return (
         o.species === this.search.type &&
         (!this.search.breed ||
@@ -41,8 +44,16 @@ export class SearchRequestPage implements OnInit {
       );
     });
 
+
     const navigationExtras: NavigationExtras = {state: this.offers};
     this.navController.navigateForward(`/search-preview`, navigationExtras).then();
   }
 
+  async loadBreeds() {
+    this.allBreeds = await this.offerService.getBreeds(this.search.type);
+  }
+
+  async loadSpecies() {
+    this.allSpecies = await this.offerService.getSpecies();
+  }
 }

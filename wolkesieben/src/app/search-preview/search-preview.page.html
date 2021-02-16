@@ -1,4 +1,29 @@
+<app-header [title]="'Ergebnisse'"></app-header>
 <ion-content>
-  <app-header [title]="'Ergebnisse'"></app-header>
+  <ion-grid>
 
+    <ion-row *ngIf="offers && offers.length > 0">
+      <ion-col>
+        <div class="ion-text-center results-count">
+          <ion-text *ngIf="offers.length == 1">Ein Ergebnis gefunden</ion-text>
+          <ion-text *ngIf="offers.length > 1">{{offers.length}} Ergebnisse gefunden</ion-text>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="offers && offers.length > 0">
+      <ion-col size-xl="3" size-lg="4" size-md="6" size-sm="6" size-xs="12" *ngFor="let offer of offers">
+        <app-offer-card [user]="user" [offer]="offer"></app-offer-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="offers && offers.length === 0">
+      <ion-col>
+        <ion-text class="no-items">
+          Es gibt leider keine Angebote, die auf Deine Suche passen.
+          <br><br>Ändere die Suchparameter und versuche es erneut.
+        </ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
