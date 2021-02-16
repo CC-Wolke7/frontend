@@ -4,6 +4,7 @@ import {User} from "../_objects/user";
 import {Offer} from "../_objects/offer";
 import {OfferService} from "../_services/offer.service";
 import {AppService} from "../_services/app.service";
+import {AlertController, NavController} from "@ionic/angular";
 
 @Component({
   selector: 'app-new-offer',
@@ -25,7 +26,9 @@ export class NewOfferPage implements OnInit {
   base64Data: string | ArrayBuffer;
 
   constructor(private userService: UserService,
-              private offerService: OfferService) { }
+              private offerService: OfferService,
+              private alertController: AlertController,
+              private navController: NavController) { }
 
   private async sendOffer() {
     this.offer.published_by = this.user.uuid;
@@ -33,34 +36,55 @@ export class NewOfferPage implements OnInit {
   }
 
   private async sendImage() {
-    const imageData = {
-      name: `${this.offer.name}`, // TODO create unique file name
-      image: this.base64Data
-    };
-    await this.offerService.uploadImage(this.offer.uuid, imageData);
+    if (this.blob instanceof Blob) {
+      this.reader.readAsDataURL(this.blob);
+      this.reader.onload = async () => {
+        const base64data = this.reader.result;
+        await this.offerService.uploadImage(this.offer.uuid, base64data as string);
+        await this.presentSuccessAlert();
+      };
+    } else {
+      await this.presentSuccessAlert();
+    }
+  }
+
+  async presentSuccessAlert() {
+    const alert = await this.alertController.create({
+      header: 'Anzeige wurde erfolgreich erstellt.',
+      message: 'Du wirst jetzt zur Startseite weitergeleitet.',
+      buttons: [{
+        text: 'OK',
+        role: 'cancel',
+        handler: () => {
+          this.navController.navigateRoot('/').then();
+        }
+      }]
+    });
+    await alert.present();
   }
 
   async ngOnInit() {
     this.offer = new Offer();
     this.user = await this.userService.getUser();
+    this.reader = new FileReader();
   }
 
   uploadImage(event) {
-    this.reader = new FileReader();
-    this.reader.onloadend = () => {
+    const file = event.target.files[0];
+    this.reader.readAsArrayBuffer(file);
+
+    this.reader.onload = () => {
       const blob = new Blob([new Uint8Array((this.reader.result as ArrayBuffer))]);
       this.imgUrl = URL.createObjectURL(blob);
       this.blob = blob;
       this.getBase64().then();
     };
 
-    const file = event.target.files[0];
-    this.reader.readAsArrayBuffer(file);
   }
 
   async getBase64(): Promise<any> {
     this.reader.readAsDataURL(this.blob);
-    this.reader.onloadend = () => {
+    this.reader.onload = () => {
       this.base64Data = this.reader.result;
     };
 }

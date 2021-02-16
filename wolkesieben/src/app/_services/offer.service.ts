@@ -31,10 +31,9 @@ export class OfferService {
     async uploadImage(uuid: string, data: any) {
         const url = OfferService.getUrl('/offers/:offerUuid/upload_image/').replace(':offerUuid', uuid);
         const headers = AppService.getHeaders();
-        const params: HttpParams = new HttpParams();
-        params.append('name', qs.stringify(data.name));
-        params.append('image', qs.stringify(data.image));
-        return this.httpClient.post(url, params, {headers}).toPromise();
+        const randString = Math.random().toString(36).substr(2, 5);
+        const params = {name: `${randString}-${uuid}`, image: data};
+        return this.httpClient.request('post', url, {headers, body: params}).toPromise();
     }
 
     async getOffer(uuid: string): Promise<Offer> {
@@ -46,7 +45,7 @@ export class OfferService {
     async uploadOffer(offer): Promise<Offer> {
         const url = OfferService.getUrl('/offers/');
         const headers = AppService.getHeaders();
-        return this.httpClient.post<Offer>(url, offer, {headers}).toPromise();
+        return this.httpClient.request<Offer>('post', url, {headers, body: offer}).toPromise();
     }
 
     async getSpecies(): Promise<any[]> {
