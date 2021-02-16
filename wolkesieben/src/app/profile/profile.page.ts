@@ -57,11 +57,11 @@ export class ProfilePage implements OnInit {
   }
 
   changeDescription(){
-    const user = JSON.parse(localStorage.getItem(AppService.LOCAL_STORAGE_KEY)) as User;
-    this.appService.changeDescription(user, this.description).then((res) => {
-      user.description = this.description;
-      localStorage.setItem(AppService.LOCAL_STORAGE_KEY, JSON.stringify(user));
-      console.log(`User description updated to ${JSON.parse(localStorage.getItem(AppService.LOCAL_STORAGE_KEY)).description}`);
+    this.appService.changeDescription(this.user).then((res) => {
+      localStorage.clear();
+      this.userService.getUser().then((user: User) => {
+        this.user = user;
+      });
     });
   }
 

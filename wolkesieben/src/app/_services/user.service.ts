@@ -26,7 +26,7 @@ export class UserService {
     return JSON.parse(localStorage.getItem(AppService.LOCAL_STORAGE_KEY));
   }
 
-  private static getUrl() {
+  public static getUrl() {
     return isDevMode() ? AppService.APP_URL_LOCAL : AppService.APP_URL_PROD;
   }
 

@@ -6,6 +6,7 @@ import {User} from '../_objects/user';
 import {Offer} from '../_objects/offer';
 import jwt_decode from 'jwt-decode';
 import * as qs from 'qs';
+import {UserService} from "./user.service";
 
 @Injectable({
   providedIn: 'root'
@@ -69,8 +70,20 @@ export class AppService {
     const tokenDecoded: any = jwt_decode(user.jwtToken.access);
     user.uuid = tokenDecoded.sub;
     user.name = tokenDecoded.name;
+    const dbUser = await this.getDbUser(user);
+    user.description = dbUser.description;
+    console.log({dbUser}, user.jwtToken.access);
     localStorage.setItem(AppService.LOCAL_STORAGE_KEY, JSON.stringify(user));
     return user;
+  }
+
+  async getDbUser(user: User): Promise<any> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${user.jwtToken.access}`
+    });
+    const url = `${UserService.getUrl()}/users/${user.uuid}/`;
+    console.log({url});
+    return this.httpClient.get<any>(url, {headers}).toPromise();
   }
 
   getOffers(): Observable<Offer[]> {
@@ -94,10 +107,10 @@ export class AppService {
     return await this.httpClient.request('put', url, {headers, body: params}).toPromise();
   }
 
-  async changeDescription(user: User, description: string){
+  async changeDescription(user: User){
     const headers: HttpHeaders = AppService.getHeaders();
     const url = AppService.getUrl(this.ROUTES.changeDescription.replace(':userUuid', user.uuid));
-    const params = {description};
+    const params = {description: user.description};
     return await this.httpClient.request('patch', url, {headers, body: params}).toPromise();
   }
 
