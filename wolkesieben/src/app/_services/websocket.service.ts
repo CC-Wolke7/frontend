@@ -37,6 +37,9 @@ export class WebsocketService {
   }
 
   init() {
+    if (this.ws && !this.ws.closed) {
+      this.close();
+    }
     this.ws = webSocket(this.getUrl());
 
     const user = JSON.parse(localStorage.getItem(AppService.LOCAL_STORAGE_KEY)) as User;
@@ -45,6 +48,10 @@ export class WebsocketService {
       data: {token: user.jwtToken.access}
     };
     this.ws.next(authReqEvt);
+  }
+
+  close() {
+    this.ws.unsubscribe();
   }
 
   sendMessage(message: any) {

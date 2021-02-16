@@ -1,5 +1,5 @@
 <h3 class="bold ion-text-center">Neue Nachricht an</h3>
-<h3 class="ion-text-center">{{chatPartner}}</h3>
+<h3 class="ion-text-center" *ngIf="owner">{{owner.name}}</h3>
 
 <div *ngIf="messages.length > 0">
   <app-chat-message [message]="message" *ngFor="let message of messages | sortMessages"></app-chat-message>
