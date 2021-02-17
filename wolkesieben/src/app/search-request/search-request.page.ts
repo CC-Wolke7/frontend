@@ -38,9 +38,8 @@ export class SearchRequestPage implements OnInit {
     this.offers = this.offers.filter((o: Offer) => {
       return (
         o.species === this.search.type &&
-        (!this.search.breed ||
-            o.breed === this.search.breed) &&
-            o.age === this.search.age
+        (!this.search.breed || o.breed === this.search.breed &&
+            !this.search.age || o.age === this.search.age)
       );
     });
 
